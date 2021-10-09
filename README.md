@@ -29,11 +29,11 @@ To run a local copy of the application on your machine, follow the instructions 
 ### Starting up React
 1. Once you have forked the repository, inside the *scribble* directory, install all packages using:
   ```sh
-  npm install
+  yarn install
   ```
 2. Start the web application using the following command:
   ```sh
-  npm start
+  yarn start
   ```
   
 ### Starting up the server
