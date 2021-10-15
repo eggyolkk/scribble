@@ -39,7 +39,7 @@ To run a local copy of the application on your machine, follow the instructions 
 ### Starting up the server
 1. Inside the *scribble/server* directory, open **app.js** and in the terminal, type in the following:
   ```sh
-  node app
+  npm run server
   ```
 
  
