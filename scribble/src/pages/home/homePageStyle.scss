@@ -1,0 +1,69 @@
+$lavender: #d2ceee;
+$manrope: 'Manrope', sans-serif;
+$quicksand: 'Quicksand', sans-serif;
+
+html, body {
+    margin: 0;
+}
+
+#homeFlexLeft {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#homeFlexRight {
+    width: 50%;
+}
+
+#homePageBody {
+    width: 100%;
+    height: 100vh;
+    background-color: $lavender;
+    display: flex;
+    flex-direction: row;
+}
+
+#loginButton {
+    background-color: #ffecae;
+    color: #c18518;
+    border: none;
+    padding: 10px;
+    width: 100px;
+    border-radius: 20px;
+    font-family: $quicksand;
+    font-weight: 500;
+    margin-top: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: #ffe570;
+    }
+}
+
+#loginContainer {
+    background-color: white;
+    height: 700px;
+    width: 400px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+#scribbleSubtitle {
+    margin: 0;
+    font-size: 18px;
+    color: #9893c1;
+    font-family: $quicksand;
+    font-weight: 400;
+}
+
+#scribbleTitle {
+    margin: 0;
+    font-family: $manrope;
+    font-weight: 400;
+    color: #533ca3;
+    font-size: 60px;
+}

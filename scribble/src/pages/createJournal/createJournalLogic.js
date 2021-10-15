@@ -1,4 +1,4 @@
-import { React, useState, useReducer } from "react";
+import { useReducer } from "react";
 import axios from 'axios';
 
 const CreateJournalLogic = () => {
@@ -25,7 +25,7 @@ const CreateJournalLogic = () => {
 
     /* this posts the journal entry to the database */
     const postJournal = async() => {
-        if (journal.title.length != 0 && journal.bodyText != 0) {
+        if (journal.title.length !== 0 && journal.bodyText !== 0) {
             const postHeader = { headers: { 'Content-Type': 'application/json' }}
             const journalJSON = JSON.stringify({ title: journal.title, bodyText: journal.bodyText })
 
