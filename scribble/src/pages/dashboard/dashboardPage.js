@@ -1,7 +1,7 @@
 import { React } from "react";
 import { Link } from "react-router-dom";
 import DashboardLogic from "./dashboardLogic"
-import JournalCardLogic from "../../components/journalCard/journalCardLogic";
+import JournalCard from "../../components/journalCard/journalCard";
 import NavBar from '../../components/navBar/navBar'
 import './dashboardPageStyle.scss'
 
@@ -33,7 +33,7 @@ function DashboardPage() {
                     </div>
 
                     <div id="journalCardsContainer">
-                        <JournalCardLogic />
+                        <JournalCard />
                     </div>
                 </div>
             </div>

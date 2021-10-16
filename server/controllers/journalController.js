@@ -22,7 +22,7 @@ const create_journal = (req, res) => {
     journal.save()
         .then(result => {
             console.log("Post success!")
-            res.json ({ response: jsonData })
+            res.json ({ redirect: '/dashboard' })
         })
 }
 

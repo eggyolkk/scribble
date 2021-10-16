@@ -30,7 +30,7 @@ const CreateJournalLogic = () => {
             const journalJSON = JSON.stringify({ title: journal.title, bodyText: journal.bodyText })
 
             await axios.post('http://localhost:5000/journals', journalJSON, {postHeader})
-            .then(response => console.log(response))
+            .then(response => window.location.href = response.data.redirect)
             .catch(error => console.log(error))
         }
     }

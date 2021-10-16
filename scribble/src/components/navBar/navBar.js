@@ -1,12 +1,14 @@
 import React from 'react'
+import './navBarStyle.scss'
 import { MdOutlineStickyNote2 } from 'react-icons/md'
-
+import { RiCalendarEventLine, RiSettings4Line } from 'react-icons/ri'
 
 const NavBar = () => {
     return (
-        <div>
-            <h1>Navbar</h1>
-            <MdOutlineStickyNote2 />
+        <div id="navBarContainer">
+            <MdOutlineStickyNote2 id="postsIcon"/>
+            <RiCalendarEventLine id="calendarIcon"/>
+            <RiSettings4Line id="settingsIcon"/>
         </div>
     )
 }

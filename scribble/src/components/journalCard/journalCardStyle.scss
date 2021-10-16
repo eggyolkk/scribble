@@ -1,0 +1,63 @@
+$manrope: 'Manrope', sans-serif;
+$quicksand: 'Quicksand', sans-serif;
+$poppins: 'Poppins', sans-serif;
+
+.cardJournalTitle {
+    margin: 20px 0 0 0;
+    color: #7a508f;
+    font-family: $poppins;
+}
+
+.cardJournalBodyText {
+    font-family: $quicksand;
+    margin: 0;
+    font-size: 14px;
+    color: #997fb1;
+}
+
+.journalCards {
+    background-color: white;
+    padding: 40px;
+    margin: 30px 10px;
+    border-radius: 20px;
+    width: 18%;
+    height: 250px;
+}
+
+#journalCardsDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.moodIcon {
+    height: 60%;
+}
+
+
+/* Viewports under 1680px wide */
+@media screen and (max-width: 1680px) {
+    .journalCards { width: 17%; }
+}
+
+/* Viewports under 1480px wide */
+@media screen and (max-width: 1480px) {
+    .journalCards { width: 16%; }
+}
+
+/* Viewports under 1300px wide */
+@media screen and (max-width: 1300px) {
+    .journalCards { width: 20%; }
+}
+
+/* Viewports under 980px wide */
+@media screen and (max-width: 980px) {
+    .journalCards { width: 34%; }
+}
+
+/* Viewports under 750px wide */
+@media screen and (max-width: 750px) {
+    .journalCards { width: 70%; }
+}
