@@ -59,10 +59,6 @@ html, body {
     overflow: auto;
 }
 
-#dashboardWelcome {
-    margin: 0;
-}
-
 #dashboardSearchBar {
     width: 100%;
     padding: 20px;
@@ -81,11 +77,12 @@ html, body {
     }
 }
 
-#dashboardWelcome {
+.headerH1 {
     font-size: 60px;
     font-family: $poppins !important; 
     font-weight: 600;
     color: #36264a;
+    margin: 0;
 }
 
 #journalCardsContainer {
@@ -99,7 +96,7 @@ html, body {
     color: rgb(172, 155, 190);
 }
 
-#topRow {
+.topRow {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -107,7 +104,7 @@ html, body {
     flex-direction: column;
 }
 
-#topRowFlexTop {
+.topRowFlexTop {
     display: flex;
     justify-content: space-between;
     align-items: center;

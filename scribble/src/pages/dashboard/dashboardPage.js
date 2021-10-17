@@ -15,9 +15,9 @@ function DashboardPage(props) {
                 </div>
 
                 <div id="dashboardFlexRight">
-                    <div id="topRow">
-                        <div id="topRowFlexTop">
-                            <h1 id="dashboardWelcome">Dashboard</h1>
+                    <div className="topRow">
+                        <div className="topRowFlexTop">
+                            <h1 className="headerH1">Dashboard</h1>
                             <Link to='/create'>
                                 <button id="createButton">+ CREATE NEW POST</button>
                             </Link>

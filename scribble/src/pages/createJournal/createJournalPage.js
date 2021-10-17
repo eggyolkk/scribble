@@ -1,33 +1,34 @@
 import { React } from "react";
-import createJournalLogic from "./createJournalLogic";
-import { UserContext } from '../../App'
+import NavBar from '../../components/navBar/navBar'
+import WritePost from '../../components/writePost/writePost'
+import ChooseMood from '../../components/chooseMood/chooseMood'
+import CreateJournalLogic from "./createJournalLogic";
+import './createJournalPageStyle.scss'
 
 const CreateJournalPage = () => {
-    const { journal, dispatch, postJournal } = createJournalLogic();
+    const { journal, dispatch, postJournal } = CreateJournalLogic();
 
     return (
-        <div>
-            <input
-                type='text'
-                placeholder='Title'
-                value={journal.title}
-                onChange={(e) => dispatch({
-                    type: "TITLE_ONCHANGE",
-                    payload: e.target.value,
-                })}
-            ></input>
+        <div id="createJournalBody">
+            <div id="createJournalContainer">
+                <div id="createJournalFlexLeft">
+                    <NavBar />
+                </div>
 
-            <textarea
-                name='bodyText'
-                placeholder='Write your entry here...'
-                value={journal.bodyText}
-                onChange={(e) => dispatch({
-                    type: "BODYTEXT_ONCHANGE",
-                    payload: e.target.value,
-                })}
-            ></textarea>
+                <div id="createJournalFlexRight">
+                    <div className="topRow">
+                        <div className="topRowFlexTop">
+                            <h1 className="headerH1">Create new post</h1>
+                        </div>
+                    </div>
 
-            <button onClick={ postJournal }>Create</button>
+                    <ChooseMood />
+
+                    <button onClick={ postJournal }>Create</button>
+                </div>
+                
+            </div>
+            
         </div>
     );
 };

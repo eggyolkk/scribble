@@ -1,0 +1,29 @@
+$lavender: #d2ceee;
+$manrope: 'Manrope', sans-serif;
+$quicksand: 'Quicksand', sans-serif;
+$poppins: 'Poppins', sans-serif;
+
+#chooseMoodContainer {
+    background-color: #ffffffb0;
+    border-radius: 25px;
+    padding: 40px 10px;
+    margin-top: 40px;
+}
+
+#createJournalH2 {
+    font-family: $poppins;
+    color: #735599;
+}
+
+#moodIconsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.chooseMoodIcon {
+    width: 18%;
+    padding: 0 20px;
+}
