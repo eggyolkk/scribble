@@ -12,6 +12,19 @@ const get_journals = (req, res) => {
     })
 }
 
+/* get journal by id */
+const get_journal_details = (req, res) => {
+    journalId = req.params.id
+    Journal.findById(journalId)
+        .then(result => {
+            console.log(result)
+            res.send({ data: result })
+        })
+        .catch(error => {
+            console.log(error)
+        })
+}
+
 /* create a journal and save to the database */
 const create_journal = (req, res) => {
     // convert request body into json (it is currently sending as a json within a json)
@@ -28,5 +41,6 @@ const create_journal = (req, res) => {
 
 module.exports = {
     get_journals,
-    create_journal
+    create_journal,
+    get_journal_details
 }

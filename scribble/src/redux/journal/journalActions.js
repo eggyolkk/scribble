@@ -2,13 +2,10 @@ import axios from 'axios'
 import {
     FETCH_JOURNALS_REQUEST,
     FETCH_JOURNALS_SUCCESS,
-    FETCH_JOURNALS_FAILURE,
-    POST_JOURNAL_REQUEST,
-    POST_JOURNAL_SUCCESS,
-    POST_JOURNAL_FAILURE
+    FETCH_JOURNALS_FAILURE
 } from './journalTypes'
 
-/* function to fetch journals */
+/* function to fetch all journals */
 export const fetchJournals = () => {
     return (dispatch) => {
         dispatch(fetchJournalsRequest())
@@ -24,14 +21,14 @@ export const fetchJournals = () => {
     }
 }
 
-/* action for requesting a journal */
+/* action for requesting all journals */
 export const fetchJournalsRequest = () => {
     return {
         type: FETCH_JOURNALS_REQUEST
     }
 }
 
-/* action for a successful journal request */
+/* action for a successful get all journals request */
 export const fetchJournalsSuccess = journals => {
     return {
         type: FETCH_JOURNALS_SUCCESS,
@@ -39,33 +36,10 @@ export const fetchJournalsSuccess = journals => {
     }
 }
 
-/* action for a failed journal request */
+/* action for a failed get all journals request */
 export const fetchJournalsFailure = error => {
     return {
         type: FETCH_JOURNALS_FAILURE,
-        payload: error
-    }
-}
-
-/* action for posting a journal */
-export const postJournalRequest = () => {
-    return {
-        type: POST_JOURNAL_REQUEST
-    }
-}
-
-/* action for successfully posting a journal */
-export const postJournalSuccess = journal => {
-    return {
-        type: POST_JOURNAL_SUCCESS,
-        payload: journal
-    }
-}
-
-/* action for a failed journal post */
-export const postJournalFailure = error => {
-    return {
-        type: POST_JOURNAL_FAILURE,
         payload: error
     }
 }

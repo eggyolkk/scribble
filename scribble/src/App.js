@@ -1,14 +1,21 @@
-import React from "react";
 import "./App.css";
 import { Provider } from 'react-redux'
 import ReactDOM, { render } from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 import HomePage from "./pages/home/homePage";
 import DashboardPage from "./pages/dashboard/dashboardPage";
 import CreateJournalPage from "./pages/createJournal/createJournalPage";
-import store from "./redux/store"
+import ExpandJournal from './pages/expandJournal/expandJournal';
 
-function App() {
+import store from "./redux/store"
+import { connect } from 'react-redux'
+import { fetchJournalDetailsFailure, fetchJournalDetails } from './redux/journalDetails/journalDetailsActions'
+import { setJournalId, getJournalId } from './redux/journalId/journalIdActions'
+
+
+
+function App({journalData, ownPropsMessage, journalId, fetchJournalDetails, setJournalId, getJournal}) {
     return (
         <Provider store={store}>
             <div className='App'>
@@ -17,6 +24,12 @@ function App() {
                         <Route exact path='/' component={HomePage} />
                         <Route exact path='/dashboard' component={DashboardPage} />
                         <Route exact path='/create' component={CreateJournalPage} />
+                        <Route 
+                            exact path='/post/:id' 
+                            render={(props) => (
+                                <ExpandJournal id={journalId}/>
+                            )}
+                        />
                     </Switch>
                 </BrowserRouter>
             </div>
@@ -24,4 +37,22 @@ function App() {
     );
 }
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        journalData: state.journalDetail.journalDetails,
+        journalId: state.journalId.journalId
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchJournalDetails: () => dispatch(fetchJournalDetails()),
+        setJournalId: currentId => dispatch(setJournalId(currentId)),
+        getJournalId: () => dispatch(getJournalId())
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App)

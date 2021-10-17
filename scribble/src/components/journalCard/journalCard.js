@@ -18,7 +18,7 @@ const JournalCard = ({ journalData, fetchJournals }) => {
     ) : (
         <div id="journalCardsDiv">
             {journalData.slice(0).reverse().map((journal, index) => 
-            <div key={index} className="journalCards">
+            <div key={index} className="journalCards" onClick={() => window.location.href = `/post/${journal._id}`}>
                 
                 <img src={require('../../images/happyMood.png').default} className="moodIcon"/>
                 
@@ -38,7 +38,7 @@ const JournalCard = ({ journalData, fetchJournals }) => {
 
 const mapStateToProps = state => {
     return {
-        journalData: state.journals
+        journalData: state.journal.journals
     }
 }
 

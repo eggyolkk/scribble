@@ -5,8 +5,8 @@ import JournalCard from "../../components/journalCard/journalCard";
 import NavBar from '../../components/navBar/navBar'
 import './dashboardPageStyle.scss'
 
-function DashboardPage() {
-
+function DashboardPage(props) {
+    console.log(props.message, "data", props.data)
     return (
         <div id="dashboardPageBody">
             <div id="dashboardContainer">

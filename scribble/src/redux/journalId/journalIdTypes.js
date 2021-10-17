@@ -1,0 +1,2 @@
+export const SET_JOURNAL_ID = 'SET_JOURNAL_ID'
+export const GET_JOURNAL_ID = 'GET_JORUNAL_ID'
