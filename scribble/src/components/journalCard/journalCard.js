@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchJournalsFailure } from '../../redux/journal/journalActions'
 import { fetchJournals } from '../../redux/journal/journalActions'
 import './journalCardStyle.scss'
 
@@ -20,7 +19,7 @@ const JournalCard = ({ journalData, fetchJournals }) => {
             {journalData.slice(0).reverse().map((journal, index) => 
             <div key={index} className="journalCards" onClick={() => window.location.href = `/post/${journal._id}`}>
                 
-                <img src={require('../../images/happyMood.png').default} className="moodIcon"/>
+                <img src={require('../../images/happyMood.png').default} className="moodIcon" alt="Journal mood icon"/>
                 
                 <h3 className="cardJournalTitle">{journal.title}</h3>
                 

@@ -1,4 +1,4 @@
-import { React } from "react";
+import { useState } from "react";
 import NavBar from '../../components/navBar/navBar'
 import WritePost from '../../components/writePost/writePost'
 import ChooseMood from '../../components/chooseMood/chooseMood'
@@ -6,7 +6,8 @@ import CreateJournalLogic from "./createJournalLogic";
 import './createJournalPageStyle.scss'
 
 const CreateJournalPage = () => {
-    const { journal, dispatch, postJournal } = CreateJournalLogic();
+    const { mood, setMood, showComponent, setShowComponent } = CreateJournalLogic()
+
 
     return (
         <div id="createJournalBody">
@@ -22,9 +23,12 @@ const CreateJournalPage = () => {
                         </div>
                     </div>
 
-                    <ChooseMood />
-
-                    <button onClick={ postJournal }>Create</button>
+                    {showComponent === "moodComponent" ? 
+                        <ChooseMood mood={mood} setMood={setMood} setShowComponent={setShowComponent}/>
+                     : 
+                        <WritePost mood={mood}/>
+                    }
+                    
                 </div>
                 
             </div>

@@ -1,7 +1,9 @@
-import { useReducer } from "react";
+import { useState, useReducer } from "react";
 import axios from 'axios';
 
 const CreateJournalLogic = () => {
+    const [mood, setMood] = useState('')
+    const [showComponent, setShowComponent] = useState('moodComponent')
 
     /* this handles the onchange functions for the journal title and body text state variables */
     const initialState = {
@@ -35,7 +37,7 @@ const CreateJournalLogic = () => {
         }
     }
 
-    return { journal, dispatch, postJournal }
+    return { journal, dispatch, postJournal, mood, setMood, showComponent, setShowComponent }
 };
 
 export default CreateJournalLogic

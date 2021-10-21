@@ -5,7 +5,6 @@
     transition: all .1s ease-in;
     fill: #36264a;
     font-size: 35px;
-    margin-top: 40px;
     cursor: pointer;
     &:hover {
         fill: #9a74bb;
@@ -14,11 +13,19 @@
 
 #calendarIcon {
     @include navIcons();
+    margin-top: 40px;
 }
 
 #navBarContainer {
     display: flex;
     flex-direction: column;
+}
+
+#navButtonsContainer {
+    padding: 0;
+    margin-top: 40px;
+    background-color: transparent;
+    border: none;
 }
 
 #postsIcon {
@@ -27,4 +34,5 @@
 
 #settingsIcon {
     @include navIcons();
+    margin-top: 40px;
 }

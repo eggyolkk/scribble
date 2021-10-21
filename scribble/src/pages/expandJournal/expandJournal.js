@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { fetchJournalDetailsFailure } from '../../redux/journalDetails/journalDetailsActions'
 import { fetchJournalDetails } from '../../redux/journalDetails/journalDetailsActions'
 import { setJournalId, getJournalId } from '../../redux/journalId/journalIdActions'
 

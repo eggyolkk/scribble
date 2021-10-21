@@ -1,6 +1,5 @@
 import "./App.css";
 import { Provider } from 'react-redux'
-import ReactDOM, { render } from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import HomePage from "./pages/home/homePage";
@@ -10,7 +9,7 @@ import ExpandJournal from './pages/expandJournal/expandJournal';
 
 import store from "./redux/store"
 import { connect } from 'react-redux'
-import { fetchJournalDetailsFailure, fetchJournalDetails } from './redux/journalDetails/journalDetailsActions'
+import { fetchJournalDetails } from './redux/journalDetails/journalDetailsActions'
 import { setJournalId, getJournalId } from './redux/journalId/journalIdActions'
 
 

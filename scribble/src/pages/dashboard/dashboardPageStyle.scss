@@ -3,6 +3,40 @@ $manrope: 'Manrope', sans-serif;
 $quicksand: 'Quicksand', sans-serif;
 $poppins: 'Poppins', sans-serif;
 
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+@mixin fadeInUpAnimation() {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    opacity: 0;
+    animation-name: fadeInUp;
+    -webkit-animation-name: fadeInUp;
+}
+
+
 html, body {
     margin: 0;
     overflow: auto;
@@ -90,6 +124,7 @@ html, body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    @include fadeInUpAnimation();
 }
 
 ::placeholder {

@@ -1,0 +1,39 @@
+@import '../../pages/dashboard/dashboardPageStyle.scss';
+
+.activityButtons {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 20px;
+}
+
+
+.activityIcons {
+    font-size: 50px;
+    color: #aea0bf;
+    cursor: pointer;
+    &:hover {
+        color: #9a66c1;
+    }
+}
+
+#activityIconsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.activityLabels { 
+    font-family: $poppins;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #bbb1c5;
+}
+
+#chooseActivityContainer {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-top: 50px;
+}

@@ -1,6 +1,5 @@
 import { React } from "react";
 import { Link } from "react-router-dom";
-import DashboardLogic from "./dashboardLogic"
 import JournalCard from "../../components/journalCard/journalCard";
 import NavBar from '../../components/navBar/navBar'
 import './dashboardPageStyle.scss'

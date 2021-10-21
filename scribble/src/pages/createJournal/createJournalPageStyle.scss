@@ -1,7 +1,3 @@
-.chooseMoodIcon {
-    width: 100px;
-}
-
 #createJournalBody {
     width: 100%;
     height: 100vh;
@@ -17,7 +13,7 @@
 #createJournalContainer {
     display: flex;
     width: 95%;
-    height: 95vh;
+    height: 100vh;
 }
 
 #createJournalFlexLeft {
@@ -33,4 +29,5 @@
     width: 90%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }

@@ -1,6 +1,4 @@
 import axios from 'axios'
-import { connect } from 'react-redux'
-import { getJournalId } from '../journalId/journalIdActions'
 import {
     FETCH_JOURNAL_DETAILS_REQUEST,
     FETCH_JOURNAL_DETAILS_SUCCESS,
