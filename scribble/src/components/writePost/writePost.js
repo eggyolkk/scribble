@@ -2,15 +2,16 @@ import React from 'react'
 import CreateJournalLogic from '../../pages/createJournal/createJournalLogic'
 import ChooseActivity from '../chooseActivity/chooseActivity'
 import './writePostStyle.scss'
-
+import { MdOutlineArrowBack } from 'react-icons/md'
 
 const WritePost = (props) => {
-    const { journal, dispatch, postJournal } = CreateJournalLogic();
-    const { mood } = props
+    const { journal, dispatch, postJournal, activities, setActivity } = CreateJournalLogic();
+    const { mood, setShowComponent } = props
 
     return (
         <div id="writePostContainer">
-            <ChooseActivity />
+            <button id="backButton" onClick={() => {setShowComponent('moodComponent')}}><MdOutlineArrowBack id="backButtonReactIcon"/></button>
+            <ChooseActivity activities={activities} setActivity={setActivity} />
 
             <div id="writePostFlexRight">
                 <input
@@ -35,7 +36,7 @@ const WritePost = (props) => {
                     })}>
                 </textarea>
 
-                <button id="postButton" onClick={ postJournal }>Create</button>
+                <button id="postButton" onClick={() => {postJournal(mood)}}>Create</button>
             </div>
         </div>
     )

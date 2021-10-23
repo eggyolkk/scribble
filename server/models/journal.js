@@ -10,6 +10,14 @@ const journalSchema = new Schema({
     bodyText: {
         type: String,
         required: true
+    },
+    mood: {
+        type: String,
+        required: true
+    },
+    activities: {
+        type: String,
+        required: false
     }
 }, { timestamps: true })
 

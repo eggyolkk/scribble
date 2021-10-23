@@ -1,6 +1,6 @@
 const Journal = require('../models/journal')
 
-/* get all the journals in the database */
+// get all the journals in the database
 const get_journals = (req, res) => {
     const journalTable = Journal
     const journalData = journalTable.find({})
@@ -12,7 +12,7 @@ const get_journals = (req, res) => {
     })
 }
 
-/* get journal by id */
+// get journal by id 
 const get_journal_details = (req, res) => {
     journalId = req.params.id
     Journal.findById(journalId)
@@ -25,10 +25,11 @@ const get_journal_details = (req, res) => {
         })
 }
 
-/* create a journal and save to the database */
+// create a journal and save to the database
 const create_journal = (req, res) => {
     // convert request body into json (it is currently sending as a json within a json)
     let jsonData = Object.keys(req.body)
+    console.log('jsondata', req.body)
     jsonData = JSON.parse(jsonData)
 
     const journal = new Journal(jsonData);  
@@ -39,8 +40,22 @@ const create_journal = (req, res) => {
         })
 }
 
+// delete a journal to the database
+const delete_journal = (req, res) => {
+    const journalId = req.params.id
+    Journal.findByIdAndDelete(journalId)
+        .then(result => {
+            console.log(result, "Successfully deleted")
+            res.json ({ redirect: '/dashboard' })
+        })
+        .catch(error => {
+            console.log(error)
+        })
+}
+
 module.exports = {
     get_journals,
     create_journal,
-    get_journal_details
+    get_journal_details,
+    delete_journal
 }

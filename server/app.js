@@ -25,6 +25,9 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use((req, res, next) => {
     res.locals.path = req.path;
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control_Allow_Headers', '*')
+    res.header('Access-Control-Allow-Methods', 'OPTIONS, POST, DELETE')
     next()
 })
 

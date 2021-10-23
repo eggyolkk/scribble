@@ -1,13 +1,14 @@
-import React from 'react'
+import { useState } from 'react'
 import './chooseMoodStyle.scss'
 
 const ChooseMood = (props) => {
     const { mood, setMood, setShowComponent } = props
+    const [warning, setWarning] = useState('')
 
     return (
         <div id="chooseMoodContainer">
             <div>
-                <h2 class="createJournalH2">How would you describe your mood today?</h2>
+                <h2 className="createJournalH2">How would you describe your mood today?</h2>
             </div>
             
             <div id="moodIconsContainer">
@@ -82,7 +83,13 @@ const ChooseMood = (props) => {
                 
             </div>
 
-            <button id="continueButton" onClick={() => {setShowComponent('writePostComponent')}}>Continue</button>
+            <p id="warningText">{warning}</p>
+            
+            <button 
+                id="continueButton" 
+                onClick={() => {mood !== '' ? setShowComponent('writePostComponent') : setWarning('*Please choose one before continuing')}}
+            >Continue
+            </button>
         </div>
     )
 }

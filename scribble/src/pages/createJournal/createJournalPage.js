@@ -6,8 +6,7 @@ import CreateJournalLogic from "./createJournalLogic";
 import './createJournalPageStyle.scss'
 
 const CreateJournalPage = () => {
-    const { mood, setMood, showComponent, setShowComponent } = CreateJournalLogic()
-
+    const { mood, setMood, showComponent, setShowComponent, activities, setActivity } = CreateJournalLogic()
 
     return (
         <div id="createJournalBody">
@@ -24,15 +23,12 @@ const CreateJournalPage = () => {
                     </div>
 
                     {showComponent === "moodComponent" ? 
-                        <ChooseMood mood={mood} setMood={setMood} setShowComponent={setShowComponent}/>
+                        <ChooseMood mood={mood} setMood={setMood} setShowComponent={setShowComponent} />
                      : 
-                        <WritePost mood={mood}/>
+                        <WritePost activitiesProps={activities} setActivityProps={setActivity} mood={mood} setShowComponent={setShowComponent}/>
                     }
-                    
                 </div>
-                
             </div>
-            
         </div>
     );
 };

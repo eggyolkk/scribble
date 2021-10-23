@@ -64,6 +64,11 @@
     }
 }
 
-/* Viewports under 850px wide */
-@media screen and (max-width: 850px) {
+/* Viewports under 1190px wide */
+@media screen and (max-width: 1190px) {
+    #writePostContainer { flex-direction: column; }
+    #writePostFlexLeft { width: 100%; }
+    #writePostFlexRight { width: 100%; }
+    #titleInputField { width: 90%; }
+    #bodyTextInputField { width: 90%; }
 }

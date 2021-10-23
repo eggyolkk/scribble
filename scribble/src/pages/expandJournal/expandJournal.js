@@ -30,6 +30,8 @@ const ExpandJournal = ({journalData, ownPropsMessage, journalId, fetchJournalDet
                 <div>
                     <h2>{journalData.data.title}</h2>
                     <p>{journalData.data.bodyText}</p>
+                    <p>{journalData.data.mood}</p>
+                    <p>{journalData.data.activities}</p>
                 </div>
             ) : (
                 <h1>Loading</h1>
