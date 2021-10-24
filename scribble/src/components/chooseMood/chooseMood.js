@@ -14,7 +14,7 @@ const ChooseMood = (props) => {
             <div id="moodIconsContainer">
                 <div className="individualMoodContainer">
                     <img 
-                        src={require('../../images/amazingMood.png').default} 
+                        src={require('../../images/ecstaticMood.png').default} 
                         onClick={() => setMood('ecstatic')} 
                         className="chooseMoodIcon"
                         id={mood === "ecstatic" ? "activeEcstaticMood" : "ecstaticMood"} 

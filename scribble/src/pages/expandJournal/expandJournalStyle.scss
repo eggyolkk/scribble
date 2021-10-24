@@ -1,0 +1,122 @@
+@import '../dashboard/dashboardPageStyle.scss';
+
+.arrowButton {
+    font-size: 30px;
+    color: #b0a4c9;
+}
+
+#closeButton {
+    background-color: transparent;
+    border: none;
+    color: #c9b8df;
+    font-size: 30px;
+    font-weight: 700;
+    font-family: $quicksand;
+    cursor: pointer;
+    &:hover {
+        color: #735599;
+        transition: color 0.2s;
+    }
+}
+
+#closeButtonDiv {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+#expandJournalBodyText {
+    font-family: $quicksand;
+    font-size: 16px;
+    margin-top: 0;
+    width: 80%;
+    color:  #7e6b91;
+}
+
+#expandJournalContainer {
+    display: flex;
+    width: 95%;
+    height: 100vh;
+}
+
+#expandJournalFlexLeft {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 100px;
+    flex-direction: column;
+}
+
+#expandJournalFlexRight {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#expandJournalMood {
+    width: 400px;
+}
+
+#expandJournalTitle {
+    font-family: $poppins;
+    color: #735599;
+    font-size: 40px;
+}
+
+#journalContainer {
+    @include fadeInUpAnimation();
+    background-color: #ffffffa8;
+    width: 80%;
+    margin-top: 100px;
+    border-radius: 30px;
+    padding: 80px 50px;
+    display: flex;
+}
+
+#journalLeft {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#journalMiddle {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#journalRight {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.switchJournalPost {
+    background-color: #dccde969;
+    border: none;
+    margin: 0;
+    padding: 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    &:hover {
+        background-color: #cdafe78a;
+        transition: background-color 0.2s;
+        .arrowButton {
+            color: #735599;
+            transition: color 0.2s;
+        }
+    }
+}
+
+#whatHappenedTitle {
+    font-family: $poppins;
+    color: #796099;
+    font-size: 25px;
+}

@@ -1,6 +1,7 @@
 $lavender: #d2ceee;
 $manrope: 'Manrope', sans-serif;
 $quicksand: 'Quicksand', sans-serif;
+$poppins: 'Poppins', sans-serif;
 
 html, body {
     margin: 0;
@@ -60,7 +61,7 @@ html, body {
     font-weight: 400;
 }
 
-#scribbleTitle {
+.scribbleTitle {
     margin: 0;
     font-family: $manrope;
     font-weight: 400;

@@ -11,7 +11,7 @@ const initialState = {
     error: ''
 }
 
-const reducer = (state = initialState, action) => {
+const journalReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_JOURNALS_REQUEST:
             return { ...state, loading: true }
@@ -23,4 +23,4 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export default reducer
+export default journalReducer

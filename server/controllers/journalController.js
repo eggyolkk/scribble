@@ -17,7 +17,7 @@ const get_journal_details = (req, res) => {
     journalId = req.params.id
     Journal.findById(journalId)
         .then(result => {
-            console.log(result)
+            console.log("Request by id", result)
             res.send({ data: result })
         })
         .catch(error => {

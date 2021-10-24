@@ -2,14 +2,24 @@ import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { fetchJournalDetails } from '../../redux/journalDetails/journalDetailsActions'
 import { setJournalId, getJournalId } from '../../redux/journalId/journalIdActions'
+import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io'
+import NavBar from '../../components/navBar/navBar'
+import TopUserBar from '../../components/topUserBar/topUserBar'
+import DisplayActivities from '../../components/displayActivities/displayActivities'
+import './expandJournalStyle.scss'
 
-const ExpandJournal = ({journalData, ownPropsMessage, journalId, fetchJournalDetails, setJournalId, getJournal}) => {
+
+const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJournalDetails, setJournalId, getJournalId}) => {
     const [currentId, setCurrentId] = useState('')
+    const [loading, setLoading] = useState(true)
+    const [dataReady, setDataReady] = useState(false)
+    const [data, setData] = useState({})
 
     // get the id of the journal from the current url
-    const getJournalId = async () => {
+    const fetchJournalId = async () => {
         const windowUrl = window.location.href
         const indexOfId = windowUrl.indexOf('/post/') + 6
+
         await setCurrentId(windowUrl.slice(indexOfId))
         await setJournalId(currentId)
         await fetchJournalDetails()
@@ -17,38 +27,61 @@ const ExpandJournal = ({journalData, ownPropsMessage, journalId, fetchJournalDet
 
     // fetch journal details by id on initial page render 
     useEffect(() => {
-        getJournalId()
-    }, [currentId])
+        fetchJournalId()
+        setLoading(false)
+    }, [currentId, data])
 
-    const renderPage = () => {
-        // if still fetching data, show loading
-        // else, return journal details
-        return (
-        <div>
-            <h1>My Post</h1>
-            {journalData.length !== 0 ? (
-                <div>
-                    <h2>{journalData.data.title}</h2>
-                    <p>{journalData.data.bodyText}</p>
-                    <p>{journalData.data.mood}</p>
-                    <p>{journalData.data.activities}</p>
-                </div>
-            ) : (
-                <h1>Loading</h1>
-            )}
-        </div>)
-    }
-
+    console.log('log before render', journalDetailsData)
     return (
-        <div>
-            {renderPage()}
+        <div className="pageBody">
+            <TopUserBar />
+
+            <div id="expandJournalContainer">
+                <div id="expandJournalFlexLeft">
+                    <NavBar />
+                </div>
+
+                <div id="expandJournalFlexRight">
+                    <div id="journalContainer">
+                        <div id="journalLeft">
+                            <button className="switchJournalPost"><IoMdArrowRoundBack className="arrowButton"/></button>
+                        </div>
+
+                        <div id="journalMiddle">
+                            <div id='closeButtonDiv'>
+                                <button id="closeButton" onClick={() => window.location.href = '/dashboard'}>x</button>
+                            </div>
+                            
+                            {loading ? (
+                                <h2>Loading</h2>
+                            ) : !loading && journalDetailsData.data !== undefined ? (
+                                <>
+                                    <img src={require(`../../images/${journalDetailsData.data.mood}Mood.png`).default} id="expandJournalMood" alt="Journal mood icon"/>
+                                    <h2 id="expandJournalTitle">{journalDetailsData.data.title}</h2>
+                                    <p id="expandJournalBodyText">{journalDetailsData.data.bodyText}</p>
+                                    
+                                    <h2 id="whatHappenedTitle">What happened on this day:</h2>
+                                    <DisplayActivities activities={journalDetailsData.data.activities}/>
+                                </>
+                            ): <h1>Error</h1>}
+                        </div>
+
+                        <div id="journalRight">
+                            <button className="switchJournalPost"><IoMdArrowRoundForward className="arrowButton"/></button>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     )
 }
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        journalData: state.journalDetail.journalDetails,
+        journalDetailsData: state.journalDetail.journalDetails,
         journalId: state.journalId.journalId,
         ownPropsMessage: ownProps
     }

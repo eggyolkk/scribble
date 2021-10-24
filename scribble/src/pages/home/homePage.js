@@ -9,7 +9,7 @@ const HomePage = () => {
             <div id="homeFlexLeft">
                 <div id="loginContainer">
                     
-                    <h1 id="scribbleTitle">scribble!</h1>
+                    <h1 className="scribbleTitle">scribble!</h1>
                     <h2 id="scribbleSubtitle">Your personal journal and mood tracker</h2>
                     
                     <Link to='/dashboard'>

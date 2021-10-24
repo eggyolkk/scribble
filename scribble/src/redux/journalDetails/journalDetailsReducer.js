@@ -10,7 +10,7 @@ const initialState = {
     error: ''
 }
 
-const reducer = (state = initialState, action) => {
+const journalDetailsReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_JOURNAL_DETAILS_REQUEST:
             return { ...state, loading: true }
@@ -22,4 +22,4 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export default reducer
+export default journalDetailsReducer

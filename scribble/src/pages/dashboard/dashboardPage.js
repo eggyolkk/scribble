@@ -2,12 +2,15 @@ import { React } from "react";
 import { Link } from "react-router-dom";
 import JournalCard from "../../components/journalCard/journalCard";
 import NavBar from '../../components/navBar/navBar'
+import TopUserBar from "../../components/topUserBar/topUserBar";
 import './dashboardPageStyle.scss'
 
 function DashboardPage(props) {
     console.log(props.message, "data", props.data)
     return (
-        <div id="dashboardPageBody">
+        <div className="pageBody">
+            <TopUserBar />
+
             <div id="dashboardContainer">
                 <div id="dashboardFlexLeft">
                     <NavBar />

@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { fetchJournals } from '../../redux/journal/journalActions'
 import axios from 'axios'
 import './journalCardStyle.scss'
+import { BiTrash } from 'react-icons/bi'
+import { HiOutlinePencilAlt } from 'react-icons/hi'
 
 const JournalCard = ({ journalData, fetchJournals }) => {
     // fetch journals on initial page render
@@ -11,13 +13,22 @@ const JournalCard = ({ journalData, fetchJournals }) => {
     }, [])
 
     // delete a journal post
-    const delete_journal_post = (e, journalId) => {
+    const deleteJournalPost = (e, journalId) => {
         // ignore the parent div onclick (i.e. prevent loading the post details page when delete button is clicked)
         e.stopPropagation()
         
         const deleteHeader = { headers: { 'Content-Type': 'application/json' }}
         axios.delete(`http://localhost:5000/journals/${journalId}`, {deleteHeader}, {crossDomain: true})
         .then(response => window.location.href = response.data.redirect)
+    }
+
+    // format the date journal was created to a DD/MM/YYYY format
+    const formatDate = (journalDate) => {
+        const year = journalDate.slice(0, 4)
+        const month = journalDate.slice(5, 7)
+        const day = journalDate.slice(8, 10)
+
+        return <p className="cardJournalBodyText cardJournalDate">{day}/{month}/{year}</p>
     }
 
     // while fetching journal data, show loading. after loading finished, show journal cards
@@ -30,7 +41,7 @@ const JournalCard = ({ journalData, fetchJournals }) => {
             {journalData.slice(0).reverse().map((journal, index) => 
             <div key={index} className="journalCards" onClick={() => window.location.href = `/post/${journal._id}`}>
                 
-                <img src={require('../../images/happyMood.png').default} className="moodIcon" alt="Journal mood icon"/>
+                <img src={require(`../../images/${journal.mood}Mood.png`).default} className="moodIcon" alt="Journal mood icon"/>
                 
                 {journal.title.length < 25 ? 
                     <h3 className="cardJournalTitle">{journal.title}</h3> 
@@ -44,7 +55,12 @@ const JournalCard = ({ journalData, fetchJournals }) => {
                 <p className="cardJournalBodyText">{journal.bodyText.slice(0, 40)}...</p>
                 )}
 
-                <button onClick={(e) => delete_journal_post(e, journal._id)}>Delete</button>
+                {formatDate(journal.createdAt.slice(0, 10))}
+                
+                <div className="deleteDiv">
+                    <button className="postActionButtons" onClick={(e) => deleteJournalPost(e, journal._id)}><BiTrash className="postActionReactIcons"/></button>
+                    <button className="postActionButtons" ><HiOutlinePencilAlt className="postActionReactIcons"/></button>
+                </div>
             </div>
             )}
         </div>

@@ -12,6 +12,7 @@ export const fetchJournalDetails = () => {
         // get journal id currently stored
         const journalId = getState().journalId.journalId
 
+        console.log("REDUXX::", journalId)
         dispatch(fetchJournalDetailsRequest())
         axios
         .get(`http://localhost:5000/journals/${journalId}`)
