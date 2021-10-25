@@ -6,21 +6,11 @@ import './journalCardStyle.scss'
 import { BiTrash } from 'react-icons/bi'
 import { HiOutlinePencilAlt } from 'react-icons/hi'
 
-const JournalCard = ({ journalData, fetchJournals }) => {
+const JournalCard = ({ journalData, fetchJournals, setDarkenBg, setShowDeleteModal, setIdPostToBeDeleted }) => {
     // fetch journals on initial page render
     useEffect(() => {
         fetchJournals()
     }, [])
-
-    // delete a journal post
-    const deleteJournalPost = (e, journalId) => {
-        // ignore the parent div onclick (i.e. prevent loading the post details page when delete button is clicked)
-        e.stopPropagation()
-        
-        const deleteHeader = { headers: { 'Content-Type': 'application/json' }}
-        axios.delete(`http://localhost:5000/journals/${journalId}`, {deleteHeader}, {crossDomain: true})
-        .then(response => window.location.href = response.data.redirect)
-    }
 
     // format the date journal was created to a DD/MM/YYYY format
     const formatDate = (journalDate) => {
@@ -29,6 +19,16 @@ const JournalCard = ({ journalData, fetchJournals }) => {
         const day = journalDate.slice(8, 10)
 
         return <p className="cardJournalBodyText cardJournalDate">{day}/{month}/{year}</p>
+    }
+
+    // show popup modal when delete button is clicked, darken bg and set the id of the post to be deleted
+    const confirmDeletePost = (e, journalId) => {
+        // ignore the parent div onclick (i.e. prevent loading the post details page when delete button is clicked)
+        e.stopPropagation()
+
+        setShowDeleteModal(true)
+        setDarkenBg(true)
+        setIdPostToBeDeleted(journalId)
     }
 
     // while fetching journal data, show loading. after loading finished, show journal cards
@@ -58,18 +58,22 @@ const JournalCard = ({ journalData, fetchJournals }) => {
                 {formatDate(journal.createdAt.slice(0, 10))}
                 
                 <div className="deleteDiv">
-                    <button className="postActionButtons" onClick={(e) => deleteJournalPost(e, journal._id)}><BiTrash className="postActionReactIcons"/></button>
+                    <button className="postActionButtons" onClick={(e) => {confirmDeletePost(e, journal._id)}}><BiTrash className="postActionReactIcons"/></button>
                     <button className="postActionButtons" ><HiOutlinePencilAlt className="postActionReactIcons"/></button>
                 </div>
             </div>
             )}
+            
         </div>
     )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     return {
-        journalData: state.journal.journals
+        journalData: state.journal.journals,
+        setDarkenBg: ownProps.setDarkenBg,
+        setShowDeleteModal: ownProps.setShowDeleteModal,
+        setIdPostToBeDeleted: ownProps.setIdPostToBeDeleted
     }
 }
 

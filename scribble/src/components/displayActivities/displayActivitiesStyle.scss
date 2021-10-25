@@ -1,0 +1,29 @@
+@import '../../pages/dashboard/dashboardPageStyle.scss';
+
+#displayActivitiesContainer {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.displayActivitiesIcon {
+    font-size: 50px;
+    background-color: #ccbddb;
+    padding: 10px;
+    border-radius: 50px;
+    color: white;
+    margin: 0 20px;
+    &:hover {
+        background-color: #b69dce;
+        transition: background-color 0.2s;
+    }
+}
+
+#displayActivityLabel {
+    font-family: $poppins;
+    font-size: 14px;
+    color: #a18fb3;
+}
