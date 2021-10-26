@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import JournalCard from "../../components/journalCard/journalCard";
 import NavBar from '../../components/navBar/navBar'
 import TopUserBar from "../../components/topUserBar/topUserBar";
 import DeletePostModal from "../../components/deletePostModal/deletePostModal";
-import axios from 'axios'
 import './dashboardPageStyle.scss'
 
 function DashboardPage(props) {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [darkenBg, setDarkenBg] = useState(false)
     const [idPostToBeDeleted, setIdPostToBeDeleted] = useState('')
+
+    // set the documen title to dashboard on initial page render
+    useEffect(() => {
+        document.title = "Dashboard"
+    }, [])
 
     return (
         <div className="pageBody">

@@ -12,8 +12,6 @@ import { connect } from 'react-redux'
 import { fetchJournalDetails } from './redux/journalDetails/journalDetailsActions'
 import { setJournalId, getJournalId } from './redux/journalId/journalIdActions'
 
-
-
 function App({journalData, ownPropsMessage, journalId, fetchJournalDetails, setJournalId, getJournal}) {
     return (
         <Provider store={store}>

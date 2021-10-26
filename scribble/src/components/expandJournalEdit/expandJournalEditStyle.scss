@@ -1,0 +1,68 @@
+@import '../../pages/dashboard/dashboardPageStyle.scss';
+
+@mixin editActivityIcons($bgColor) {
+    transition: background-color 0.2s;
+    font-size: 50px;
+    background-color: $bgColor;
+    padding: 10px;
+    border-radius: 50px;
+    color: white;
+    margin: 0 20px;
+    cursor: pointer;
+    &:hover {
+        background-color: #9976bd;
+        transition: background-color 0.2s;
+    }
+}
+
+@mixin editActivityLabels($color) {
+    font-family: $poppins;
+    font-size: 14px;
+    color: $color;
+}
+
+.editActivityLabelsActive {
+    @include editActivityLabels(#9976bd)
+}
+
+.editActivityLabelsInactive {
+    @include editActivityLabels(#a18fb3)
+}
+
+#editActivitiesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.editActivityButtons {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+#editActivitiesIconsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+}
+
+#editMoodContainer {
+    display: flex;
+}
+
+.editActivitySelected {
+    @include editActivityIcons(#9976bd)
+}
+
+.editActivityUnselected {
+    @include editActivityIcons(#d9cae9)
+}
+
+.editLabels {
+    font-family: $poppins;
+    color: #856ca0;
+    font-size: 30px;
+}

@@ -1,5 +1,4 @@
 import './chooseActivityStyle.scss'
-import CreateJournalLogic from '../../pages/createJournal/createJournalLogic'
 import { IoFastFoodOutline, IoPeopleSharp, IoBalloonOutline } from "react-icons/io5"
 import { BiDrink, BiHomeAlt, BiPencil, BiBriefcase } from "react-icons/bi"
 import { ImSleepy } from "react-icons/im"

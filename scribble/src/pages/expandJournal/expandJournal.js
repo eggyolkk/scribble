@@ -4,14 +4,11 @@ import { fetchJournals } from '../../redux/journal/journalActions'
 import { fetchJournalDetails } from '../../redux/journalDetails/journalDetailsActions'
 import { setJournalId, getJournalId } from '../../redux/journalId/journalIdActions'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io'
-import { BiTrash } from 'react-icons/bi'
-import { HiOutlinePencilAlt } from 'react-icons/hi'
 import NavBar from '../../components/navBar/navBar'
 import TopUserBar from '../../components/topUserBar/topUserBar'
-import DisplayActivities from '../../components/displayActivities/displayActivities'
 import DeletePostModal from '../../components/deletePostModal/deletePostModal'
-import DeletePostFunction from '../../components/deletePostFunction/deletePostFunction'
-import axios from 'axios'
+import ExpandJournalDisplay from '../../components/expandJournalDisplay/expandJournalDisplay'
+import ExpandJournalEdit from '../../components/expandJournalEdit/expandJournalEdit'
 import './expandJournalStyle.scss'
 
 const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJournalDetails, setJournalId, getJournalId, journalData, fetchJournals}) => {
@@ -19,6 +16,7 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
     const [loading, setLoading] = useState(true)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [darkenBg, setDarkenBg] = useState(false)
+    const [showEditComponent, setShowEditComponent] = useState(false)
 
     // fetch journal details by id and all journals on initial page render 
     useEffect(() => {
@@ -35,6 +33,11 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
         await setJournalId(currentId)
         await fetchJournalDetails()
         await fetchJournals()
+    }
+
+    // set document title after data has loaded
+    const setDocumentTitle = (title) => {
+        document.title = `${title} - scribble!`
     }
 
     // return the id of the next post
@@ -87,6 +90,8 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
         setDarkenBg(true)
     }
 
+
+    console.log('edit', showEditComponent)
     return (
         <div className="pageBody">
             {showDeleteModal ? <DeletePostModal setShowDeleteModal={setShowDeleteModal} setDarkenBg={setDarkenBg} postId={currentId}/> : null}
@@ -103,7 +108,9 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
                 <div id="expandJournalFlexRight">
                     <div id="journalContainer">
                         <div id="journalLeft">
-                            <button className="switchJournalPost" onClick={() => window.location.href = `/post/${getPrevPostId()}`}><IoMdArrowRoundBack className="arrowButton"/></button>
+                            <button className="switchJournalPost" onClick={() => window.location.href = `/post/${getPrevPostId()}`}>
+                                <IoMdArrowRoundBack className="arrowButton"/>
+                            </button>
                         </div>
 
                         <div id="journalMiddle">
@@ -113,26 +120,17 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
                             
                             {loading ? (
                                 <h2>Loading</h2>
-                            ) : !loading && journalData && journalDetailsData.data !== undefined ? (
-                                <>
-                                    <img src={require(`../../images/${journalDetailsData.data.mood}Mood.png`).default} id="expandJournalMood" alt="Journal mood icon"/>
-                                    <h2 id="expandJournalTitle">{journalDetailsData.data.title}</h2>
-                                    {formatDate(journalDetailsData.data.createdAt)}
-                                    <p className="expandJournalBodyText">{journalDetailsData.data.bodyText}</p>
-                                    
-                                    <h2 id="whatHappenedTitle">What happened on this day:</h2>
-                                    <DisplayActivities activities={journalDetailsData.data.activities}/>
-
-                                    <div className="deleteDiv">
-                                        <button className="expandJournalButtons" onClick={(e) => {confirmDeletePost(e, journalDetailsData._id)}}><BiTrash className="expandJournalIcons"/>Delete Post</button>
-                                        <button className="expandJournalButtons" ><HiOutlinePencilAlt className="expandJournalIcons"/>Edit Post</button>
-                                    </div>
-                                </>
-                            ): <h1>Could not load post</h1>}
+                            ) : !loading && journalData && journalDetailsData.data !== undefined && !showEditComponent ? (
+                                <ExpandJournalDisplay setDocumentTitle={setDocumentTitle} formatDate={formatDate} confirmDeletePost={confirmDeletePost} journalDetailsData={journalDetailsData} setShowEditComponent={setShowEditComponent}/>
+                            ): !loading && journalData && journalDetailsData.data !== undefined && showEditComponent ? (
+                                <ExpandJournalEdit journalDetailsData={journalDetailsData} setShowEditComponent={setShowEditComponent} setDocumentTitle={setDocumentTitle}/>
+                            ) : <h1>Could not load post</h1>}
                         </div>
 
                         <div id="journalRight">
-                            <button className="switchJournalPost" onClick={() => window.location.href = `/post/${getNextPostId()}`}><IoMdArrowRoundForward className="arrowButton"/></button>
+                            <button className="switchJournalPost" onClick={() => window.location.href = `/post/${getNextPostId()}`}>
+                                <IoMdArrowRoundForward className="arrowButton"/>
+                            </button>
                         </div>
                         
                     </div>

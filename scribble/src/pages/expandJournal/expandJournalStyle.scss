@@ -25,47 +25,6 @@
     width: 100%;
 }
 
-.expandJournalBodyText {
-    font-family: $quicksand;
-    font-size: 16px;
-    margin-top: 0;
-    width: 80%;
-    color:  #7e6b91;
-}
-
-.expandJournalButtons {
-    background-color: #ebe2f1;
-    border: none;
-    padding: 10px 50px;
-    border-radius: 40px;
-    margin: 0 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #8d789d;
-    font-size: 16px;
-    font-family: $poppins;
-    flex-direction: row;
-    flex-wrap: wrap;
-    font-weight: 400;
-    &:hover {
-        background-color: #ac8bc2;
-        color: white;
-        transition: background-color 0.2s;
-        .expandJournalIcons {
-            color: white;
-            transition: color 0.2s;
-        }
-    }
-}
-
-.expandJournalIcons {
-    font-size: 30px;
-    color: #bfa9cd;
-    margin-right: 10px;
-}
-
 #expandJournalContainer {
     display: flex;
     width: 95%;
@@ -86,16 +45,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#expandJournalMood {
-    width: 400px;
-}
-
-#expandJournalTitle {
-    font-family: $poppins;
-    color: #735599;
-    font-size: 40px;
 }
 
 #journalContainer {
@@ -148,8 +97,3 @@
     }
 }
 
-#whatHappenedTitle {
-    font-family: $poppins;
-    color: #796099;
-    font-size: 25px;
-}

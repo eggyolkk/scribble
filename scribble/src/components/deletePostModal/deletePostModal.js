@@ -1,5 +1,5 @@
 import React from 'react'
-import DeletePostFunction from '../deletePostFunction/deletePostFunction'
+import deletePost from '../../helperFunctions/deletePost'
 import './deletePostModalStyle.scss'
 
 const DeletePostModal = (props) => {
@@ -16,7 +16,7 @@ const DeletePostModal = (props) => {
             <h1 id="deleteTitle">Are you sure you want to delete this post?</h1>
             
             <div id="deleteButtonsDiv">
-                <button onClick={() => DeletePostFunction(postId)} id="deleteButton">Delete</button>
+                <button onClick={() => deletePost(postId)} id="deleteButton">Delete</button>
                 <button onClick={() => {cancelDelete()}} id="cancelButton">Cancel</button>
             </div>
             

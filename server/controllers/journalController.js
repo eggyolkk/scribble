@@ -1,4 +1,5 @@
 const Journal = require('../models/journal')
+const mongoose = require('mongoose')
 
 // get all the journals in the database
 const get_journals = (req, res) => {
@@ -29,8 +30,8 @@ const get_journal_details = (req, res) => {
 const create_journal = (req, res) => {
     // convert request body into json (it is currently sending as a json within a json)
     let jsonData = Object.keys(req.body)
-    console.log('jsondata', req.body)
     jsonData = JSON.parse(jsonData)
+    console.log('jsondata', req.body)
 
     const journal = new Journal(jsonData);  
     journal.save()
@@ -53,9 +54,28 @@ const delete_journal = (req, res) => {
         })
 }
 
+// update a journal in the database
+const update_journal = (req, res) => {
+    const conditions = { _id: req.params.id }
+
+    // convert request body into json (it is currently sending as a json within a json)
+    let body = Object.keys(req.body)
+    const bodyJSON = JSON.parse(body)
+
+    Journal.updateOne(conditions, bodyJSON, function(err, values) {
+        if (!err) {
+            res.json ({ redirect: `/post/${req.params.id}`})
+            console.log('Updated successfully')
+        } else {
+            console.log(error)
+        } 
+    })
+}
+
 module.exports = {
     get_journals,
     create_journal,
     get_journal_details,
-    delete_journal
+    delete_journal,
+    update_journal
 }

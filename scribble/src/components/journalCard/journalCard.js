@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchJournals } from '../../redux/journal/journalActions'
-import axios from 'axios'
 import './journalCardStyle.scss'
 import { BiTrash } from 'react-icons/bi'
 import { HiOutlinePencilAlt } from 'react-icons/hi'
@@ -10,7 +9,7 @@ const JournalCard = ({ journalData, fetchJournals, setDarkenBg, setShowDeleteMod
     // fetch journals on initial page render
     useEffect(() => {
         fetchJournals()
-    }, [])
+    }, [fetchJournals])
 
     // format the date journal was created to a DD/MM/YYYY format
     const formatDate = (journalDate) => {

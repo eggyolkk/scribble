@@ -1,4 +1,3 @@
-import { useState } from "react";
 import NavBar from '../../components/navBar/navBar'
 import WritePost from '../../components/writePost/writePost'
 import ChooseMood from '../../components/chooseMood/chooseMood'
