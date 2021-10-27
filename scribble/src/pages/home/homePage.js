@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Login from "../../components/login/login";
 import './homePageStyle.scss'
 
 const HomePage = () => {
@@ -7,14 +7,12 @@ const HomePage = () => {
         <div id="homePageBody">
 
             <div id="homeFlexLeft">
-                <div id="loginContainer">
+                <div id="homeContainer">
                     
                     <h1 className="scribbleTitle">scribble!</h1>
                     <h2 id="scribbleSubtitle">Your personal journal and mood tracker</h2>
                     
-                    <Link to='/dashboard'>
-                        <button id="loginButton">Login</button>
-                    </Link>
+                    <Login />
 
                 </div>
             </div>     

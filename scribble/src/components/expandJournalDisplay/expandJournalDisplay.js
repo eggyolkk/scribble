@@ -12,7 +12,7 @@ const ExpandJournalDisplay = (props) => {
             {setDocumentTitle(journalDetailsData.data.title)}
             
             <img src={require(`../../images/${journalDetailsData.data.mood}Mood.png`).default} id="expandJournalMood" alt="Journal mood icon"/>
-            <h2 id="expandJournalTitle">{journalDetailsData.data.title}</h2>
+            <h2 className="expandJournalTitle">{journalDetailsData.data.title}</h2>
             {formatDate(journalDetailsData.data.createdAt)}
             <p className="expandJournalBodyText">{journalDetailsData.data.bodyText}</p>
             

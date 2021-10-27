@@ -47,12 +47,14 @@ const ExpandJournalEdit = (props) => {
 
     return (
         <>
+            <h1 className="expandJournalTitle">Edit Post</h1>
             <EditMood journalDetailsData={journalDetailsData} setEditedMood={setEditedMood} editedMood={editedMood}/>
 
             <input
                 type='text'
                 placeholder={journalDetailsData.data.title}
                 value={editedJournal.title}
+                id="editTitle"
                 onChange={(e) => dispatch({
                     type: "EDIT_TITLE",
                     payload: e.target.value
@@ -63,6 +65,7 @@ const ExpandJournalEdit = (props) => {
                 name='bodyText'
                 placeholder={journalDetailsData.data.bodyText}
                 value={editedJournal.bodyText}
+                id="editBodyText"
                 onChange={(e) => dispatch({
                     type: "EDIT_BODYTEXT",
                     payload: e.target.value
@@ -72,8 +75,8 @@ const ExpandJournalEdit = (props) => {
             <EditActivities editedActivitiesArray={editedActivitiesArray} setEditedActivitiesArray={setEditedActivitiesArray}/>
 
             <div>
-                <button onClick={() => {editPost()}}>Save changes</button>
-                <button onClick={() => {setShowEditComponent(false)}}>Cancel</button>
+                <button id="saveEditButton" onClick={() => {editPost()}}>Save changes</button>
+                <button id="cancelEditButton" onClick={() => {setShowEditComponent(false)}}>Cancel</button>
             </div>
         </>
     )

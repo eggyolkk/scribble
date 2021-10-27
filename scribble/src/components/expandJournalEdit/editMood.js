@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io'
 
 const EditMood = (props) => {
     const {journalDetailsData, setEditedMood, editedMood} = props
@@ -37,9 +38,15 @@ const EditMood = (props) => {
 
     return(
         <div id="editMoodContainer">
-            <button onClick={() => {setPrevMoodIndex()}}>Prev</button>
-            <img src={require(`../../images/${moodArray[indexOfCurrentMood]}Mood.png`).default} id="expandJournalMood" alt="Journal mood icon"/>
-            <button onClick={() => {setNextMoodIndex()}}>Next</button>
+            <button className="expandJounalArrowButtons" onClick={() => {setPrevMoodIndex()}}>
+                <IoMdArrowRoundBack className="arrowButton"/>
+            </button>
+
+            <img src={require(`../../images/${moodArray[indexOfCurrentMood]}Mood.png`).default} id="editMoodIcon" alt="Journal mood icon"/>
+
+            <button className="expandJounalArrowButtons" onClick={() => {setNextMoodIndex()}}>
+                <IoMdArrowRoundForward className="arrowButton"/>
+            </button>
         </div>
     )
 }

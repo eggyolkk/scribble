@@ -25,6 +25,23 @@
     width: 100%;
 }
 
+.expandJounalArrowButtons {
+    background-color: #dccde969;
+    border: none;
+    margin: 0;
+    padding: 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    &:hover {
+        background-color: #cdafe78a;
+        transition: background-color 0.2s;
+        .arrowButton {
+            color: #735599;
+            transition: color 0.2s;
+        }
+    }
+}
+
 #expandJournalContainer {
     display: flex;
     width: 95%;
@@ -78,22 +95,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.switchJournalPost {
-    background-color: #dccde969;
-    border: none;
-    margin: 0;
-    padding: 20px;
-    border-radius: 50px;
-    cursor: pointer;
-    &:hover {
-        background-color: #cdafe78a;
-        transition: background-color 0.2s;
-        .arrowButton {
-            color: #735599;
-            transition: color 0.2s;
-        }
-    }
 }
 

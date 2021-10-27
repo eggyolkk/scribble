@@ -9,8 +9,9 @@ import {
 export const fetchJournals = () => {
     return (dispatch) => {
         dispatch(fetchJournalsRequest())
-        axios
-        .get('http://localhost:5000/journals')
+
+        const postHeader = { headers: { 'Content-Type': 'application/json' }}
+        axios.get('http://localhost:5000/journals', {postHeader, withCredentials: true})
         .then(response => {
             const journals = response.data
             dispatch(fetchJournalsSuccess(journals))

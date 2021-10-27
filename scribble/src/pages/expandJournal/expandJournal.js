@@ -108,7 +108,7 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
                 <div id="expandJournalFlexRight">
                     <div id="journalContainer">
                         <div id="journalLeft">
-                            <button className="switchJournalPost" onClick={() => window.location.href = `/post/${getPrevPostId()}`}>
+                            <button className="expandJounalArrowButtons" onClick={() => window.location.href = `/post/${getPrevPostId()}`}>
                                 <IoMdArrowRoundBack className="arrowButton"/>
                             </button>
                         </div>
@@ -128,7 +128,7 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
                         </div>
 
                         <div id="journalRight">
-                            <button className="switchJournalPost" onClick={() => window.location.href = `/post/${getNextPostId()}`}>
+                            <button className="expandJounalArrowButtons" onClick={() => window.location.href = `/post/${getNextPostId()}`}>
                                 <IoMdArrowRoundForward className="arrowButton"/>
                             </button>
                         </div>
