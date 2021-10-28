@@ -1,12 +1,11 @@
 import React from 'react'
-import CreateJournalLogic from '../../pages/createJournal/createJournalLogic'
+import CreateJournal from '../../pages/createJournal/createJournal'
 import ChooseActivity from '../chooseActivity/chooseActivity'
 import './writePostStyle.scss'
 import { MdOutlineArrowBack } from 'react-icons/md'
 
 const WritePost = (props) => {
-    const { journal, dispatch, postJournal, activities, setActivity } = CreateJournalLogic();
-    const { mood, setShowComponent } = props
+    const { mood, setShowComponent, journal, dispatch, postJournal, activities, setActivity } = props
 
     return (
         <div id="writePostContainer">

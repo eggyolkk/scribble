@@ -35,11 +35,10 @@ const JournalCard = ({ journalData, fetchJournals, setDarkenBg, setShowDeleteMod
         <h2>Loading</h2>
     ) : journalData.error ? (
         <h2>{journalData.error}</h2>
-    ) : (
+    ) : !journalData.error && journalData.length !== 0 ? (
         <div id="journalCardsDiv">
             {journalData.slice(0).reverse().map((journal, index) => 
             <div key={index} className="journalCards" onClick={() => window.location.href = `/post/${journal._id}`}>
-                
                 <img src={require(`../../images/${journal.mood}Mood.png`).default} className="moodIcon" alt="Journal mood icon"/>
                 
                 {journal.title.length < 25 ? 
@@ -49,13 +48,13 @@ const JournalCard = ({ journalData, fetchJournals, setDarkenBg, setShowDeleteMod
                 }
 
                 {journal.bodyText.length < 40 ? (
-                <p className="cardJournalBodyText">{journal.bodyText}</p>
-                ) : (
-                <p className="cardJournalBodyText">{journal.bodyText.slice(0, 40)}...</p>
+                    <p className="cardJournalBodyText">{journal.bodyText}</p>
+                    ) : (
+                    <p className="cardJournalBodyText">{journal.bodyText.slice(0, 40)}...</p>
                 )}
 
                 {formatDate(journal.createdAt.slice(0, 10))}
-                
+
                 <div className="deleteDiv">
                     <button className="postActionButtons" onClick={(e) => {confirmDeletePost(e, journal._id)}}><BiTrash className="postActionReactIcons"/></button>
                     <button className="postActionButtons" ><HiOutlinePencilAlt className="postActionReactIcons"/></button>
@@ -64,7 +63,7 @@ const JournalCard = ({ journalData, fetchJournals, setDarkenBg, setShowDeleteMod
             )}
             
         </div>
-    )
+    ) : null
 }
 
 const mapStateToProps = (state, ownProps) => {

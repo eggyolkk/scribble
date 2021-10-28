@@ -1,16 +1,65 @@
 import "./App.css";
-import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Component } from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import axios from 'axios'
 
 import HomePage from "./pages/home/homePage";
 import DashboardPage from "./pages/dashboard/dashboardPage";
-import CreateJournalPage from "./pages/createJournal/createJournalPage";
-import ExpandJournal from './pages/expandJournal/expandJournal';
+import CreateJournal from "./pages/createJournal/createJournal";
+import ExpandJournal from "./pages/expandJournal/expandJournal";
 
+import { Provider, connect } from 'react-redux'
 import store from "./redux/store"
-import { connect } from 'react-redux'
 import { fetchJournalDetails } from './redux/journalDetails/journalDetailsActions'
 import { setJournalId, getJournalId } from './redux/journalId/journalIdActions'
+
+class ProtectedRoute extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+            userId: ''
+        }
+    }
+
+    async componentDidMount() {
+        await this.checkUser()
+    }
+
+    // check if a user is currently logged in
+    checkUser = async () => {
+        const postHeader = { headers: { 'Content-Type': 'application/json' }}
+        await axios.get('http://localhost:5000/auth/get_user_id', {postHeader, withCredentials: true})
+        .then(response => {
+            this.setState({
+                userId: response.data.user_id
+            })
+            console.log("FRONTEND USERID", this.state.userId)
+        })
+        .catch(error => {
+            this.setState({
+                userId: 'Invalid'
+            })
+        })
+    }
+    render() {
+        const { component: Component, id: journalId, ...props } = this.props
+
+        return (
+            <Route {...props}
+                render={(props) => (
+                    this.state.userId === 'Invalid' ?
+                    <Redirect to='/' /> :
+                    <>
+                    {console.log("helloooooooo")}
+                    <Component {...props} id={journalId}/>
+                    </>
+                )}
+            />
+        )
+    }
+}
 
 function App({journalData, ownPropsMessage, journalId, fetchJournalDetails, setJournalId, getJournal}) {
     return (
@@ -19,14 +68,12 @@ function App({journalData, ownPropsMessage, journalId, fetchJournalDetails, setJ
                 <BrowserRouter>
                     <Switch>
                         <Route exact path='/' component={HomePage} />
-                        <Route exact path='/dashboard' component={DashboardPage} />
-                        <Route exact path='/create' component={CreateJournalPage} />
-                        <Route 
-                            exact path='/post/:id' 
-                            render={(props) => (
-                                <ExpandJournal id={journalId}/>
-                            )}
-                        />
+                        <ProtectedRoute exact path='/dashboard' component={DashboardPage} />
+                        
+                        <ProtectedRoute exact path='/create' component={CreateJournal} />
+                        
+                        <ProtectedRoute exact path='/post/:id' component={ExpandJournal} id={journalId} />
+                        
                     </Switch>
                 </BrowserRouter>
             </div>
@@ -45,7 +92,7 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchJournalDetails: () => dispatch(fetchJournalDetails()),
         setJournalId: currentId => dispatch(setJournalId(currentId)),
-        getJournalId: () => dispatch(getJournalId())
+        getJournalId: () => dispatch(getJournalId()),
     }
 }
 

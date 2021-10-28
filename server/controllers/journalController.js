@@ -1,16 +1,37 @@
-const Journal = require('../models/journal')
+const Journal = require('../models/Journal')
 const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken')
+const User = require('../models/User')
+require('dotenv').config()
 
-// get all the journals in the database
-const get_journals = (req, res) => {
-    const journalTable = Journal
-    const journalData = journalTable.find({})
-    journalData.exec(function(error, data) {
-        if (error) {
-            throw error
-        }
-        res.send(data)
-    })
+// get journals of user
+const get_journals = (req, res, method) => {
+    const token = req.cookies.jwt
+    let user = 'invalid'
+
+    if (token) {
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async(err, decodedToken) => {
+            if (err) {
+                console.log(err.message)
+            } else {
+                const userObject = await User.findById(decodedToken.id)
+                const userIdString = userObject._id.toString()
+                user = userIdString.split('"')[0]
+
+                console.log("user:", typeof user)
+                const journalData = Journal.find({ userId: user })
+                journalData.exec(function(error, data) {
+                    if (error) {
+                        throw error
+                    }
+                    console.log("data", data)
+                    res.send(data)
+                })
+            }
+        })
+    } else {
+        return user
+    }
 }
 
 // get journal by id 

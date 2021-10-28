@@ -39,7 +39,7 @@ const ExpandJournalEdit = (props) => {
             const editedJSON = JSON.stringify({ title: editedJournal.title, bodyText: editedJournal.bodyText, mood: editedMood, activities: activitiesString })
             const postHeader = { headers: { 'Content-Type': 'application/json' }}
 
-            await axios.put(`http://localhost:5000/journals/${journalDetailsData.data._id}`, editedJSON, { postHeader })
+            await axios.put(`http://localhost:5000/journals/${journalDetailsData.data._id}`, editedJSON, { postHeader, withCredentials: true })
             .then(response => window.location.href = response.data.redirect)
             .catch(error => console.log(error))
         }

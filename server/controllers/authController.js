@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 // handle errors
 const handleErrors = (err) => {
@@ -34,12 +35,39 @@ const handleErrors = (err) => {
 
 //create a json web token
 const createToken = (id) => {
-    return jwt.sign({ id }, 'db1f016cc413e818a5e69bf95bd0af88cac2e7f9e03494f7c39db7a98bdb3f79edbdae42df6b4d25b7728fd2ef8ae27e9844157b36e0255a5e128d9b2f179f9e', {
+    return jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
         expiresIn: 3 * 24 * 60 * 60
     })
 }
 
 // controllers
+// get the id of the currently logged in user
+const get_user_id = (req, res) => {
+    const token = req.cookies.jwt
+    let user = ''
+
+    if (token) {
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async(err, decodedToken) => {
+            if (err) {
+                console.log(err.message)
+                user = 'Invalid'
+                return user
+            } else {
+                const userObject = await User.findById(decodedToken.id)
+                const userIdString = userObject._id.toString()
+                user = userIdString.split('"')[0]
+                
+                console.log("backend userid:", user)
+                res.json({ user_id: user})
+            }
+        })
+    } else {
+        user = 'Invalid'
+        return user
+    }
+}
+
+// sign a user up
 const signup_post = async (req, res) => {
     const { username, password } = req.body
 
@@ -57,6 +85,7 @@ const signup_post = async (req, res) => {
     }
 }
 
+// login a user
 const login_post = async (req, res) => {
     // convert request body into json (it is currently sending as a json within a json)
     let userData = Object.keys(req.body)
@@ -64,8 +93,6 @@ const login_post = async (req, res) => {
     
     const username = userJSON.username
     const password = userJSON.password
-
-    console.log("req body", userJSON)
 
     try {
         const user = await User.login(username, password)
@@ -79,6 +106,7 @@ const login_post = async (req, res) => {
     }
 }
 
+// logout a user
 const logout_get = (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 })
     res.json({ redirect: '/' })
@@ -87,5 +115,6 @@ const logout_get = (req, res) => {
 module.exports = {
     signup_post,
     login_post,
-    logout_get
+    logout_get,
+    get_user_id
 }

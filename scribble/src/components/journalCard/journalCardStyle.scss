@@ -114,3 +114,10 @@ html, body {
 @media screen and (max-width: 750px) {
     .journalCards { width: 70%; padding-bottom: 70px; }
 }
+
+/* Viewports under 580px wide */
+@media screen and (max-width: 580px) {
+    #journalCardsDiv {
+        justify-content: center;
+    }
+}

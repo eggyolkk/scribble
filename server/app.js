@@ -37,10 +37,10 @@ app.use((req, res, next) => {
     next()
 })
 
-// login and signup routes do not need authentication
+// authentication endpoints
 app.use('/auth', cors({credentials: true, origin: 'http://localhost:3000'}), authRoutes)
 
-// make sure all following routes are authenticated
+// journal endpoints
 app.use('/journals', cors({credentials: true, origin: 'http://localhost:3000'}), journalRoutes);
 
 app.use((req, res) => {

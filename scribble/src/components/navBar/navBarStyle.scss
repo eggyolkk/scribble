@@ -36,3 +36,14 @@
     @include navIcons();
     margin-top: 40px;
 }
+
+/* Viewports under 580px wide */
+@media screen and (max-width: 580px) {
+    #postsIcon {
+        margin-right: 30px;
+    }
+
+    #calendarIcon {
+        margin-right: 30px;
+    }
+}

@@ -145,6 +145,7 @@ html, body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 #topRowFlexBottom {
@@ -152,3 +153,38 @@ html, body {
     overflow: hidden;
 }
 
+/* Viewports under 800px wide */
+@media screen and (max-width: 800px) {
+    .topRowFlexTop {
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+}
+
+/* Viewports under 580px wide */
+@media screen and (max-width: 580px) {
+    #dashboardContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #dashboardFlexLeft {
+        width: 100%;
+        padding-top: 20px;
+        justify-content: center;
+    }
+
+    #navBarContainer {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .topRow {
+        padding: 10px 0px 0 0;
+    }
+
+    #topRowFlexBottom {
+        display: flex;
+        justify-content: center;
+    }
+}

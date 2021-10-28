@@ -12,17 +12,23 @@ export const fetchJournalDetails = () => {
         // get journal id currently stored
         const journalId = getState().journalId.journalId
 
-        dispatch(fetchJournalDetailsRequest())
-        axios
-        .get(`http://localhost:5000/journals/${journalId}`)
-        .then(response => {
-            const journalDetails = response.data
-            dispatch(fetchJournalDetailsSuccess(journalDetails))
-        })
-        .catch(error => {
-            dispatch(fetchJournalDetailsFailure(error.message))
-            console.log('error', error)
-        })
+        if (journalId) {
+            const postHeader = { headers: { 'Content-Type': 'application/json' }}
+
+            dispatch(fetchJournalDetailsRequest())
+            axios
+            .get(`http://localhost:5000/journals/${journalId}`, {postHeader, withCredentials: true})
+            .then(response => {
+                const journalDetails = response.data
+                dispatch(fetchJournalDetailsSuccess(journalDetails))
+            })
+            .catch(error => {
+                dispatch(fetchJournalDetailsFailure(error.message))
+                console.log('error', error)
+            })
+        }
+
+        
     }
 }
 

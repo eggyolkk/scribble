@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import './loginStyle.scss'
+import { connect } from 'react-redux'
 
 const Login = () => {
     const [username, setUsername] = useState('')
@@ -41,7 +42,6 @@ const Login = () => {
             />
 
             <button onClick={() => {userLogin()}} id="loginButton">Login</button>
-            
         </div>
     )
 }

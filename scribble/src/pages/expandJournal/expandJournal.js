@@ -31,8 +31,8 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
 
         await setCurrentId(windowUrl.slice(indexOfId))
         await setJournalId(currentId)
-        await fetchJournalDetails()
         await fetchJournals()
+        await fetchJournalDetails()
     }
 
     // set document title after data has loaded
@@ -90,8 +90,6 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
         setDarkenBg(true)
     }
 
-
-    console.log('edit', showEditComponent)
     return (
         <div className="pageBody">
             {showDeleteModal ? <DeletePostModal setShowDeleteModal={setShowDeleteModal} setDarkenBg={setDarkenBg} postId={currentId}/> : null}
@@ -124,7 +122,11 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
                                 <ExpandJournalDisplay setDocumentTitle={setDocumentTitle} formatDate={formatDate} confirmDeletePost={confirmDeletePost} journalDetailsData={journalDetailsData} setShowEditComponent={setShowEditComponent}/>
                             ): !loading && journalData && journalDetailsData.data !== undefined && showEditComponent ? (
                                 <ExpandJournalEdit journalDetailsData={journalDetailsData} setShowEditComponent={setShowEditComponent} setDocumentTitle={setDocumentTitle}/>
-                            ) : <h1>Could not load post</h1>}
+                            ) : 
+                            <>
+                            {console.log('JOURNAL DATA', journalDetailsData)}
+                            <h1>Could not load post</h1>
+                            </>}
                         </div>
 
                         <div id="journalRight">

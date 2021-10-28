@@ -18,6 +18,10 @@ const journalSchema = new Schema({
     activities: {
         type: String,
         required: false
+    },
+    userId: {
+        type: String,
+        required: true
     }
 }, { timestamps: true })
 
