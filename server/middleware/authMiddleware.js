@@ -16,8 +16,8 @@ const requireAuth = (req, res, next) => {
             }
         })
     } else {
-        res.status(400).send("You are unauthorized to view this page")
-        console.log(token, 'redirect login')
+        res.send("You are unauthorized to view this page")
+        console.log(token, 'Redirected back to login')
     }
 }
 

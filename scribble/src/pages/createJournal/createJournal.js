@@ -4,7 +4,6 @@ import axios from 'axios';
 import NavBar from '../../components/navBar/navBar'
 import WritePost from '../../components/writePost/writePost'
 import ChooseMood from '../../components/chooseMood/chooseMood'
-import TopUserBar from "../../components/topUserBar/topUserBar";
 import './createJournalPageStyle.scss'
 
 const CreateJournal = () => {
@@ -54,25 +53,28 @@ const CreateJournal = () => {
 
     return (
         <div className="pageBody">
-            <TopUserBar />
 
             <div id="createJournalContainer">
-                <div id="createJournalFlexLeft">
+                <div className="dashboardFlexLeft">
                     <NavBar />
                 </div>
 
                 <div id="createJournalFlexRight">
-                    <div className="topRow">
-                        <div className="topRowFlexTop">
-                            <h1 className="headerH1">Create new post</h1>
+                    
+                    <div className="dashboardContent">
+                        <div className="topRow">
+                            <div className="topRowFlexTop">
+                                <h1 className="headerH1">Create new post</h1>
+                            </div>
                         </div>
-                    </div>
 
-                    {showComponent === "moodComponent" ? 
-                        <ChooseMood mood={mood} setMood={setMood} setShowComponent={setShowComponent} />
-                     : 
-                        <WritePost activities={activities} setActivity={setActivity} mood={mood} setShowComponent={setShowComponent} journal={journal} postJournal={postJournal} dispatch={dispatch}/>
-                    }
+                        {showComponent === "moodComponent" ? 
+                            <ChooseMood mood={mood} setMood={setMood} setShowComponent={setShowComponent} />
+                        : 
+                            <WritePost activities={activities} setActivity={setActivity} mood={mood} setShowComponent={setShowComponent} journal={journal} postJournal={postJournal} dispatch={dispatch}/>
+                        }
+                    </div>
+                    
                 </div>
             </div>
         </div>

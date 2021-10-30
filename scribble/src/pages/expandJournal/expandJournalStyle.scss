@@ -44,7 +44,7 @@
 
 #expandJournalContainer {
     display: flex;
-    width: 95%;
+    width: 100%;
     height: 100vh;
 }
 
@@ -58,10 +58,9 @@
 }
 
 #expandJournalFlexRight {
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 #journalContainer {
@@ -97,3 +96,33 @@
     justify-content: center;
 }
 
+/* Viewports under 1000px wide */
+@media screen and (max-width: 1000px) {
+    #expandJournalContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dashboardFlexLeft {
+        width: 100%;
+        height: 100px;
+    }
+
+    .dashboardContent {
+        margin-left: 0px;
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .topRow {
+        width: 80%;
+        padding: 150px 0 0 0;
+    }
+
+    #journalCardsDiv {
+        margin-left: 60px;
+    }
+}

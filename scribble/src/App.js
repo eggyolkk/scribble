@@ -1,5 +1,5 @@
 import "./App.css";
-import { Component } from 'react'
+import { Component, useEffect, useState } from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import axios from 'axios'
@@ -14,65 +14,41 @@ import store from "./redux/store"
 import { fetchJournalDetails } from './redux/journalDetails/journalDetailsActions'
 import { setJournalId, getJournalId } from './redux/journalId/journalIdActions'
 
-class ProtectedRoute extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-            userId: ''
-        }
-    }
-
-    async componentDidMount() {
-        await this.checkUser()
-    }
-
-    // check if a user is currently logged in
-    checkUser = async () => {
-        const postHeader = { headers: { 'Content-Type': 'application/json' }}
-        await axios.get('http://localhost:5000/auth/get_user_id', {postHeader, withCredentials: true})
-        .then(response => {
-            this.setState({
-                userId: response.data.user_id
-            })
-            console.log("FRONTEND USERID", this.state.userId)
-        })
-        .catch(error => {
-            this.setState({
-                userId: 'Invalid'
-            })
-        })
-    }
-    render() {
-        const { component: Component, id: journalId, ...props } = this.props
-
+// if user is authenticated, render page
+// else, redirect user to login page
+const PrivateRoute = ({ component: Component, ...rest }) => {
+    const renderPage = () => {
         return (
-            <Route {...props}
-                render={(props) => (
-                    this.state.userId === 'Invalid' ?
-                    <Redirect to='/' /> :
-                    <>
-                    {console.log("helloooooooo")}
-                    <Component {...props} id={journalId}/>
-                    </>
-                )}
+            <Route
+                {...rest}
+                render={props =>
+                    window.sessionStorage.getItem("authenticated") === 'valid' ? 
+                        <Component {...props} />
+                    : 
+                        <Redirect to={{ pathname: '/' }} />
+                }
             />
         )
     }
+
+    return (
+        renderPage()
+    )
 }
 
-function App({journalData, ownPropsMessage, journalId, fetchJournalDetails, setJournalId, getJournal}) {
+function App({journalData, ownPropsMessage, journalId, fetchJournalDetails, setJournalId, getJournal, userId, getUserId}) {
     return (
         <Provider store={store}>
             <div className='App'>
                 <BrowserRouter>
                     <Switch>
                         <Route exact path='/' component={HomePage} />
-                        <ProtectedRoute exact path='/dashboard' component={DashboardPage} />
                         
-                        <ProtectedRoute exact path='/create' component={CreateJournal} />
+                        <PrivateRoute exact path='/dashboard' component={DashboardPage} getUserId={getUserId} userId={userId}/>
                         
-                        <ProtectedRoute exact path='/post/:id' component={ExpandJournal} id={journalId} />
+                        <PrivateRoute exact path='/create' component={CreateJournal} />
+                        
+                        <PrivateRoute exact path='/post/:id' component={ExpandJournal} id={journalId} />
                         
                     </Switch>
                 </BrowserRouter>
@@ -92,7 +68,7 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchJournalDetails: () => dispatch(fetchJournalDetails()),
         setJournalId: currentId => dispatch(setJournalId(currentId)),
-        getJournalId: () => dispatch(getJournalId()),
+        getJournalId: () => dispatch(getJournalId())
     }
 }
 

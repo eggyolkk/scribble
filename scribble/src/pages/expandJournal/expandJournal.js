@@ -5,7 +5,6 @@ import { fetchJournalDetails } from '../../redux/journalDetails/journalDetailsAc
 import { setJournalId, getJournalId } from '../../redux/journalId/journalIdActions'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io'
 import NavBar from '../../components/navBar/navBar'
-import TopUserBar from '../../components/topUserBar/topUserBar'
 import DeletePostModal from '../../components/deletePostModal/deletePostModal'
 import ExpandJournalDisplay from '../../components/expandJournalDisplay/expandJournalDisplay'
 import ExpandJournalEdit from '../../components/expandJournalEdit/expandJournalEdit'
@@ -96,46 +95,48 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
 
             <div className={darkenBg ? 'modalBg' : 'modalBgNone'}></div>
 
-            <TopUserBar />
-
             <div id="expandJournalContainer">
-                <div id="expandJournalFlexLeft">
+                <div className="dashboardFlexLeft">
                     <NavBar />
                 </div>
 
                 <div id="expandJournalFlexRight">
-                    <div id="journalContainer">
-                        <div id="journalLeft">
-                            <button className="expandJounalArrowButtons" onClick={() => window.location.href = `/post/${getPrevPostId()}`}>
-                                <IoMdArrowRoundBack className="arrowButton"/>
-                            </button>
-                        </div>
 
-                        <div id="journalMiddle">
-                            <div id='closeButtonDiv'>
-                                <button id="closeButton" onClick={() => window.location.href = '/dashboard'}>x</button>
+                    <div className="dashboardContent">
+                        <div id="journalContainer">
+                            <div id="journalLeft">
+                                <button className="expandJounalArrowButtons" onClick={() => window.location.href = `/post/${getPrevPostId()}`}>
+                                    <IoMdArrowRoundBack className="arrowButton"/>
+                                </button>
+                            </div>
+
+                            <div id="journalMiddle">
+                                <div id='closeButtonDiv'>
+                                    <button id="closeButton" onClick={() => window.location.href = '/dashboard'}>x</button>
+                                </div>
+                                
+                                {loading ? (
+                                    <h2>Loading</h2>
+                                ) : !loading && journalData && journalDetailsData.data !== undefined && !showEditComponent ? (
+                                    <ExpandJournalDisplay setDocumentTitle={setDocumentTitle} formatDate={formatDate} confirmDeletePost={confirmDeletePost} journalDetailsData={journalDetailsData} setShowEditComponent={setShowEditComponent}/>
+                                ): !loading && journalData && journalDetailsData.data !== undefined && showEditComponent ? (
+                                    <ExpandJournalEdit journalDetailsData={journalDetailsData} setShowEditComponent={setShowEditComponent} setDocumentTitle={setDocumentTitle}/>
+                                ) : 
+                                <>
+                                {console.log('JOURNAL DATA', journalDetailsData)}
+                                <h1>Could not load post</h1>
+                                </>}
+                            </div>
+
+                            <div id="journalRight">
+                                <button className="expandJounalArrowButtons" onClick={() => window.location.href = `/post/${getNextPostId()}`}>
+                                    <IoMdArrowRoundForward className="arrowButton"/>
+                                </button>
                             </div>
                             
-                            {loading ? (
-                                <h2>Loading</h2>
-                            ) : !loading && journalData && journalDetailsData.data !== undefined && !showEditComponent ? (
-                                <ExpandJournalDisplay setDocumentTitle={setDocumentTitle} formatDate={formatDate} confirmDeletePost={confirmDeletePost} journalDetailsData={journalDetailsData} setShowEditComponent={setShowEditComponent}/>
-                            ): !loading && journalData && journalDetailsData.data !== undefined && showEditComponent ? (
-                                <ExpandJournalEdit journalDetailsData={journalDetailsData} setShowEditComponent={setShowEditComponent} setDocumentTitle={setDocumentTitle}/>
-                            ) : 
-                            <>
-                            {console.log('JOURNAL DATA', journalDetailsData)}
-                            <h1>Could not load post</h1>
-                            </>}
                         </div>
-
-                        <div id="journalRight">
-                            <button className="expandJounalArrowButtons" onClick={() => window.location.href = `/post/${getNextPostId()}`}>
-                                <IoMdArrowRoundForward className="arrowButton"/>
-                            </button>
-                        </div>
-                        
                     </div>
+                    
                 </div>
 
             </div>

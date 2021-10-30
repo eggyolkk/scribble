@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import JournalCard from "../../components/journalCard/journalCard";
 import NavBar from '../../components/navBar/navBar'
-import TopUserBar from "../../components/topUserBar/topUserBar";
 import DeletePostModal from "../../components/deletePostModal/deletePostModal";
 import './dashboardPageStyle.scss'
 
@@ -22,33 +21,34 @@ function DashboardPage(props) {
             
             <div className={darkenBg ? 'modalBg' : 'modalBgNone'}></div>
 
-            <TopUserBar />
-
             <div id="dashboardContainer">
-                <div id="dashboardFlexLeft">
+                <div className="dashboardFlexLeft">
                     <NavBar />
                 </div>
 
                 <div id="dashboardFlexRight">
-                    <div className="topRow">
-                        <div className="topRowFlexTop">
-                            <h1 className="headerH1">Dashboard</h1>
-                            <Link to='/create'>
-                                <button id="createButton">+ CREATE NEW POST</button>
-                            </Link>
+                    <div className="dashboardContent">
+                        
+                        <div className="topRow">
+                            <div className="topRowFlexTop">
+                                <h1 className="headerH1">Dashboard</h1>
+                                <Link to='/create'>
+                                    <button id="createButton">+ CREATE NEW POST</button>
+                                </Link>
+                            </div>
+                                
+                            <div id="topRowFlexBottom">
+                                <input
+                                    id="dashboardSearchBar"
+                                    type='text'
+                                    placeholder='Search in your posts...'
+                                ></input>
+                            </div>
                         </div>
-                            
-                        <div id="topRowFlexBottom">
-                            <input
-                                id="dashboardSearchBar"
-                                type='text'
-                                placeholder='Search in your posts...'
-                            ></input>
-                        </div>
-                    </div>
 
-                    <div id="journalCardsContainer">
-                        <JournalCard setDarkenBg={setDarkenBg} setShowDeleteModal={setShowDeleteModal} setIdPostToBeDeleted={setIdPostToBeDeleted}/>
+                        <div id="journalCardsContainer">
+                            <JournalCard setDarkenBg={setDarkenBg} setShowDeleteModal={setShowDeleteModal} setIdPostToBeDeleted={setIdPostToBeDeleted}/>
+                        </div>
                     </div>
                 </div>
 

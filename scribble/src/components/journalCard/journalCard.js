@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { fetchJournals } from '../../redux/journal/journalActions'
 import './journalCardStyle.scss'
@@ -6,9 +6,16 @@ import { BiTrash } from 'react-icons/bi'
 import { HiOutlinePencilAlt } from 'react-icons/hi'
 
 const JournalCard = ({ journalData, fetchJournals, setDarkenBg, setShowDeleteModal, setIdPostToBeDeleted }) => {
+    const [emptyPosts, setEmptyPosts] = useState(true)
+    
     // fetch journals on initial page render
     useEffect(() => {
         fetchJournals()
+        if (journalData.length > 0) {
+            setEmptyPosts(false)
+        } else {
+            setEmptyPosts(true)
+        }
     }, [fetchJournals])
 
     // format the date journal was created to a DD/MM/YYYY format
@@ -35,7 +42,7 @@ const JournalCard = ({ journalData, fetchJournals, setDarkenBg, setShowDeleteMod
         <h2>Loading</h2>
     ) : journalData.error ? (
         <h2>{journalData.error}</h2>
-    ) : !journalData.error && journalData.length !== 0 ? (
+    ) : !journalData.error && journalData.length !== 0 && emptyPosts ? (
         <div id="journalCardsDiv">
             {journalData.slice(0).reverse().map((journal, index) => 
             <div key={index} className="journalCards" onClick={() => window.location.href = `/post/${journal._id}`}>
@@ -62,8 +69,15 @@ const JournalCard = ({ journalData, fetchJournals, setDarkenBg, setShowDeleteMod
             </div>
             )}
             
+        </div> 
+    ) : (
+        <div id="emptyJournalDiv">
+            <h2 id="noPostsH2">No posts to show</h2>
+            
+            <p id="noPostsP">Create a new post to see it on your dashboard</p>
+            <img src={require(`../../images/happyMood.png`).default} id="nothingToShowIcon" alt="scribble icon"/>
         </div>
-    ) : null
+    )
 }
 
 const mapStateToProps = (state, ownProps) => {

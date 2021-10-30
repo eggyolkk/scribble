@@ -1,13 +1,18 @@
+@import '../../pages/dashboard/dashboardPageStyle.scss';
+
 @mixin navIcons() {
     -moz-transition: all .1s ease-in;
     -o-transition: all .1s ease-in;
     -webkit-transition: all .1s ease-in;
     transition: all .1s ease-in;
-    fill: #36264a;
-    font-size: 35px;
+    fill: #9a8aab;
+    font-size: 30px;
     cursor: pointer;
     &:hover {
-        fill: #9a74bb;
+        .navLabels {
+        color:#714a92;
+        }
+        fill: #714a92;
     }
 }
 
@@ -16,9 +21,16 @@
     margin-top: 40px;
 }
 
+#logoutIcon {
+    @include navIcons();
+    margin-top: 40px;
+}
+
+
 #navBarContainer {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 
 #navButtonsContainer {
@@ -28,8 +40,34 @@
     border: none;
 }
 
+.navLabels {
+    font-family: $poppins;
+    margin-bottom: 7px;
+    margin-left: 10px;
+    color: #9a8aab;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+        color: #714a92;
+        transition: color 0.2s;
+    }
+}
+
+.navSelectionDiv {
+    display: flex;
+    align-items: flex-end;
+}
+
 #postsIcon {
     @include navIcons();
+}
+
+#topUserBar.scribbleTitle {
+    font-size: 45px;
+    margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 #settingsIcon {
@@ -37,13 +75,15 @@
     margin-top: 40px;
 }
 
-/* Viewports under 580px wide */
-@media screen and (max-width: 580px) {
-    #postsIcon {
+/* Viewports under 1000px wide */
+@media screen and (max-width: 1000px) {
+    #navBarContainer {
+        flex-direction: row;
+        align-items: flex-end;
+    }
+
+    #postsIcon, #calendarIcon, #settingsIcon {
         margin-right: 30px;
     }
 
-    #calendarIcon {
-        margin-right: 30px;
-    }
 }

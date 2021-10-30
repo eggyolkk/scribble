@@ -2,9 +2,19 @@ $manrope: 'Manrope', sans-serif;
 $quicksand: 'Quicksand', sans-serif;
 $poppins: 'Poppins', sans-serif;
 
-html, body {
+
+.cardJournalBodyText {
+    font-family: $quicksand;
     margin: 0;
-    overflow: auto;
+    font-size: 14px;
+    color: #997fb1;
+    font-weight: 600;
+}
+
+.cardJournalDate {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-weight: 400;
 }
 
 .cardJournalTitle {
@@ -13,12 +23,16 @@ html, body {
     font-family: $poppins;
 }
 
-.cardJournalBodyText {
-    font-family: $quicksand;
-    margin: 0;
-    font-size: 14px;
-    color: #997fb1;
-    font-weight: 600;
+.deleteDiv {
+    display: flex;
+    justify-content: center;
+}
+
+#emptyJournalDiv {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .journalCards {
@@ -40,15 +54,39 @@ html, body {
     }
 }
 
-.cardJournalDate {
-    margin-top: 5px;
-    margin-bottom: 10px;
-    font-weight: 400;
+#journalCardsDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    width: 100%;
 }
 
-.deleteDiv {
-    display: flex;
-    justify-content: center;
+.moodIcon {
+    height: 60%;
+}
+
+#nothingToShowIcon {
+    width: 50%;
+    opacity: 0.3;
+}
+
+#noPostsH2 {
+    margin-top: 100px;
+    font-size: 70px;
+    color: #896a972e;
+    margin-bottom: 0;
+    font-family: $poppins;
+}
+
+#noPostsP {
+    color: #896a972e;
+    font-family: $poppins;
+    color: #896a9747;
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 40px;
 }
 
 .postActionButtons {
@@ -72,22 +110,14 @@ html, body {
     color: #bfa9cd;
 }
 
-#journalCardsDiv {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    width: 100%;
+/* Viewports under 1680px wide */
+@media screen and (max-width: 2000px) {
+    .journalCards { width: 24%; }
 }
-
-.moodIcon {
-    height: 60%;
-}
-
 
 /* Viewports under 1680px wide */
 @media screen and (max-width: 1680px) {
-    .journalCards { width: 17%; }
+    .journalCards { width: 22%; }
 }
 
 /* Viewports under 1580px wide */
@@ -97,17 +127,22 @@ html, body {
 
 /* Viewports under 1480px wide */
 @media screen and (max-width: 1480px) {
-    .journalCards { width: 16%; }
+    .journalCards { width: 20%; }
 }
 
 /* Viewports under 1300px wide */
 @media screen and (max-width: 1300px) {
-    .journalCards { width: 20%; }
+    .journalCards { width: 33%; }
 }
 
-/* Viewports under 980px wide */
-@media screen and (max-width: 980px) {
-    .journalCards { width: 34%; }
+/* Viewports under 1060px wide */
+@media screen and (max-width: 1060px) {
+    .journalCards { width: 28%; }
+}
+
+/* Viewports under 1000px wide */
+@media screen and (max-width: 1000px) {
+    .journalCards { width: 33%; }
 }
 
 /* Viewports under 750px wide */

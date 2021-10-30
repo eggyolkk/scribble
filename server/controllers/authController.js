@@ -69,7 +69,12 @@ const get_user_id = (req, res) => {
 
 // sign a user up
 const signup_post = async (req, res) => {
-    const { username, password } = req.body
+    // convert request body into json (it is currently sending as a json within a json)
+    let userData = Object.keys(req.body)
+    const userJSON = JSON.parse(userData)
+    
+    const username = userJSON.username
+    const password = userJSON.password
 
     try {
         const user = await User.create({ username, password })
@@ -80,8 +85,7 @@ const signup_post = async (req, res) => {
     }
     catch(err) {
         const errors = handleErrors(err)
-        res.status(400).json({ errors })
-        console.log(errors)
+        res.json({ errors: errors })
     }
 }
 
@@ -102,7 +106,7 @@ const login_post = async (req, res) => {
     }
     catch(err) {
         const errors = handleErrors(err)
-        res.status(400).json({ errors })
+        res.json({ errors: errors })
     }
 }
 
