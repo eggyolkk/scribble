@@ -92,24 +92,6 @@ html, body {
     
 }
 
-#dashboardSearchBar {
-    width: 100%;
-    padding: 20px;
-    border-radius: 30px;
-    font-family: $poppins;
-    color: #8a699f;
-    z-index: 2;
-    box-sizing:border-box;
-    position: relative;
-    font-size: 15px;
-    border: none;
-    opacity: 100%;
-    &:hover {
-        opacity: 80%;
-        transition: opacity 0.2s;
-    }
-}
-
 .headerH1 {
     font-size: 60px;
     font-family: $poppins !important; 
@@ -134,6 +116,21 @@ html, body {
     align-items: center;
     overflow: auto;
     flex-direction: column;
+    &::-webkit-scrollbar {
+    	width: 10px;
+        z-index: 4;
+	}
+	&::-webkit-scrollbar-track {
+    	background-color: white;
+    	border-radius: 100px;
+	}
+	&::-webkit-scrollbar-thumb {
+    	background-color: #9f98a3;
+    	border-radius: 100px;
+    }
+	&::-webkit-scrollbar-thumb:hover {
+  		background: #817886;
+	}
 }
 
 ::placeholder {
@@ -178,5 +175,7 @@ html, body {
 
 /* Viewports under 1000px wide */
 @media screen and (max-width: 1000px) {
-    
+    .headerH1 {
+        font-size: 50px;
+    }
 }

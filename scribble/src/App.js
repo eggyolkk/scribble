@@ -45,6 +45,8 @@ function App({journalData, ownPropsMessage, journalId, fetchJournalDetails, setJ
                         <Route exact path='/' component={HomePage} />
                         
                         <PrivateRoute exact path='/dashboard' component={DashboardPage} getUserId={getUserId} userId={userId}/>
+
+                        <PrivateRoute exact path="/dashboard/:query" component={DashboardPage} />
                         
                         <PrivateRoute exact path='/create' component={CreateJournal} />
                         

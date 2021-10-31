@@ -2,7 +2,7 @@
 
 #createJournalContainer {
     display: flex;
-    width: 95%;
+    width: 100%;
     height: 100vh;
 }
 
@@ -20,4 +20,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* Viewports under 1000px wide */
+@media screen and (max-width: 1000px) {
+    #createJournalContainer {
+        justify-content: center;
+    }
 }

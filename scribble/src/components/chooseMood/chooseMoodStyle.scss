@@ -25,6 +25,7 @@
     border-radius: 25px;
     padding: 40px 80px;
     margin-top: 40px;
+    margin-bottom: 20px
 }
 
 #continueButton {
@@ -120,4 +121,15 @@
     margin-top: 40px;
     color: #735599;
     font-family: $poppins;
+}
+
+/* Viewports under 1000px wide */
+@media screen and (max-width: 1000px) {
+    #chooseMoodContainer {
+        padding: 40px 50px;
+    }
+
+    #continueButton {
+        width: 100%;
+    }
 }

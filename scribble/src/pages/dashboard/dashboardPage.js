@@ -3,16 +3,25 @@ import { Link } from "react-router-dom";
 import JournalCard from "../../components/journalCard/journalCard";
 import NavBar from '../../components/navBar/navBar'
 import DeletePostModal from "../../components/deletePostModal/deletePostModal";
+import Searchbar from "../../components/searchbar/searchbar";
+import SearchedJournalCards from "../../components/searchedJournalCards/searchedJournalCards";
 import './dashboardPageStyle.scss'
 
 function DashboardPage(props) {
+    const propsQuery = props.match.params.query
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [darkenBg, setDarkenBg] = useState(false)
     const [idPostToBeDeleted, setIdPostToBeDeleted] = useState('')
 
-    // set the documen title to dashboard on initial page render
+    // set the document title on initial page render
     useEffect(() => {
-        document.title = "Dashboard"
+        if (propsQuery) {
+            document.title = `${propsQuery} - scribble!`
+        }
+        else {
+            document.title = 'Dashboard'
+        }
+        
     }, [])
 
     return (
@@ -38,16 +47,18 @@ function DashboardPage(props) {
                             </div>
                                 
                             <div id="topRowFlexBottom">
-                                <input
-                                    id="dashboardSearchBar"
-                                    type='text'
-                                    placeholder='Search in your posts...'
-                                ></input>
+                                Search: {propsQuery}
+                                <Searchbar />
                             </div>
                         </div>
 
                         <div id="journalCardsContainer">
-                            <JournalCard setDarkenBg={setDarkenBg} setShowDeleteModal={setShowDeleteModal} setIdPostToBeDeleted={setIdPostToBeDeleted}/>
+                            {propsQuery ? 
+                                <SearchedJournalCards setDarkenBg={setDarkenBg} setShowDeleteModal={setShowDeleteModal} setIdPostToBeDeleted={setIdPostToBeDeleted} propsQuery={propsQuery}/>
+                                :
+                                <JournalCard setDarkenBg={setDarkenBg} setShowDeleteModal={setShowDeleteModal} setIdPostToBeDeleted={setIdPostToBeDeleted} />
+                            }
+                            
                         </div>
                     </div>
                 </div>

@@ -54,7 +54,7 @@ $poppins: 'Poppins', sans-serif;
     }
 }
 
-#journalCardsDiv {
+.journalCardsDiv {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -143,16 +143,17 @@ $poppins: 'Poppins', sans-serif;
 /* Viewports under 1000px wide */
 @media screen and (max-width: 1000px) {
     .journalCards { width: 33%; }
+    
+    .deleteDiv {
+        flex-direction: row;
+    }
+
+    .journalCardsDiv {
+        justify-content: center;
+    }
 }
 
 /* Viewports under 750px wide */
 @media screen and (max-width: 750px) {
     .journalCards { width: 70%; padding-bottom: 70px; }
-}
-
-/* Viewports under 580px wide */
-@media screen and (max-width: 580px) {
-    #journalCardsDiv {
-        justify-content: center;
-    }
 }

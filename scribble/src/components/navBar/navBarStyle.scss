@@ -79,11 +79,21 @@
 @media screen and (max-width: 1000px) {
     #navBarContainer {
         flex-direction: row;
-        align-items: flex-end;
+        align-items: flex-start;
     }
 
     #postsIcon, #calendarIcon, #settingsIcon {
         margin-right: 30px;
+    }
+
+    .navLabels {
+        display: none;
+    }
+
+    #topUserBar.scribbleTitle {
+        font-size: 25px;
+        margin-right: 30px;
+        margin-top: 40px;
     }
 
 }

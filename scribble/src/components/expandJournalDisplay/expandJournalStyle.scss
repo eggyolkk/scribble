@@ -56,3 +56,11 @@
     color: #796099;
     font-size: 25px;
 }
+
+/* Viewports under 1000px wide */
+@media screen and (max-width: 1000px) {
+    .expandJournalButtons {
+        margin-bottom: 20px;
+        padding: 10px 30px;
+    }
+}

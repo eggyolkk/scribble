@@ -8,6 +8,7 @@
     margin-top: 40px;
     display: flex;
     width: 80%;
+    margin-bottom: 20px;
 }
 
 #writePostFlexLeft {
@@ -72,4 +73,11 @@
     #writePostFlexRight { width: 100%; }
     #titleInputField { width: 90%; }
     #bodyTextInputField { width: 90%; }
+}
+
+/* Viewports under 1000px wide */
+@media screen and (max-width: 1000px) {
+    #writePostContainer { 
+        padding: 40px 30px;
+    }
 }

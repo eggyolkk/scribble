@@ -1,24 +1,40 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { fetchJournals } from '../../redux/journal/journalActions'
-import './journalCardStyle.scss'
 import { BiTrash } from 'react-icons/bi'
 import { HiOutlinePencilAlt } from 'react-icons/hi'
 import axios from 'axios'
 
-const JournalCard = ({ journalData, fetchJournals, setDarkenBg, setShowDeleteModal, setIdPostToBeDeleted, propsQuery }) => {
+const SearchedJournalCards = ({ fetchJournals, setDarkenBg, setShowDeleteModal, setIdPostToBeDeleted, propsQuery }) => {
     const [emptyPosts, setEmptyPosts] = useState(true)
+    const [journalData, setJournalData] = useState([])
     
     // fetch journals on initial page render
     useEffect(() => {
-        fetchJournals()
-        if (journalData.length > 0) {
-            setEmptyPosts(false)
-        } else {
-            setEmptyPosts(true)
+        console.log('propsquery', propsQuery)
+        if (propsQuery) {
+            console.log("hellooo", propsQuery)
+            fetchSearchedJournals()
         }
+        console.log('journal', journalData)
     }, [])
 
+    // fetch journals by search query
+    const fetchSearchedJournals = async () => {
+        // get user id
+        let userId = ''
+        const getUserIdHeader = { headers: { 'Content-Type': 'application/json' }}
+        await axios.get('http://localhost:5000/auth/get_user_id', {getUserIdHeader, withCredentials: true})
+        .then(response => userId = response.data.user_id)
+
+        // fetch searched journals that belong to the user
+        const postHeader = { headers: { 'Content-Type': 'application/json', 'user_id': 'hello' }}
+        await axios.get(`http://localhost:5000/journals/search/${propsQuery}`, {postHeader, withCredentials: true})
+        .then(response => {
+            console.log(response.data.docs)
+            setJournalData(response.data.docs)
+        })
+    }
 
     // format the date journal was created to a DD/MM/YYYY format
     const formatDate = (journalDate) => {
@@ -84,7 +100,6 @@ const JournalCard = ({ journalData, fetchJournals, setDarkenBg, setShowDeleteMod
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        journalData: state.journal.journals,
         setDarkenBg: ownProps.setDarkenBg,
         setShowDeleteModal: ownProps.setShowDeleteModal,
         setIdPostToBeDeleted: ownProps.setIdPostToBeDeleted,
@@ -101,4 +116,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(JournalCard)
+)(SearchedJournalCards)

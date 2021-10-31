@@ -71,6 +71,7 @@
     border-radius: 30px;
     padding: 80px 50px;
     display: flex;
+    margin-bottom: 20px;
 }
 
 #journalLeft {
@@ -122,7 +123,15 @@
         padding: 150px 0 0 0;
     }
 
-    #journalCardsDiv {
-        margin-left: 60px;
+    #journalContainer {
+        padding: 10px;
+    }
+    
+    #expandJournalMood {
+        width: 200px;
+    }
+
+    .expandJounalArrowButtons {
+        padding: 10px;
     }
 }

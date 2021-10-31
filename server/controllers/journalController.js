@@ -93,10 +93,32 @@ const update_journal = (req, res) => {
     })
 }
 
+// search for journals in the database with specified fields
+const search_journals = (req, res) => {
+    const title = { title: { "$regex": req.params.query, "$options": "i" } }
+    const bodyText = { bodyText: req.params.query }
+    console.log(title)
+
+    const searchHeader = req.headers['user_id']
+
+    console.log('header', searchHeader)
+    Journal.find(title, function(err, docs) {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            console.log('results', docs)
+            res.json({ docs })
+        }
+    })
+    
+}
+
 module.exports = {
     get_journals,
     create_journal,
     get_journal_details,
     delete_journal,
-    update_journal
+    update_journal,
+    search_journals
 }
