@@ -1,0 +1,83 @@
+@import '../../../dashboard//dashboardPageStyle.scss';
+
+#writePostContainer {
+    @include fadeInUpAnimation();
+    background-color: #ffffffb0;
+    border-radius: 25px;
+    padding: 40px 80px;
+    margin-top: 40px;
+    display: flex;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+#writePostFlexLeft {
+    width: 40%;
+    display: flex;
+}
+
+#writePostFlexRight {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#titleInputField {
+    width: 70%;
+    height: 30x;
+    border: 2px solid #d5c8e7;
+    border-radius: 25px;
+    padding: 10px 20px;
+    margin-top: 80px;
+    font-family: $poppins;
+    color: #735599;
+}
+
+#bodyTextInputField {
+    width: 70%;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    height: 400px;
+    border: 2px solid #d5c8e7;
+    margin-bottom: 30px;
+    font-family: $poppins;
+    color: #735599;
+    resize: none;
+}
+
+#postButton {
+    opacity: 80%;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 35px;
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    font-size: 17px;
+    cursor: pointer;
+    background-color: #aa8fc1;
+    font-weight: 800;
+    box-shadow: 0px 0px 70px 15px #e6aeff6e;
+    width: 70%;
+    &:hover {
+        opacity: 100%;
+        transition: opacity 0.2s;
+    }
+}
+
+/* Viewports under 1190px wide */
+@media screen and (max-width: 1190px) {
+    #writePostContainer { flex-direction: column; }
+    #writePostFlexLeft { width: 100%; }
+    #writePostFlexRight { width: 100%; }
+    #titleInputField { width: 90%; }
+    #bodyTextInputField { width: 90%; }
+}
+
+/* Viewports under 1000px wide */
+@media screen and (max-width: 1000px) {
+    #writePostContainer { 
+        padding: 40px 30px;
+    }
+}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Login from "../../components/login/login";
-import Register from "../../components/register/register";
+import Login from "./components/login/login";
+import Register from "./components/register/register";
 import './homePageStyle.scss'
 
 const HomePage = () => {

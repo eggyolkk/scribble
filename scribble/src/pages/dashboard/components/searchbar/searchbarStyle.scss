@@ -1,0 +1,26 @@
+@import '../../../dashboard/dashboardPageStyle.scss';
+
+#dashboardSearchBar {
+    width: 100%;
+    padding: 20px;
+    border-radius: 30px;
+    font-family: $poppins;
+    color: #8a699f;
+    z-index: 2;
+    box-sizing:border-box;
+    position: relative;
+    font-size: 15px;
+    border: 1px solid transparent;
+    opacity: 100%;
+    background-color: #ffffffd1;
+    &:hover {
+        background-color: white;
+        transition: background-color 0.1s;
+    }
+    &:focus {
+        outline: none;
+        background-color: white;
+        transition: background-color 0.1s;
+        border: 1px solid #c9b6cb;
+    }
+}

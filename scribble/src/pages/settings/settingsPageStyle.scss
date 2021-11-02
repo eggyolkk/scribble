@@ -1,0 +1,70 @@
+@import '../dashboard/dashboardPageStyle.scss';
+
+@mixin settingsDiv() {
+    @include fadeInUpAnimation();
+    background-color: #ffffff78;
+    width: 95%;
+    padding: 50px 0;
+    margin-bottom: 20px;
+    border-radius: 25px;
+}
+
+#accountDiv {
+    @include settingsDiv();
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#avatar {
+    background-color: #dccee2;
+    color: #9a7bb0;
+    margin-left: 10px;
+    &:hover {
+        background-color: #c1a8cc;
+        color: #5e3e75;
+    }
+}
+
+#preferencesDiv {
+    @include settingsDiv();
+}
+
+#profileAvatarDisplay {
+    width: 300px;
+    margin-left: 10px;
+}
+
+#profileFlexLeft {
+    width: 40%;
+}
+
+#profileFlexRight {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 10px;
+}
+
+#preferencesDiv {
+    display: flex;
+}
+
+.settingsContent {
+    margin-left: 400px;
+    display: flex;
+    margin-top: 70px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#settingsHeader {
+    font-size: 60px;
+    font-family: $poppins !important; 
+    font-weight: 600;
+    color: #36264a;
+    margin: 0;
+    margin-bottom: 10px;
+}
+

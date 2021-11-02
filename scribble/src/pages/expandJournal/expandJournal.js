@@ -6,13 +6,15 @@ import { setJournalId, getJournalId } from '../../redux/journalId/journalIdActio
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io'
 import NavBar from '../../components/navBar/navBar'
 import DeletePostModal from '../../components/deletePostModal/deletePostModal'
-import ExpandJournalDisplay from '../../components/expandJournalDisplay/expandJournalDisplay'
-import ExpandJournalEdit from '../../components/expandJournalEdit/expandJournalEdit'
+import ExpandJournalDisplay from './components/expandJournalDisplay/expandJournalDisplay'
+import ExpandJournalEdit from './components/expandJournalEdit/expandJournalEdit'
+import CircularProgress from '@mui/material/CircularProgress'
+import Box from '@mui/material/Box'
 import './expandJournalStyle.scss'
 
 const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJournalDetails, setJournalId, getJournalId, journalData, fetchJournals}) => {
     const [currentId, setCurrentId] = useState('')
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [darkenBg, setDarkenBg] = useState(false)
     const [showEditComponent, setShowEditComponent] = useState(false)
@@ -20,7 +22,6 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
     // fetch journal details by id and all journals on initial page render 
     useEffect(() => {
         fetchJournalId()
-        setLoading(false)
     }, [currentId])
 
     // get all journals and the id of the journal from the current url
@@ -115,17 +116,23 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
                                     <button id="closeButton" onClick={() => window.location.href = '/dashboard'}>x</button>
                                 </div>
                                 
-                                {loading ? (
-                                    <h2>Loading</h2>
-                                ) : !loading && journalData && journalDetailsData.data !== undefined && !showEditComponent ? (
+                                {loading ? 
+                                    <Box sx={{ display: 'flex' }}>
+                                        <CircularProgress />
+                                    </Box>
+
+                                : !loading && journalData && journalDetailsData.data !== undefined && !showEditComponent ? 
                                     <ExpandJournalDisplay setDocumentTitle={setDocumentTitle} formatDate={formatDate} confirmDeletePost={confirmDeletePost} journalDetailsData={journalDetailsData} setShowEditComponent={setShowEditComponent}/>
-                                ): !loading && journalData && journalDetailsData.data !== undefined && showEditComponent ? (
+                                
+                                : !loading && journalData && journalDetailsData.data !== undefined && showEditComponent ? 
                                     <ExpandJournalEdit journalDetailsData={journalDetailsData} setShowEditComponent={setShowEditComponent} setDocumentTitle={setDocumentTitle}/>
-                                ) : 
-                                <>
-                                {console.log('JOURNAL DATA', journalDetailsData)}
-                                <h1>Could not load post</h1>
-                                </>}
+
+                                : 
+                                    <Box sx={{ display: 'flex' }}>
+                                        <CircularProgress />
+                                    </Box>
+
+                                }
                             </div>
 
                             <div id="journalRight">

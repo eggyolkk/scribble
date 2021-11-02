@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import JournalCard from "../../components/journalCard/journalCard";
+import JournalCard from "./components/journalCard/journalCard";
 import NavBar from '../../components/navBar/navBar'
 import DeletePostModal from "../../components/deletePostModal/deletePostModal";
-import Searchbar from "../../components/searchbar/searchbar";
-import SearchedJournalCards from "../../components/searchedJournalCards/searchedJournalCards";
+import Searchbar from "./components/searchbar/searchbar";
+import SearchedJournalCards from "../expandJournal/components/searchedJournalCards/searchedJournalCards";
 import './dashboardPageStyle.scss'
 
 function DashboardPage(props) {
@@ -47,14 +47,17 @@ function DashboardPage(props) {
                             </div>
                                 
                             <div id="topRowFlexBottom">
-                                Search: {propsQuery}
                                 <Searchbar />
                             </div>
                         </div>
 
                         <div id="journalCardsContainer">
                             {propsQuery ? 
+                                <>
+                                <p id="searchResultsLabel">Displaying journal posts with "{propsQuery}"</p>
+                                
                                 <SearchedJournalCards setDarkenBg={setDarkenBg} setShowDeleteModal={setShowDeleteModal} setIdPostToBeDeleted={setIdPostToBeDeleted} propsQuery={propsQuery}/>
+                                </>
                                 :
                                 <JournalCard setDarkenBg={setDarkenBg} setShowDeleteModal={setShowDeleteModal} setIdPostToBeDeleted={setIdPostToBeDeleted} />
                             }

@@ -1,0 +1,121 @@
+@import '../../../dashboard/dashboardPageStyle.scss';
+
+@mixin themeBoxes($bgColor) {
+    background-color: $bgColor;
+    width: 300px;
+    margin-top: 10px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+@mixin themeCircles($background) {
+    background-color: red;
+    width: 40px;
+    height: 40px;
+    margin: 0 20px 0 10px;
+    border-radius: 50px;
+    background: $background;
+}
+
+@mixin themeLabels($weight) {
+    font-family: $poppins;
+    font-weight: $weight;
+    color: #8a7d99;
+    font-size: 14px;
+}
+
+.settingsInput {
+    width: 90%;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: $poppins;
+    color: #8a699f;
+    z-index: 2;
+    box-sizing:border-box;
+    position: relative;
+    font-size: 15px;
+    border: 1px solid transparent;
+    opacity: 100%;
+    background-color: #ffffffb3;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    &:hover {
+        background-color: white;
+        transition: background-color 0.1s;
+    }
+    &:focus {
+        outline: none;
+        background-color: white;
+        transition: background-color 0.1s;
+        border: 1px solid #c9b6cb;
+    }
+}
+
+.displaySubtext {
+    font-family: $quicksand;
+    margin: 0 0 10px 0;
+    text-align: left;
+    color: #8a7d99;
+    font-size: 15px;
+    width: 90%;
+}
+
+#profile {
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 20px;
+}
+
+.settingsLabels {
+    font-family: $poppins;
+    text-align: left;
+    margin: 0;
+    font-size: 18px;
+    color: #8a7d99;
+}
+
+.settingsSubtitles {
+    font-family: $poppins;
+    margin: 0;
+    color: #8a7d99;
+    font-size: 40px;
+    text-align: left;
+}
+
+.themeBox {
+    @include themeBoxes(#ffffff8c);
+    &:hover {
+        background-color: white;
+        transition: background-color 0.2s;
+    }
+}
+
+.themeBoxSelected {
+    @include themeBoxes(white);
+    box-shadow: 0px 0px 30px 2px #cc94da59;
+}
+
+#themeCircleDark {
+    @include themeCircles(linear-gradient(180deg, rgba(222,189,230,1) 0%, rgba(255,192,192,1) 0%, rgba(159,131,148,1) 30%, rgba(97,91,119,1) 61%, rgba(60,64,91,1) 100%));
+}
+
+#themeCircleLight {
+    @include themeCircles(linear-gradient(180deg, rgba(222,189,230,1) 0%, rgba(255,232,192,1) 0%, rgba(209,196,255,1) 86%, rgba(209,196,255,1) 100%));
+}
+
+#themeContainer {
+    display: flex;
+    width: 90%;
+    justify-content: flex-start;
+}
+
+.themeLabel {
+    @include themeLabels(300)
+}
+
+.themeLabelSelected {
+    @include themeLabels(600)
+}

@@ -1,0 +1,28 @@
+@import '../../../dashboard/dashboardPageStyle.scss';
+
+#account {
+    margin-left: 50px;
+}
+
+#accountPassword {
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.settingsButton {
+    background-color: #f7e097;
+    color: #c18518;
+    border: none;
+    margin-left: 50px;
+    padding: 12px 10px;
+    width: 250px;
+    border-radius: 20px;
+    font-family: $quicksand;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: #f3da6f;
+        transition: background-color 0.1s;
+    }
+}

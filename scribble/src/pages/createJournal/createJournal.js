@@ -2,8 +2,8 @@ import { useState, useReducer, useEffect } from "react";
 import convertActivitiesArray from "../../helperFunctions/convertActivitiesArray";
 import axios from 'axios';
 import NavBar from '../../components/navBar/navBar'
-import WritePost from '../../components/writePost/writePost'
-import ChooseMood from '../../components/chooseMood/chooseMood'
+import WritePost from './components/writePost/writePost'
+import ChooseMood from './components/chooseMood/chooseMood'
 import './createJournalPageStyle.scss'
 
 const CreateJournal = () => {

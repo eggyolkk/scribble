@@ -34,8 +34,8 @@ const NavBar = () => {
             
 
             <div className="navSelectionDiv">
-                <RiSettings4Line id="settingsIcon" />
-                <p className="navLabels">Settings</p>
+                <RiSettings4Line id="settingsIcon" onClick={() => {window.location.href='/settings'}}/>
+                <p className="navLabels" onClick={() => {window.location.href='/settings'}}>Settings</p>
             </div>
 
             <div className="navSelectionDiv">

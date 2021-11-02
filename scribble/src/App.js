@@ -8,6 +8,7 @@ import HomePage from "./pages/home/homePage";
 import DashboardPage from "./pages/dashboard/dashboardPage";
 import CreateJournal from "./pages/createJournal/createJournal";
 import ExpandJournal from "./pages/expandJournal/expandJournal";
+import SettingsPage from './pages/settings/settingsPage'
 
 import { Provider, connect } from 'react-redux'
 import store from "./redux/store"
@@ -51,6 +52,8 @@ function App({journalData, ownPropsMessage, journalId, fetchJournalDetails, setJ
                         <PrivateRoute exact path='/create' component={CreateJournal} />
                         
                         <PrivateRoute exact path='/post/:id' component={ExpandJournal} id={journalId} />
+
+                        <PrivateRoute exact path='/settings' component={SettingsPage} />
                         
                     </Switch>
                 </BrowserRouter>
