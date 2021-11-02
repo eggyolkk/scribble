@@ -55,7 +55,7 @@ const JournalCard = ({ journalData, fetchJournals, setDarkenBg, setShowDeleteMod
 
         <h2>{journalData.error}</h2>
 
-    ) : !loading && !journalData.error && journalData.length !== 0 && emptyPosts ? (
+    ) : !loading && !journalData.error && journalData && journalData.length !== 0 && emptyPosts ? (
 
         <div className="journalCardsDiv">
             {journalData.slice(0).reverse().map((journal, index) => 
