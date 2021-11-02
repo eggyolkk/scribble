@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon app.js",
     "client-install": "npm install --prefix scribble",
-    "start": "node server",
     "client": "npm start --prefix scribble",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix scribble && npm run build --prefix scribble"
   },
