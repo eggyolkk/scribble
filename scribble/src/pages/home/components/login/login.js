@@ -16,7 +16,7 @@ const Login = (props) => {
         const loginJSON = JSON.stringify({ username: username, password: password })
         const postHeader = { headers: { 'Content-Type': 'application/json' }}
 
-        await axios.post('http://localhost:5000/auth/login', loginJSON, {postHeader, withCredentials: true})
+        await axios.post('https://serene-lowlands-65512.herokuapp.com/auth/login', loginJSON, {postHeader, withCredentials: true})
         .then(response => {
             // if login is successful, redirect to dashboard
             if (response.data.user) {
