@@ -6,6 +6,7 @@ import { HiOutlinePencilAlt } from 'react-icons/hi'
 import axios from 'axios'
 import CircularProgress from '@mui/material/CircularProgress'
 import Box from '@mui/material/Box'
+import { API } from '../../../../utilities/utilities'
 
 const SearchedJournalCards = ({ fetchJournals, setDarkenBg, setShowDeleteModal, setIdPostToBeDeleted, propsQuery }) => {
     const [emptyPosts, setEmptyPosts] = useState(true)
@@ -22,13 +23,13 @@ const SearchedJournalCards = ({ fetchJournals, setDarkenBg, setShowDeleteModal, 
         // get user id
         let userId = ''
         const getUserIdHeader = { headers: { 'Content-Type': 'application/json' }}
-        await axios.get('http://localhost:5000/auth/get_user_id', {getUserIdHeader, withCredentials: true})
+        await axios.get(`${API}/auth/get_user_id`, {getUserIdHeader, withCredentials: true})
         .then(response => userId = response.data.user_id)
 
         // fetch searched journals that belong to the user
         setLoading(true)
         const postHeader = { headers: { 'Content-Type': 'application/json', 'user_id': 'hello' }}
-        await axios.get(`http://localhost:5000/journals/search/query?search=${propsQuery}&userId=${userId}`, {postHeader, withCredentials: true})
+        await axios.get(`${API}/journals/search/query?search=${propsQuery}&userId=${userId}`, {postHeader, withCredentials: true})
         .then(response => {
             setJournalData(response.data.docs)
             setLoading(false)

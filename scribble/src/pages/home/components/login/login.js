@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 import './loginStyle.scss'
 import { connect } from 'react-redux'
+import { API } from '../../../../utilities/utilities';
 
 const Login = (props) => {
     const {setShowRegister} = props
@@ -16,7 +17,7 @@ const Login = (props) => {
         const loginJSON = JSON.stringify({ username: username, password: password })
         const postHeader = { headers: { 'Content-Type': 'application/json' }}
 
-        await axios.post('https://serene-lowlands-65512.herokuapp.com/auth/login', loginJSON, {postHeader, withCredentials: true})
+        await axios.post(`${API}/auth/login`, loginJSON, {postHeader, withCredentials: true})
         .then(response => {
             // if login is successful, redirect to dashboard
             if (response.data.user) {

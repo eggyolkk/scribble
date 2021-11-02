@@ -7,6 +7,7 @@ import AccountSettings from './components/accountSettings/accountSettings';
 import axios from 'axios'
 import CircularProgress from '@mui/material/CircularProgress'
 import Box from '@mui/material/Box'
+import { API } from '../../utilities/utilities';
 
 const Settings = () => {
     let firstRender = useRef(true)
@@ -36,11 +37,11 @@ const Settings = () => {
         // get user id
         let userId = ''
         const getHeader = { headers: { 'Content-Type': 'application/json' }}
-        await axios.get('http://localhost:5000/auth/get_user_id', {getHeader, withCredentials: true})
+        await axios.get(`${API}/auth/get_user_id`, {getHeader, withCredentials: true})
         .then(response => userId = response.data.user_id)
 
         // get details
-        await axios.get(`http://localhost:5000/user/query?userId=${userId}`, {getHeader, withCredentials: true})
+        await axios.get(`${API}/user/query?userId=${userId}`, {getHeader, withCredentials: true})
         .then(response => {
             console.log('response', response)
             setUsername(response.data.username)
@@ -58,11 +59,11 @@ const Settings = () => {
         // get user id
         let userId = ''
         const getHeader = { headers: { 'Content-Type': 'application/json' }}
-        await axios.get('http://localhost:5000/auth/get_user_id', {getHeader, withCredentials: true})
+        await axios.get(`${API}/auth/get_user_id`, {getHeader, withCredentials: true})
         .then(response => userId = response.data.user_id)
 
         // get details
-        await axios.put(`http://localhost:5000/user/set_user_theme?userId=${userId}&theme=${theme}`, {getHeader, withCredentials: true})
+        await axios.put(`${API}/user/set_user_theme?userId=${userId}&theme=${theme}`, {getHeader, withCredentials: true})
         
     }
 

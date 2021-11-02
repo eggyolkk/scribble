@@ -3,12 +3,13 @@ import './navBarStyle.scss'
 import { MdOutlineStickyNote2 } from 'react-icons/md'
 import { RiCalendarEventLine, RiSettings4Line, RiLogoutCircleLine } from 'react-icons/ri'
 import axios from 'axios'
+import { API } from '../../utilities/utilities'
 
 const NavBar = () => {
     // log the user out
     const userLogout = () => {
         const postHeader = { headers: { 'Content-Type': 'application/json' }}
-        axios.get('http://localhost:5000/auth/logout', {postHeader, withCredentials: true})
+        axios.get(`${API}/auth/logout`, {postHeader, withCredentials: true})
         .then(response => {
             window.sessionStorage.setItem("authenticated", "invalid")
             window.location.href = response.data.redirect

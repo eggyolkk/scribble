@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import './registerStyle.scss'
+import { API } from '../../../../utilities/utilities'
 
 const Register = (props) => {
     const { setShowRegister } = props
@@ -15,7 +16,7 @@ const Register = (props) => {
         const postHeader = { headers: { 'Content-Type': 'application/json' }}
 
         console.log(registerJSON)
-        await axios.post('https://serene-lowlands-65512.herokuapp.com/auth/signup', registerJSON, {postHeader, withCredentials: true})
+        await axios.post(`${API}/auth/signup`, registerJSON, {postHeader, withCredentials: true})
         .then(response => {
             if (response.data.user) {
                 window.sessionStorage.setItem('authenticated', 'valid')

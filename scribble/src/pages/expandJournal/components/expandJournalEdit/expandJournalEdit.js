@@ -3,6 +3,7 @@ import axios from 'axios'
 import EditActivities from './editActivities'
 import EditMood from './editMood'
 import convertActivitiesArray from '../../../../helperFunctions/convertActivitiesArray'
+import { API } from '../../../../utilities/utilities'
 
 const ExpandJournalEdit = (props) => {
     const { journalDetailsData, setShowEditComponent } = props
@@ -39,7 +40,7 @@ const ExpandJournalEdit = (props) => {
             const editedJSON = JSON.stringify({ title: editedJournal.title, bodyText: editedJournal.bodyText, mood: editedMood, activities: activitiesString })
             const postHeader = { headers: { 'Content-Type': 'application/json' }}
 
-            await axios.put(`http://localhost:5000/journals/${journalDetailsData.data._id}`, editedJSON, { postHeader, withCredentials: true })
+            await axios.put(`${API}/journals/${journalDetailsData.data._id}`, editedJSON, { postHeader, withCredentials: true })
             .then(response => window.location.href = response.data.redirect)
             .catch(error => console.log(error))
         }

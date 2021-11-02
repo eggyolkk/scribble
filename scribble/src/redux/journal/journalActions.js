@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { API } from '../../utilities/utilities'
+
 import {
     FETCH_JOURNALS_REQUEST,
     FETCH_JOURNALS_SUCCESS,
@@ -11,7 +13,7 @@ export const fetchJournals = () => {
         dispatch(fetchJournalsRequest())
 
         const postHeader = { headers: { 'Content-Type': 'application/json' }}
-        axios.get('http://localhost:5000/journals', {postHeader, withCredentials: true})
+        axios.get(`${API}/journals'`, {postHeader, withCredentials: true})
         .then(response => {
             const journals = response.data
             dispatch(fetchJournalsSuccess(journals))

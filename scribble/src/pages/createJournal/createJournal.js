@@ -5,6 +5,7 @@ import NavBar from '../../components/navBar/navBar'
 import WritePost from './components/writePost/writePost'
 import ChooseMood from './components/chooseMood/chooseMood'
 import './createJournalPageStyle.scss'
+import { API } from "../../utilities/utilities";
 
 const CreateJournal = () => {
     const [mood, setMood] = useState('')
@@ -40,12 +41,12 @@ const CreateJournal = () => {
             const postHeader = { headers: { 'Content-Type': 'application/json' }}
             
             let userId = ''
-            await axios.get('http://localhost:5000/auth/get_user_id', {postHeader, withCredentials: true})
+            await axios.get(`${API}/auth/get_user_id'`, {postHeader, withCredentials: true})
             .then(response => userId = response.data.user_id)
 
             const journalJSON = JSON.stringify({ title: journal.title, bodyText: journal.bodyText, mood: selectedMood, activities: activitiesString, userId: userId })
             
-            await axios.post('http://localhost:5000/journals', journalJSON, {postHeader, withCredentials: true})
+            await axios.post(`${API}/journals`, journalJSON, {postHeader, withCredentials: true})
             .then(response => window.location.href = response.data.redirect)
             .catch(error => console.log(error))
         }
