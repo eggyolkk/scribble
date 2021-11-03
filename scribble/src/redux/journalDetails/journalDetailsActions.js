@@ -4,6 +4,7 @@ import {
     FETCH_JOURNAL_DETAILS_SUCCESS,
     FETCH_JOURNAL_DETAILS_FAILURE
 } from './journalDetailsTypes'
+import { API } from '../../utilities/utilities'
 
 
 /* function to fetch a journal by id */
@@ -17,7 +18,7 @@ export const fetchJournalDetails = () => {
 
             dispatch(fetchJournalDetailsRequest())
             axios
-            .get(`http://localhost:5000/journals/${journalId}`, {postHeader, withCredentials: true})
+            .get(`${API}/journals/${journalId}`, {postHeader, withCredentials: true})
             .then(response => {
                 const journalDetails = response.data
                 dispatch(fetchJournalDetailsSuccess(journalDetails))

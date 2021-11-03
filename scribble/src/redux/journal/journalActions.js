@@ -13,7 +13,7 @@ export const fetchJournals = () => {
         dispatch(fetchJournalsRequest())
 
         const postHeader = { headers: { 'Content-Type': 'application/json' }}
-        axios.get(`${API}/journals'`, {postHeader, withCredentials: true})
+        axios.get(`${API}/journals`, {postHeader, withCredentials: true})
         .then(response => {
             const journals = response.data
             dispatch(fetchJournalsSuccess(journals))

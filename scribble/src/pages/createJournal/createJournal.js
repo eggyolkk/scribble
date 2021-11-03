@@ -41,7 +41,7 @@ const CreateJournal = () => {
             const postHeader = { headers: { 'Content-Type': 'application/json' }}
             
             let userId = ''
-            await axios.get(`${API}/auth/get_user_id'`, {postHeader, withCredentials: true})
+            await axios.get(`${API}/auth/get_user_id`, {postHeader, withCredentials: true})
             .then(response => userId = response.data.user_id)
 
             const journalJSON = JSON.stringify({ title: journal.title, bodyText: journal.bodyText, mood: selectedMood, activities: activitiesString, userId: userId })
