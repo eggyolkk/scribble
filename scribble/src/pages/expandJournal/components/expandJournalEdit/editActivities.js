@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react'
 import displayActivityIcon from '../../../../helperFunctions/displayActivityIcon'
 import './expandJournalEditStyle.scss'
 
 const EditActivities = (props) => {
-    const { activitiesString, editedActivitiesArray, setEditedActivitiesArray } = props
+    const { editedActivitiesArray, setEditedActivitiesArray } = props
     const fullActivitiesList = ['Food', 'Drinks', 'Sleep', 'Exercise', 'Entertainment', 'Friends', 'Family', 'Date', 'Study', 'Work', 'Hobbies', 'Drawing', 'Gaming', 'Reading', 'Cleaning', 'Cooking', 'Music', 'Gardening', 'Beach', 'Party']
 
     // toggle edited activities array

@@ -1,5 +1,4 @@
 import React from 'react'
-import CreateJournal from '../../createJournal'
 import ChooseActivity from '../chooseActivity/chooseActivity'
 import './writePostStyle.scss'
 import { MdOutlineArrowBack } from 'react-icons/md'

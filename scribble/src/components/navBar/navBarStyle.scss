@@ -9,9 +9,7 @@
     font-size: 30px;
     cursor: pointer;
     &:hover {
-        .navLabels {
-        color:#714a92;
-        }
+        .navLabels { color:#714a92; }
         fill: #714a92;
     }
 }
@@ -30,7 +28,7 @@
 #navBarContainer {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
 #navButtonsContainer {
@@ -55,6 +53,31 @@
     }
 }
 
+#navProfileDiv {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    bottom: 0;
+    position: absolute;
+    justify-content: center;
+}
+
+#navProfileAvatar {
+    width: 40px;
+    cursor: pointer;
+}
+
+#navProfileName {
+    font-family: "Poppins", sans-serif;
+    color: #a080ad;
+    font-weight: 400;
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 .navSelectionDiv {
     display: flex;
     align-items: flex-end;
@@ -68,6 +91,7 @@
     font-size: 45px;
     margin-top: 30px;
     margin-bottom: 50px;
+    cursor: pointer;
 }
 
 #settingsIcon {
@@ -80,6 +104,8 @@
     #navBarContainer {
         flex-direction: row;
         align-items: flex-start;
+        width: 90%;
+        justify-content: center;
     }
 
     #postsIcon, #calendarIcon, #settingsIcon {
@@ -88,6 +114,15 @@
 
     .navLabels {
         display: none;
+    }
+
+    #navProfileDiv {
+        width: auto;
+        right: 30px;
+    }
+
+    #navRoutesContainer {
+        display: flex;
     }
 
     #topUserBar.scribbleTitle {

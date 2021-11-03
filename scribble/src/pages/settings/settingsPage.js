@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './settingsPageStyle.scss'
 import NavBar from '../../components/navBar/navBar'
-import DeletePostModal from "../../components/deletePostModal/deletePostModal";
 import ProfilePreferences from './components/profilePreferences/profilePreferences'
 import AccountSettings from './components/accountSettings/accountSettings';
 import axios from 'axios'
@@ -17,6 +16,7 @@ const Settings = () => {
     const [theme, setTheme] = useState('')
     const [avatar, setAvatar] = useState('')
     const [loading, setLoading] = useState(true)
+    
 
     // on initial page render, get user's details and preferences
     useEffect(() => {
@@ -24,13 +24,13 @@ const Settings = () => {
         setLoading(false)
     }, [])
 
-    // except for the initial page render, update changes when theme is changed
+    // except for initial page render, update changes when theme is changed
     useEffect(() => {
         if (!firstRender.current) {
             updateTheme()
-            getUserDetails()
         }
     }, [firstRender, theme])
+
 
     // get user's details
     const getUserDetails = async () => {
@@ -62,8 +62,26 @@ const Settings = () => {
         await axios.get(`${API}/auth/get_user_id`, {getHeader, withCredentials: true})
         .then(response => userId = response.data.user_id)
 
-        // get details
+        // update theme
         await axios.put(`${API}/user/set_user_theme?userId=${userId}&theme=${theme}`, {getHeader, withCredentials: true})
+    }
+
+    // set display name
+    const updateDisplayName = async () => {
+        // get user id
+        let userId = ''
+        const getHeader = { headers: { 'Content-Type': 'application/json' }}
+        await axios.get(`${API}/auth/get_user_id`, {getHeader, withCredentials: true})
+        .then(response => userId = response.data.user_id)
+
+        // update display name
+        if (displayName) {
+            await axios.put(`${API}/user/set_display_name?userId=${userId}&displayName=${displayName}`, {getHeader, withCredentials: true})
+            window.sessionStorage.setItem('displayName', displayName)
+        } 
+        else {
+            console.log("needs to be valid")
+        }
         
     }
 
@@ -88,7 +106,7 @@ const Settings = () => {
                                     </div>
         
                                     <div id="profileFlexRight">
-                                        <ProfilePreferences theme={theme} setTheme={setTheme} displayName={displayName}/>
+                                        <ProfilePreferences theme={theme} setTheme={setTheme} displayName={displayName} setDisplayName={setDisplayName} updateDisplayName={updateDisplayName}/>
                                     </div>
                                 </div>
         

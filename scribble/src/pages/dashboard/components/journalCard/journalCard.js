@@ -4,7 +4,6 @@ import { fetchJournals } from '../../../../redux/journal/journalActions'
 import './journalCardStyle.scss'
 import { BiTrash } from 'react-icons/bi'
 import { HiOutlinePencilAlt } from 'react-icons/hi'
-import axios from 'axios'
 import CircularProgress from '@mui/material/CircularProgress'
 import Box from '@mui/material/Box'
 
@@ -56,7 +55,7 @@ const JournalCard = ({ journalData, fetchJournals, setDarkenBg, setShowDeleteMod
         <h2>{journalData.error}</h2>
 
     ) : !loading && !journalData.error && journalData && journalData.length !== 0 && emptyPosts ? (
-
+        
         <div className="journalCardsDiv">
             {journalData.slice(0).reverse().map((journal, index) => 
             <div key={index} className="journalCards" onClick={() => window.location.href = `/post/${journal._id}`}>

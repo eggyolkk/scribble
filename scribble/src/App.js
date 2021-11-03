@@ -1,8 +1,5 @@
 import "./App.css";
-import { Component, useEffect, useState } from 'react'
-import { render } from 'react-dom'
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import axios from 'axios'
 
 import HomePage from "./pages/home/homePage";
 import DashboardPage from "./pages/dashboard/dashboardPage";

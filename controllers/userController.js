@@ -17,8 +17,8 @@ const get_display_name = async (userId) => {
 
     // if user hasn't set a display name, return their username
     let displayName = ''
-    if (userObject.display_name) {
-        displayName = userObject.display_name.toString()
+    if (userObject.displayName) {
+        displayName = userObject.displayName.toString()
     } 
     else {
         displayName = userObject.username.toString().split('"')[0]
@@ -71,7 +71,25 @@ const set_user_theme = async (req, res) => {
     })
 }
 
+// set user's display name
+const set_user_display_name = async (req, res) => {
+    const userId = req.query.userId
+    const displayName = req.query.displayName
+
+    conditions = { _id: userId }
+
+    User.updateOne(conditions, { displayName: displayName }, function(err, values) {
+        if (!err) {
+            res.json({ redirect: '/settings' })
+            console.log('Display name updated successfully')
+        } else {
+            console.log(error)
+        }
+    })
+}
+
 module.exports = {
     get_user_details,
-    set_user_theme
+    set_user_theme,
+    set_user_display_name
 }

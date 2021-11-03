@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
+import { useState } from 'react'
 import axios from 'axios'
 import './loginStyle.scss'
-import { connect } from 'react-redux'
 import { API } from '../../../../utilities/utilities';
 
 const Login = (props) => {
@@ -11,7 +9,7 @@ const Login = (props) => {
     const [password, setPassword] = useState('')
     const [usernameError, setUsernameError] = useState('')
     const [passwordError, setPasswordError] = useState('')
-
+    
     // post user details to back-end to login
     const userLogin = async() => {
         const loginJSON = JSON.stringify({ username: username, password: password })

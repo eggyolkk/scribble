@@ -13,6 +13,7 @@ require("dotenv").config()
 const PORT = process.env.PORT || 5000;
 
 const API = process.env.NODE_ENV === 'production' ? 'https://serene-lowlands-65512.herokuapp.com/' : 'http://localhost:3000'
+console.log(API)
 
 // connect to mongodb
 const dbURI = 'mongodb+srv://ella:GciP6rOhx9uxqyhd@scribble-db.d09rd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';

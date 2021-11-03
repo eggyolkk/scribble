@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io'
 
 const EditMood = (props) => {
-    const {journalDetailsData, setEditedMood, editedMood} = props
+    const {journalDetailsData, setEditedMood} = props
     const moodArray = ['ecstatic', 'happy', 'okay', 'sad', 'angry', 'anxious']
     const [indexOfCurrentMood, setIndexOfCurrentMood] = useState(0)
 

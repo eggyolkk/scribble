@@ -68,3 +68,22 @@
     margin-bottom: 10px;
 }
 
+/* Viewports under 1000px wide */
+@media screen and (max-width: 1000px) {
+    #accountDiv {
+        align-items: center;
+    }
+
+    #avatar {
+        margin-left: 10px;
+    }
+
+    .settingsContent {
+        margin-left: 20px;
+        margin-top: 120px;
+    }
+
+    #preferencesDiv {
+        flex-direction: column;
+    }
+}

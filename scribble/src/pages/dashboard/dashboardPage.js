@@ -5,6 +5,8 @@ import NavBar from '../../components/navBar/navBar'
 import DeletePostModal from "../../components/deletePostModal/deletePostModal";
 import Searchbar from "./components/searchbar/searchbar";
 import SearchedJournalCards from "../expandJournal/components/searchedJournalCards/searchedJournalCards";
+import axios from 'axios'
+import { API } from "../../utilities/utilities";
 import './dashboardPageStyle.scss'
 
 function DashboardPage(props) {
@@ -22,7 +24,7 @@ function DashboardPage(props) {
             document.title = 'Dashboard'
         }
         
-    }, [])
+    }, [propsQuery])
 
     return (
         <div className="pageBody">
@@ -40,7 +42,11 @@ function DashboardPage(props) {
                         
                         <div className="topRow">
                             <div className="topRowFlexTop">
-                                <h1 className="headerH1">Dashboard</h1>
+                                <div>
+                                    <h1 className="headerH1">Dashboard</h1>
+                                    <h2 id="welcomeBackLabel">Welcome back, {window.sessionStorage.getItem('displayName')}!</h2>
+                                </div>
+                                
                                 <Link to='/create'>
                                     <button id="createButton">+ CREATE NEW POST</button>
                                 </Link>
@@ -59,7 +65,10 @@ function DashboardPage(props) {
                                 <SearchedJournalCards setDarkenBg={setDarkenBg} setShowDeleteModal={setShowDeleteModal} setIdPostToBeDeleted={setIdPostToBeDeleted} propsQuery={propsQuery}/>
                                 </>
                                 :
+                                <>
+                                <p id="searchResultsLabel">Displaying all journal posts</p>
                                 <JournalCard setDarkenBg={setDarkenBg} setShowDeleteModal={setShowDeleteModal} setIdPostToBeDeleted={setIdPostToBeDeleted} />
+                                </>
                             }
                             
                         </div>

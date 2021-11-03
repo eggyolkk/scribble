@@ -68,6 +68,21 @@
     margin-bottom: 20px;
 }
 
+.settingsButtonSaved {
+    background-color: #c0ebc3;
+    color: #4e9982;
+    border: none;
+    margin-left: 50px;
+    padding: 12px 10px;
+    width: 250px;
+    border-radius: 20px;
+    font-family: $quicksand;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
 .settingsLabels {
     font-family: $poppins;
     text-align: left;
@@ -117,4 +132,68 @@
 
 .themeLabelSelected {
     @include themeLabels(600)
+}
+
+
+/* Viewports under 1200px wide */
+@media screen and (max-width: 1200px) {
+    #profileAvatarDisplay {
+        width: 250px;
+        margin-bottom: 30px;
+        margin-left: 10px;
+    }
+
+    #profileFlexRight {
+        width: 50%;
+        padding-left: 40px;
+    }
+
+    #themeCircleDark, #themeCircleLight {
+        margin-right: 10px;
+    }
+
+    .settingsSubtitles {
+        font-size: 30px;
+    }
+}
+
+/* Viewports under 1000px wide */
+@media screen and (max-width: 1000px) {
+    .displaySubtext {
+        text-align: center;
+    }
+
+    #profileFlexLeft {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #profileAvatarDisplay {
+        margin-left: 0;
+        width: 300px;
+    }
+
+    #profileFlexRight {
+        width: 100%;
+        align-items: center;
+        padding-left: 0px;
+    }
+
+    .settingsButton {
+        margin-left: 0px;
+    }
+
+    .settingsSubtitles {
+        margin-top: 30px;
+    }
+
+    .settingsInput {
+        width: 80%;
+    }
+
+    #themeContainer {
+        justify-content: center;
+    }
 }

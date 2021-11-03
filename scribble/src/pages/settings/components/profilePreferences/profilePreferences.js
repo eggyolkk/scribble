@@ -1,20 +1,40 @@
+import { useState } from 'react'
+import { BsCheckLg } from 'react-icons/bs'
 import './profilePreferencesStyle.scss'
 
 const ProfilePreferences = (props) => {
-    const { theme, setTheme, displayName } = props
+    const { theme, setTheme, displayName, setDisplayName, updateDisplayName } = props
+    const [isSaved, setIsSaved] = useState(false)
+
+    // handle the onchange for display name
+    const handleOnchangeDisplayName = (e) => {
+        setDisplayName(e.target.value)
+        setIsSaved(false)
+    }
+
+    // handle saving display name
+    const handleSaveDisplayName = (e) => {
+        updateDisplayName()
+        setIsSaved(true)
+    }
+
 
     return (
         <>
             <h1 className='settingsSubtitles'>Profile Preferences</h1>
             
             <h2 className="settingsLabels">Display name</h2>
-            <p className="displaySubtext">(The name that's displayed on your dashboard)</p>
+            <p className="displaySubtext">(You may need to refresh to see changes)</p>
             <input
                 type="text"
                 placeholder={displayName}
                 className="settingsInput"
+                value={displayName}
+                onChange={(e) => handleOnchangeDisplayName(e)}
             />
-            <button className="settingsButton" id="profile">Save name</button>
+            <button className={isSaved ? "settingsButtonSaved" : "settingsButton"} id="profile" onClick={() => {handleSaveDisplayName()}}>
+                {isSaved ? <>Saved <BsCheckLg /></>: <>Save name</> }
+            </button>
 
             <h2 className="settingsLabels">Theme</h2>
 

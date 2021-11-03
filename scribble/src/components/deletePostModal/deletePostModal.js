@@ -3,7 +3,7 @@ import deletePost from '../../helperFunctions/deletePost'
 import './deletePostModalStyle.scss'
 
 const DeletePostModal = (props) => {
-    const { setShowDeleteModal, setDarkenBg, deleteJournalPost, postId } = props
+    const { setShowDeleteModal, setDarkenBg, postId } = props
 
     // cancel deletion
     const cancelDelete = () => {

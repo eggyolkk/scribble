@@ -169,6 +169,13 @@ html, body {
     overflow: hidden;
 }
 
+#welcomeBackLabel {
+    font-family: $poppins;
+    text-align: left;
+    margin: -15px 0 10px 10px;
+    color: #705d80;
+}
+
 /* Viewports under 1200px wide */
 @media screen and (max-width: 1200px) {
     .topRowFlexTop {
@@ -181,6 +188,10 @@ html, body {
 
     #createButton {
         width: 100%;
+    }
+
+    #welcomeBackLabel {
+        text-align: center;
     }
 }
 
@@ -202,5 +213,10 @@ html, body {
         flex-direction: column;
         align-items: center;
         margin-left: 0;
+    }
+
+    #searchResultsLabel {
+        margin-left: 40px;
+        width: calc(100% - 100px);
     }
 }

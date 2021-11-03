@@ -3,14 +3,13 @@ import './accountSettingsStyle.scss'
 const AccountSettings = () => {
     return (
         <>
-            <h1 className='settingsSubtitles' id="account">Account</h1>
+            <h1 className='settingsSubtitles account'>Account</h1>
 
-            <h2 className="settingsLabels" id="account">Username</h2>
-            <p className="displaySubtext" id="account">(You cannot change your username)</p>
+            <h2 className="settingsLabels account">Username</h2>
+            <p className="displaySubtext account">(You cannot change your username)</p>
             <input
                 type="text"
-                className="settingsInput"
-                id="account"
+                className="settingsInput account"
                 value='username'
                 onChange={() => {}}
             />
@@ -19,8 +18,7 @@ const AccountSettings = () => {
             <input
                 type="password"
                 placeholder='••••••••••'
-                className="settingsInput"
-                id="account"
+                className="settingsInput account"
             />
 
             <button className="settingsButton">Change password</button>
