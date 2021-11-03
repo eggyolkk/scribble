@@ -12,7 +12,7 @@ const path = require('path')
 require("dotenv").config()
 const PORT = process.env.PORT || 5000;
 
-const API = process.env.NODE_ENV === 'production' ? 'https://serene-lowlands-65512.herokuapp.com/' : 'http://localhost:3000'
+const API = process.env.NODE_ENV === 'production' ? 'https://scribble-tracker.herokuapp.com/' : 'http://localhost:3000'
 console.log(API)
 
 // connect to mongodb
