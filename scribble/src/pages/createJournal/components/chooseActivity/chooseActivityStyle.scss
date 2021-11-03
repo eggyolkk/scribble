@@ -1,7 +1,7 @@
 @import '../../../dashboard//dashboardPageStyle.scss';
 
 @mixin activityIconsBase($color) {
-    font-size: 35px;
+    font-size: 50px;
     color: $color;
     cursor: pointer;
     transition: color 0.2s;
