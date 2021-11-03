@@ -96,7 +96,9 @@ const NavBar = () => {
                     <p id="navProfileName" onClick={() => {window.location.href = '/settings'}}>{window.sessionStorage.getItem('displayName')}</p>
                 </div>
                 :
-                <h1>Loading</h1>
+                <Box sx={{ display: 'flex' }}>
+                    <CircularProgress />
+                </Box>
             }
         </div>
     )

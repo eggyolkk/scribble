@@ -16,7 +16,6 @@ const Settings = () => {
     const [theme, setTheme] = useState('')
     const [avatar, setAvatar] = useState('')
     const [loading, setLoading] = useState(true)
-    
 
     // on initial page render, get user's details and preferences
     useEffect(() => {
@@ -31,6 +30,14 @@ const Settings = () => {
         }
     }, [firstRender, theme])
 
+    useEffect(() => {
+        if (theme === 'dark') {
+            document.body.classList.add('darkBody')
+        }
+        else {
+            document.body.classList.remove('darkBody')
+        }
+    }, [theme])
 
     // get user's details
     const getUserDetails = async () => {
@@ -43,10 +50,9 @@ const Settings = () => {
         // get details
         await axios.get(`${API}/user/query?userId=${userId}`, {getHeader, withCredentials: true})
         .then(response => {
-            console.log('response', response)
+            setTheme(response.data.theme)
             setUsername(response.data.username)
             setDisplayName(response.data.displayName)
-            setTheme(response.data.theme)
             setAvatar(response.data.avatar)
         })
         .catch(error => console.log(error))

@@ -44,7 +44,7 @@ function DashboardPage(props) {
                             <div className="topRowFlexTop">
                                 <div>
                                     <h1 className="headerH1">Dashboard</h1>
-                                    <h2 id="welcomeBackLabel">Welcome back, {window.sessionStorage.getItem('displayName')}!</h2>
+                                    <h2 id="welcomeBackLabel">Welcome back {window.sessionStorage.getItem('displayName')}!</h2>
                                 </div>
                                 
                                 <Link to='/create'>
