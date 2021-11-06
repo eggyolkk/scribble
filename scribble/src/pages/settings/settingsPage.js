@@ -17,6 +17,8 @@ const Settings = () => {
     const [avatar, setAvatar] = useState('')
     const [loading, setLoading] = useState(true)
 
+    const selectedTheme = window.sessionStorage.getItem('theme')
+
     // on initial page render, get user's details and preferences
     useEffect(() => {
         getUserDetails()
@@ -31,7 +33,7 @@ const Settings = () => {
     }, [firstRender, theme])
 
     useEffect(() => {
-        if (theme === 'dark') {
+        if (window.sessionStorage.getItem('theme') === 'dark') {
             document.body.classList.add('darkBody')
         }
         else {
@@ -51,6 +53,7 @@ const Settings = () => {
         await axios.get(`${API}/user/query?userId=${userId}`, {getHeader, withCredentials: true})
         .then(response => {
             setTheme(response.data.theme)
+            window.sessionStorage.setItem('theme', response.data.theme)
             setUsername(response.data.username)
             setDisplayName(response.data.displayName)
             setAvatar(response.data.avatar)
@@ -95,17 +98,17 @@ const Settings = () => {
         <div className="pageBody">
 
             <div id="dashboardContainer">
-                <div className="dashboardFlexLeft">
+                <div className={selectedTheme === 'light' ? "dashboardFlexLeft" : "dashboardFlexLeftDark"}>
                     <NavBar />
                 </div>
 
                 <div id="dashboardFlexRight">
                     <div className="settingsContent">
-                        <h1 id="settingsHeader">Settings</h1>
+                        <h1 id={selectedTheme === 'light' ? "settingsHeader" : "settingsHeaderDark"}>Settings</h1>
 
                         {!loading && username && avatar ?
                             <>
-                                <div id="preferencesDiv">
+                                <div id={selectedTheme === 'light' ? "preferencesDiv" : "preferencesDivDark"}>
                                     <div id="profileFlexLeft">
                                         <img src={require(`../../images/${avatar}Mood.png`).default} id="profileAvatarDisplay" alt="Avatar icon"/>
                                         <button className="settingsButton" id="avatar">Change avatar</button>
@@ -116,7 +119,7 @@ const Settings = () => {
                                     </div>
                                 </div>
         
-                                <div id="accountDiv">
+                                <div id={selectedTheme === 'light' ? "accountDiv" : "accountDivDark"}>
                                     <AccountSettings />
                                 </div>
                             </>

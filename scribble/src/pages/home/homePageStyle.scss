@@ -5,6 +5,13 @@ $manrope: 'Manrope', sans-serif;
 $quicksand: 'Quicksand', sans-serif;
 $poppins: 'Poppins', sans-serif;
 
+@mixin scribbleTitleBase($color) {
+    margin: 0;
+    font-family: $manrope;
+    font-weight: 400;
+    color: $color;
+    font-size: 60px;
+}
 
 #homeContainer {
     background-color: #ffffffba;
@@ -41,9 +48,9 @@ $poppins: 'Poppins', sans-serif;
 }
 
 .scribbleTitle {
-    margin: 0;
-    font-family: $manrope;
-    font-weight: 400;
-    color: #533ca3;
-    font-size: 60px;
+    @include scribbleTitleBase(#533ca3);
+}
+
+.scribbleTitleDark {
+    @include scribbleTitleBase(#ffb7b7);
 }

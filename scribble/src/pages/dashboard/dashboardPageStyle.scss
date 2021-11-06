@@ -36,6 +36,54 @@ $poppins: 'Poppins', sans-serif;
     -webkit-animation-name: fadeInUp;
 }
 
+@mixin createButtonBase($bgColor, $textColor, $boxShadow) {
+    opacity: 0.8;
+    border: none;
+    padding: 20px 60px;
+    border-radius: 35px;
+    color: $textColor;
+    font-family: "Poppins", sans-serif;
+    font-size: 17px;
+    cursor: pointer;
+    background-color: $bgColor;
+    font-weight: 800;
+    box-shadow: $boxShadow;
+    &:hover {
+        opacity: 100;
+        transition: opacity 0.2s;
+    }
+}
+
+@mixin dashboardFlexLeftBase($color) {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: $color;
+    height: 100%;
+    position: absolute;
+    z-index: 3;
+} 
+
+@mixin headerH1Base($color) {
+    font-size: 60px;
+    font-family: $poppins !important; 
+    font-weight: 600;
+    color: $color;
+    margin: 0;
+}
+
+@mixin searchResultsLabelBase($color) {
+    font-family: $poppins;
+    width: 97%;
+    margin-bottom: 0;
+    text-align: left;
+    margin-left: 10px;
+    color: $color;
+    font-weight: 200;
+}
+
 body {
     margin: 0;
     height: 100%;
@@ -50,21 +98,11 @@ body {
 }
 
 #createButton {
-    opacity: 0.8;
-    border: none;
-    padding: 20px 60px;
-    border-radius: 35px;
-    color: #c58000;
-    font-family: "Poppins", sans-serif;
-    font-size: 17px;
-    cursor: pointer;
-    background-color: #ffe07a;
-    font-weight: 800;
-    box-shadow: 0px 0px 70px 15px #ddc0a294;
-    &:hover {
-        opacity: 100;
-        transition: opacity 0.2s;
-    }
+    @include createButtonBase(#ffe07a, #c58000, 0px 0px 70px 15px #ddc0a294);
+}
+
+#createButtonDark {
+    @include createButtonBase(#fff3ca, #db9e2b, 0px 0px 20px 15px #ddc1a21e);
 }
 
 #dashboardContainer {
@@ -78,30 +116,25 @@ body {
 }
 
 .dashboardFlexLeft {
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    background-color: #f8f5f999;
-    height: 100%;
-    position: absolute;
-    z-index: 3;
+    @include dashboardFlexLeftBase(#f8f5f999);
+}
+
+.dashboardFlexLeftDark {
+    @include dashboardFlexLeftBase(#705f6c33);
 }
 
 #dashboardFlexRight {
     width: 100%;
     display: flex;
     flex-direction: column;
-    
 }
 
 .headerH1 {
-    font-size: 60px;
-    font-family: $poppins !important; 
-    font-weight: 600;
-    color: #36264a;
-    margin: 0;
+    @include headerH1Base(#36264a);
+}
+
+.headerH1Dark {
+    @include headerH1Base(#ffb7b7);
 }
 
 #journalCardsContainer {
@@ -143,13 +176,11 @@ body {
 }
 
 #searchResultsLabel {
-    font-family: $poppins;
-    width: 97%;
-    margin-bottom: 0;
-    text-align: left;
-    margin-left: 10px;
-    color: #36264a;
-    font-weight: 200;
+    @include searchResultsLabelBase(#36264a);
+}
+
+#searchResultsLabelDark {
+    @include searchResultsLabelBase(#ff9b9b);
 }
 
 .topRow {
@@ -178,6 +209,13 @@ body {
     text-align: left;
     margin: -15px 0 10px 10px;
     color: #705d80;
+}
+
+#welcomeBackLabelDark {
+    font-family: $poppins;
+    text-align: left;
+    margin: -15px 0 10px 10px;
+    color: #df7878;
 }
 
 /* Viewports under 1200px wide */

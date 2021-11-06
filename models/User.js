@@ -15,7 +15,6 @@ const userSchema = new mongoose.Schema({
     },
     displayName: {
         type: String,
-        lowercase: true,
         default: ''
     },
     theme: {

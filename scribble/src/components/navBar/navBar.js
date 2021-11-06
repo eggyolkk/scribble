@@ -9,10 +9,10 @@ import Box from '@mui/material/Box'
 
 const NavBar = () => {
     const [loading, setLoading] = useState(true)
+    const selectedTheme = window.sessionStorage.getItem('theme')
 
-    // on initial render, save the user display name and avatar in session storage
+    // save the user display name and avatar in session storage
     useEffect(() => {
-        console.log('window session', window.sessionStorage.getItem('avatar'))
         if (!window.sessionStorage.getItem('avatar')) {
             getUserDetails()
         }
@@ -20,6 +20,7 @@ const NavBar = () => {
             setLoading(false)
         }
     }, [window.sessionStorage.getItem('avatar'), window.sessionStorage.getItem('displayName')])
+
 
     // log the user out
     const userLogout = () => {
@@ -29,6 +30,7 @@ const NavBar = () => {
             window.sessionStorage.setItem("authenticated", "invalid")
             window.sessionStorage.setItem("displayName", "")
             window.sessionStorage.setItem("avatar", "")
+            window.sessionStorage.setItem("theme", "")
             window.location.href = response.data.redirect
         })
         .catch(error => console.log(error))
@@ -48,40 +50,39 @@ const NavBar = () => {
             console.log('response', response)
             window.sessionStorage.setItem('displayName', response.data.displayName)
             window.sessionStorage.setItem('avatar', response.data.avatar)
+            window.sessionStorage.setItem('theme', response.data.theme)
         })
         .catch(error => console.log(error))
 
         setLoading(false)
-        console.log('success')
-        console.log('window session', window.sessionStorage.getItem('avatar'))
     }
 
     return (
         <div id="navBarContainer">
-            <h1 className="scribbleTitle" id="topUserBar" onClick={() => {window.location.href = '/dashboard'}}>scribble!</h1>
+            <h1 className={selectedTheme === 'light' ? "scribbleTitle" : "scribbleTitleDark"} id="topUserBar" onClick={() => {window.location.href = '/dashboard'}}>scribble!</h1>
 
             <div id="navRoutesContainer">
                 <div className="navSelectionDiv">
                     <button id="navButtonsContainer" onClick={() => {window.location.href="/dashboard"}}>
-                        <MdOutlineStickyNote2 id="postsIcon" />
+                        <MdOutlineStickyNote2 id={selectedTheme === 'light' ? "postsIcon" : "postsIconDark"} />
                     </button>
-                    <p className="navLabels" onClick={() => {window.location.href="/dashboard"}}>Dashboard</p>
+                    <p className={selectedTheme === 'light' ? "navLabels" : "navLabelsDark"} onClick={() => {window.location.href="/dashboard"}}>Dashboard</p>
                 </div>
                 
                 <div className="navSelectionDiv">
-                    <RiCalendarEventLine id="calendarIcon" />
-                    <p className="navLabels">Calendar</p>
+                    <RiCalendarEventLine id={selectedTheme === 'light' ? "calendarIcon" : "calendarIconDark"} />
+                    <p className={selectedTheme === 'light' ? "navLabels" : "navLabelsDark"}>Calendar</p>
                 </div>
                 
 
                 <div className="navSelectionDiv">
-                    <RiSettings4Line id="settingsIcon" onClick={() => {window.location.href='/settings'}}/>
-                    <p className="navLabels" onClick={() => {window.location.href='/settings'}}>Settings</p>
+                    <RiSettings4Line id={selectedTheme === 'light' ? "settingsIcon" : "settingsIconDark"} onClick={() => {window.location.href='/settings'}}/>
+                    <p className={selectedTheme === 'light' ? "navLabels" : "navLabelsDark"} onClick={() => {window.location.href='/settings'}}>Settings</p>
                 </div>
 
                 <div className="navSelectionDiv">
-                    <RiLogoutCircleLine id="logoutIcon" onClick={() => {userLogout()}}/>
-                    <p className="navLabels" onClick={() => {userLogout()}}>Logout</p>
+                    <RiLogoutCircleLine id={selectedTheme === 'light' ? "logoutIcon" : "logoutIconDark"} onClick={() => {userLogout()}}/>
+                    <p className={selectedTheme === 'light' ? "navLabels" : "navLabelsDark"} onClick={() => {userLogout()}}>Logout</p>
                 </div>
             </div>
             
@@ -93,7 +94,7 @@ const NavBar = () => {
                         id="navProfileAvatar" 
                         onClick={() => {window.location.href = '/settings'}}>
                     </img>
-                    <p id="navProfileName" onClick={() => {window.location.href = '/settings'}}>{window.sessionStorage.getItem('displayName')}</p>
+                    <p id={selectedTheme === 'light' ? "navProfileName" : "navProfileNameDark"} onClick={() => {window.location.href = '/settings'}}>{window.sessionStorage.getItem('displayName')}</p>
                 </div>
                 :
                 <Box sx={{ display: 'flex' }}>

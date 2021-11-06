@@ -15,6 +15,14 @@ const CreateJournal = () => {
     // set the document title on initial page render
     useEffect(() => {
         document.title = 'Create new post'
+
+        // set theme
+        if (window.sessionStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('darkBody')
+        }
+        else {
+            document.body.classList.remove('darkBody')
+        }
     }, [])
 
     // handle the onchange functions for the journal title and body text state variables

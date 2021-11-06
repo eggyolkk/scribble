@@ -30,6 +30,13 @@ const Login = (props) => {
         })
     }
 
+    // handle "enter" press for logging in
+    const enterSearch = async (e) => {
+        if (e.keyCode === 13) {
+            userLogin()
+        }
+    }
+
     return (
         <div id="loginContainer">
             <h2 id="loginSubtitle">Please login to continue</h2>
@@ -47,6 +54,7 @@ const Login = (props) => {
                 id="passwordInput"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={(e) => enterSearch(e)}
                 placeholder="Password"
             />
             <p className="userDetailsError">{passwordError}</p>

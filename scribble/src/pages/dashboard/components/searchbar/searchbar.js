@@ -3,6 +3,7 @@ import './searchbarStyle.scss'
 
 const Searchbar = () => {
     const [search, setSearch] = useState('')
+    const selectedTheme = window.sessionStorage.getItem('theme')
 
     // handle search when user presses 'enter' key
     const enterSearch = async (e) => {
@@ -14,7 +15,7 @@ const Searchbar = () => {
     return (
         <>
         <input
-            id="dashboardSearchBar"
+            id={selectedTheme === 'light' ? "dashboardSearchBar" : "dashboardSearchBarDark"}
             type='text'
             placeholder='Search in your posts...'
             value={search}

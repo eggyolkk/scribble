@@ -1,29 +1,61 @@
 @import '../../pages/dashboard/dashboardPageStyle.scss';
 
-@mixin navIcons() {
+@mixin navIcons($fill, $fillHover) {
     -moz-transition: all .1s ease-in;
     -o-transition: all .1s ease-in;
     -webkit-transition: all .1s ease-in;
     transition: all .1s ease-in;
-    fill: #9a8aab;
+    fill: $fill;
     font-size: 30px;
     cursor: pointer;
     &:hover {
-        .navLabels { color:#714a92; }
-        fill: #714a92;
+        fill: $fillHover;
     }
 }
 
+@mixin navLabelsBase($color, $hoverColor) {
+    font-family: $poppins;
+    margin-bottom: 7px;
+    margin-left: 10px;
+    color: $color;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+        color: $hoverColor;
+        transition: color 0.2s;
+    }
+}
+
+@mixin navProfileNameBase($color) {
+    font-family: "Poppins", sans-serif;
+    color: $color;
+    font-weight: 400;
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 #calendarIcon {
-    @include navIcons();
+    @include navIcons(#9a8aab, #714a92);
+    margin-top: 40px;
+}
+
+#calendarIconDark {
+    @include navIcons(#ffb7b7, #bc6567);
     margin-top: 40px;
 }
 
 #logoutIcon {
-    @include navIcons();
+    @include navIcons(#9a8aab, #714a92);
     margin-top: 40px;
 }
 
+#logoutIconDark {
+    @include navIcons(#ffb7b7, #bc6567);
+    margin-top: 40px;
+}
 
 #navBarContainer {
     display: flex;
@@ -39,18 +71,11 @@
 }
 
 .navLabels {
-    font-family: $poppins;
-    margin-bottom: 7px;
-    margin-left: 10px;
-    color: #9a8aab;
-    font-weight: 700;
-    font-size: 14px;
-    text-transform: uppercase;
-    cursor: pointer;
-    &:hover {
-        color: #714a92;
-        transition: color 0.2s;
-    }
+    @include navLabelsBase(#9a8aab, #714a92);
+}
+
+.navLabelsDark {
+    @include navLabelsBase(#ffb7b7, #bc6567);
 }
 
 #navProfileDiv {
@@ -70,12 +95,11 @@
 }
 
 #navProfileName {
-    font-family: "Poppins", sans-serif;
-    color: #a080ad;
-    font-weight: 400;
-    font-size: 16px;
-    margin-left: 10px;
-    cursor: pointer;
+    @include navProfileNameBase(#a080ad);
+}
+
+#navProfileNameDark {
+    @include navProfileNameBase(#ffb7b7);
 }
 
 .navSelectionDiv {
@@ -84,7 +108,11 @@
 }
 
 #postsIcon {
-    @include navIcons();
+    @include navIcons(#9a8aab, #714a92);
+}
+
+#postsIconDark {
+    @include navIcons(#ffb7b7, #bc6567);
 }
 
 #topUserBar.scribbleTitle {
@@ -94,8 +122,20 @@
     cursor: pointer;
 }
 
+#topUserBar.scribbleTitleDark {
+    font-size: 45px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    cursor: pointer;
+}
+
 #settingsIcon {
-    @include navIcons();
+    @include navIcons(#9a8aab, #714a92);
+    margin-top: 40px;
+}
+
+#settingsIconDark {
+    @include navIcons(#ffb7b7, #bc6567);
     margin-top: 40px;
 }
 

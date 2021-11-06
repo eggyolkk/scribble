@@ -1,5 +1,46 @@
 @import '../../../dashboard/dashboardPageStyle.scss';
 
+@mixin displaySubtextBase($color) {
+    font-family: $quicksand;
+    margin: 0 0 10px 0;
+    text-align: left;
+    color: $color;
+    font-size: 15px;
+    width: 90%;
+}
+
+@mixin settingsInputBase($bgColor, $color) {
+    width: 90%;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: $poppins;
+    color: $color;
+    z-index: 2;
+    box-sizing:border-box;
+    position: relative;
+    font-size: 15px;
+    border: 1px solid transparent;
+    background-color: $bgColor;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+@mixin settingsLabelsBase($color) {
+    font-family: $poppins;
+    text-align: left;
+    margin: 0;
+    font-size: 18px;
+    color: $color;
+}
+
+@mixin settingsSubtitlesBase($color) {
+    font-family: $poppins;
+    margin: 0;
+    color: $color;
+    font-size: 40px;
+    text-align: left;
+}
+
 @mixin themeBoxes($bgColor) {
     background-color: $bgColor;
     width: 300px;
@@ -28,19 +69,7 @@
 }
 
 .settingsInput {
-    width: 90%;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-family: $poppins;
-    color: #8a699f;
-    z-index: 2;
-    box-sizing:border-box;
-    position: relative;
-    font-size: 15px;
-    border: 1px solid transparent;
-    background-color: #ffffffb3;
-    margin-bottom: 15px;
-    margin-top: 10px;
+   @include settingsInputBase(#ffffffb3, #8a699f);
     &:hover {
         background-color: white;
         transition: background-color 0.1s;
@@ -53,13 +82,26 @@
     }
 }
 
+.settingsInputDark {
+    @include settingsInputBase(#58515bd1, #ffdcdc);
+     &:hover {
+         background-color: #837c86d1;
+         transition: background-color 0.1s;
+     }
+     &:focus {
+         outline: none;
+         background-color: #837c86d1;
+         transition: background-color 0.1s;
+         border: 1px solid #c9b6cb;
+     }
+ }
+
 .displaySubtext {
-    font-family: $quicksand;
-    margin: 0 0 10px 0;
-    text-align: left;
-    color: #8a7d99;
-    font-size: 15px;
-    width: 90%;
+    @include displaySubtextBase(#8a7d99);
+}
+
+.displaySubtextDark {
+    @include displaySubtextBase(#feb6b6);
 }
 
 #profile {
@@ -84,25 +126,33 @@
 }
 
 .settingsLabels {
-    font-family: $poppins;
-    text-align: left;
-    margin: 0;
-    font-size: 18px;
-    color: #8a7d99;
+    @include settingsLabelsBase(#8a7d99);
+}
+
+.settingsLabelsDark {
+    @include settingsLabelsBase(#ffb7b7);
 }
 
 .settingsSubtitles {
-    font-family: $poppins;
-    margin: 0;
-    color: #8a7d99;
-    font-size: 40px;
-    text-align: left;
+    @include settingsSubtitlesBase(#8a7d99);
+}
+
+.settingsSubtitlesDark {
+    @include settingsSubtitlesBase(#ffb7b7);
 }
 
 .themeBox {
     @include themeBoxes(#ffffff8c);
     &:hover {
         background-color: white;
+        transition: background-color 0.2s;
+    }
+}
+
+.themeBoxDark {
+    @include themeBoxes(#58515bd1);
+    &:hover {
+        background-color: #837c86d1;
         transition: background-color 0.2s;
     }
 }

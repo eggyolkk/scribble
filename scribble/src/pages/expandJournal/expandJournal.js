@@ -19,6 +19,17 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
     const [darkenBg, setDarkenBg] = useState(false)
     const [showEditComponent, setShowEditComponent] = useState(false)
 
+    // set theme on initial render
+    useEffect(() => {
+        // set theme
+        if (window.sessionStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('darkBody')
+        }
+        else {
+            document.body.classList.remove('darkBody')
+        }
+    }, [])
+
     // fetch journal details by id and all journals on initial page render 
     useEffect(() => {
         fetchJournalId()

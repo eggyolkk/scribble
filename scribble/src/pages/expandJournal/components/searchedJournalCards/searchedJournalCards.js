@@ -12,6 +12,8 @@ const SearchedJournalCards = ({ fetchJournals, setDarkenBg, setShowDeleteModal, 
     const [emptyPosts, setEmptyPosts] = useState(true)
     const [journalData, setJournalData] = useState([])
     const [loading, setLoading] = useState(false)
+
+    const selectedTheme = window.sessionStorage.getItem('theme')
     
     // fetch journals on initial page render
     useEffect(() => {
@@ -65,26 +67,26 @@ const SearchedJournalCards = ({ fetchJournals, setDarkenBg, setShowDeleteModal, 
 
         <div className="journalCardsDiv">
             {journalData.slice(0).reverse().map((journal, index) => 
-            <div key={index} className="journalCards" onClick={() => window.location.href = `/post/${journal._id}`}>
+            <div key={index} className={selectedTheme === 'light' ? "journalCards" : "journalCardsDark"} onClick={() => window.location.href = `/post/${journal._id}`}>
                 <img src={require(`../../../../images/${journal.mood}Mood.png`).default} className="moodIcon" alt="Journal mood icon"/>
                 
                 {journal.title.length < 25 ? 
-                    <h3 className="cardJournalTitle">{journal.title}</h3> 
+                    <h3 className={selectedTheme === 'light' ? "cardJournalTitle" : "cardJournalTitleDark"}>{journal.title}</h3> 
                     :
-                    <h3 className="cardJournalTitle">{journal.title.slice(0, 25)}...</h3> 
+                    <h3 className={selectedTheme === 'light' ? "cardJournalTitle" : "cardJournalTitleDark"}>{journal.title.slice(0, 25)}...</h3> 
                 }
 
                 {journal.bodyText.length < 40 ? (
-                    <p className="cardJournalBodyText">{journal.bodyText}</p>
+                    <p className={selectedTheme === 'light' ? "cardJournalBodyText" : "cardJournalBodyTextDark"}>{journal.bodyText}</p>
                     ) : (
-                    <p className="cardJournalBodyText">{journal.bodyText.slice(0, 40)}...</p>
+                    <p className={selectedTheme === 'light' ? "cardJournalBodyText" : "cardJournalBodyTextDark"}>{journal.bodyText.slice(0, 40)}...</p>
                 )}
 
                 {formatDate(journal.createdAt.slice(0, 10))}
 
                 <div className="deleteDiv">
-                    <button className="postActionButtons" onClick={(e) => {confirmDeletePost(e, journal._id)}}><BiTrash className="postActionReactIcons"/></button>
-                    <button className="postActionButtons" ><HiOutlinePencilAlt className="postActionReactIcons"/></button>
+                    <button className={selectedTheme === 'light' ? "postActionButtons" : "postActionButtonsDark"} onClick={(e) => {confirmDeletePost(e, journal._id)}}><BiTrash className="postActionReactIcons"/></button>
+                    <button className={selectedTheme === 'light' ? "postActionButtons" : "postActionButtonsDark"} ><HiOutlinePencilAlt className="postActionReactIcons"/></button>
                 </div>
             </div>
             )}

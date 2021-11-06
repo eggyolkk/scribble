@@ -9,11 +9,28 @@
     border-radius: 25px;
 }
 
+@mixin settingsHeaderBase($color) {
+    font-size: 60px;
+    font-family: $poppins !important; 
+    font-weight: 600;
+    color: $color;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
 #accountDiv {
     @include settingsDiv();
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+#accountDivDark {
+    @include settingsDiv();
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #403e4b;
 }
 
 #avatar {
@@ -28,6 +45,13 @@
 
 #preferencesDiv {
     @include settingsDiv();
+    display: flex;
+}
+
+#preferencesDivDark {
+    @include settingsDiv(); 
+    display: flex;
+    background-color: #403e4b;
 }
 
 #profileAvatarDisplay {
@@ -47,10 +71,6 @@
     padding-left: 10px;
 }
 
-#preferencesDiv {
-    display: flex;
-}
-
 .settingsContent {
     margin-left: 400px;
     display: flex;
@@ -60,12 +80,11 @@
 }
 
 #settingsHeader {
-    font-size: 60px;
-    font-family: $poppins !important; 
-    font-weight: 600;
-    color: #36264a;
-    margin: 0;
-    margin-bottom: 10px;
+    @include settingsHeaderBase(#36264a);
+}
+
+#settingsHeaderDark {
+    @include settingsHeaderBase(#ffb7b7);
 }
 
 /* Viewports under 1000px wide */

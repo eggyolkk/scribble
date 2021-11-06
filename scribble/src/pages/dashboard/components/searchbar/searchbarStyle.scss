@@ -1,26 +1,34 @@
 @import '../../../dashboard/dashboardPageStyle.scss';
 
-#dashboardSearchBar {
+@mixin dashboardSearchBarBase($color, $opacity, $bgColor, $hoverBg) {
     width: 100%;
     padding: 20px;
     border-radius: 30px;
     font-family: $poppins;
-    color: #8a699f;
+    color: $color;
     z-index: 2;
     box-sizing:border-box;
     position: relative;
     font-size: 15px;
     border: 1px solid transparent;
-    opacity: 1;
-    background-color: #ffffffd1;
+    opacity: $opacity;
+    background-color: $bgColor;
     &:hover {
-        background-color: white;
+        background-color: $hoverBg;
         transition: background-color 0.1s;
     }
     &:focus {
         outline: none;
-        background-color: white;
+        background-color: $hoverBg;
         transition: background-color 0.1s;
         border: 1px solid #c9b6cb;
     }
+}
+
+#dashboardSearchBar {
+    @include dashboardSearchBarBase(#8a699f, 100, #ffffffd1, white);
+}
+
+#dashboardSearchBarDark {
+    @include dashboardSearchBarBase(#ffdcdc, 0.9, #58515bd1, #837c86d1);
 }
