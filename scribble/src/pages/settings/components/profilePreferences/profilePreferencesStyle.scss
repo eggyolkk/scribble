@@ -2,7 +2,7 @@
 
 @mixin displaySubtextBase($color) {
     font-family: $quicksand;
-    margin: 0 0 10px 0;
+    margin: -10px 0 20px 0;
     text-align: left;
     color: $color;
     font-size: 15px;
@@ -209,7 +209,7 @@
 
 /* Viewports under 1000px wide */
 @media screen and (max-width: 1000px) {
-    .displaySubtext {
+    .displaySubtext, .displaySubtextDark {
         text-align: center;
     }
 
@@ -235,11 +235,12 @@
         margin-left: 0px;
     }
 
-    .settingsSubtitles {
+    .settingsSubtitles, .settingsSubtitlesDark {
         margin-top: 30px;
+        text-align: center;
     }
 
-    .settingsInput {
+    .settingsInput, .settingsInputDark {
         width: 80%;
     }
 

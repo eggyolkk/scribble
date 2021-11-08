@@ -2,11 +2,37 @@
 
 .account {
     margin-left: 50px;
+    margin-top: 0;
 }
 
 #accountPassword {
     margin-left: 50px;
     margin-top: 20px;
+}
+
+#cancelPassword {
+    width: 120px;
+    background-color: #d5d5cb;
+    color: #958686;
+    &:hover {
+        background-color: #939387;
+        color: #2f2c2c;
+        transition: 0.2s background-color;
+    }
+}
+
+.passwordWarning {
+    color: #e77e7e;
+    font-weight: 700;
+}
+
+.passwordWarningDark {
+    color: #f6df96;
+    font-weight: 700;
+}
+
+#savePassword {
+    margin-left: 10px;
 }
 
 .settingsButton {
@@ -24,5 +50,16 @@
     &:hover {
         background-color: #f3da6f;
         transition: background-color 0.1s;
+    }
+}
+
+/* Viewports under 1000px wide */
+@media screen and (max-width: 1000px) {
+    .account, #accountPassword, #savePassword {
+        margin-left: 0px;
+    }
+
+    .settingsButton {
+        margin-left: 0;
     }
 }

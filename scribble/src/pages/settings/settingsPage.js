@@ -3,6 +3,7 @@ import './settingsPageStyle.scss'
 import NavBar from '../../components/navBar/navBar'
 import ProfilePreferences from './components/profilePreferences/profilePreferences'
 import AccountSettings from './components/accountSettings/accountSettings';
+import ChangeAvatar from './components/changeAvatar/changeAvatar';
 import axios from 'axios'
 import CircularProgress from '@mui/material/CircularProgress'
 import Box from '@mui/material/Box'
@@ -16,6 +17,8 @@ const Settings = () => {
     const [theme, setTheme] = useState('')
     const [avatar, setAvatar] = useState('')
     const [loading, setLoading] = useState(true)
+    const [showModal, setShowModal] = useState(false)
+    const [newPassword, setNewPassword] = useState('')
 
     const selectedTheme = window.sessionStorage.getItem('theme')
 
@@ -91,7 +94,36 @@ const Settings = () => {
         else {
             console.log("needs to be valid")
         }
-        
+    }
+
+    // update avatar
+    const updateAvatar = async () => {
+        // get user id
+        let userId = ''
+        const getHeader = { headers: { 'Content-Type': 'application/json' }}
+        await axios.get(`${API}/auth/get_user_id`, {getHeader, withCredentials: true})
+        .then(response => userId = response.data.user_id)
+
+        // update display name
+        await axios.put(`${API}/user/set_user_avatar?userId=${userId}&avatar=${avatar}`, {getHeader, withCredentials: true})
+        window.sessionStorage.setItem('avatar', avatar)
+    }
+
+    // update password
+    const updatePassword = async () => {
+        // get user id
+        let userId = ''
+        const getHeader = { headers: { 'Content-Type': 'application/json' }}
+        await axios.get(`${API}/auth/get_user_id`, {getHeader, withCredentials: true})
+        .then(response => userId = response.data.user_id)
+
+        // update password
+        const userJSON = JSON.stringify({ userId: userId, password: newPassword })
+        const postHeader = { headers: { 'Content-Type': 'application/json' }}
+
+        await axios.post(`${API}/user/set_user_password`, userJSON, {postHeader, withCredentials: true})
+        .then(response => window.location.href = response.data.redirect )
+        .catch(err => console.log(err))
     }
 
     return (
@@ -111,19 +143,26 @@ const Settings = () => {
                                 <div id={selectedTheme === 'light' ? "preferencesDiv" : "preferencesDivDark"}>
                                     <div id="profileFlexLeft">
                                         <img src={require(`../../images/${avatar}Mood.png`).default} id="profileAvatarDisplay" alt="Avatar icon"/>
-                                        <button className="settingsButton" id="avatar">Change avatar</button>
+                                        <button className="settingsButton" onClick={() => {setShowModal(true)}} id="avatar">Change avatar</button>
                                     </div>
         
                                     <div id="profileFlexRight">
-                                        <ProfilePreferences theme={theme} setTheme={setTheme} displayName={displayName} setDisplayName={setDisplayName} updateDisplayName={updateDisplayName}/>
+                                        <ProfilePreferences theme={theme} setTheme={setTheme} displayName={displayName} setDisplayName={setDisplayName} updateDisplayName={updateDisplayName} />
                                     </div>
                                 </div>
         
                                 <div id={selectedTheme === 'light' ? "accountDiv" : "accountDivDark"}>
-                                    <AccountSettings />
+                                    <AccountSettings username={username} password={password} setPassword={setPassword} newPassword={newPassword} setNewPassword={setNewPassword} updatePassword={updatePassword}/>
                                 </div>
+
+                                {showModal ? 
+                                    <div id="avatarModalContainer">
+                                        <ChangeAvatar setShowModal={setShowModal} avatar={avatar} setAvatar={setAvatar} updateAvatar={updateAvatar}/>
+                                    </div> 
+                                    : 
+                                    null
+                                }
                             </>
-                        
                         : 
                         
                         <Box sx={{ display: 'flex' }}>

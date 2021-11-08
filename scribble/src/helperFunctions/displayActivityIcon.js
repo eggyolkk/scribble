@@ -10,17 +10,31 @@ import { HiOutlineMusicNote } from "react-icons/hi"
 
 // display activity icon
 const displayActivityIcon = (activity, type) => {
+    const selectedTheme = window.sessionStorage.getItem('theme')
+
     let className = ''
 
     switch (type) {
         case 'display':
-            className = 'displayActivitiesIcon'
+            if (selectedTheme === 'light') {
+                className = 'displayActivitiesIcon'
+            } else {
+                className = 'displayActivitiesIconDark'
+            }
             break;
         case 'selected':
-            className = 'editActivitySelected'
+            if (selectedTheme === 'light') {
+                className = 'editActivitySelected'
+            } else {
+                className = 'editActivitySelectedDark'
+            }
             break;
         case 'unselected':
-            className = 'editActivityUnselected'
+            if (selectedTheme === 'light') {
+                className = 'editActivityUnselected'
+            } else {
+                className = 'editActivityUnselectedDark'
+            }
             break;
         default:
             return ''

@@ -92,7 +92,7 @@ $poppins: 'Poppins', sans-serif;
 .journalCardsDark {
     @include journalCardsBase(#403e4b, 100);
     &:hover {
-        background-color: #6f6c84;
+        background-color: #7e6b7891;
         transition: background-color 0.2s;
     }
 }

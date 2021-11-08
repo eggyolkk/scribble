@@ -29,9 +29,9 @@ const ProfilePreferences = (props) => {
     return (
         <>
             <h1 className={selectedTheme === 'light' ? 'settingsSubtitles' : 'settingsSubtitlesDark'}>Profile Preferences</h1>
-            
-            <h2 className={selectedTheme === 'light' ? "settingsLabels" : "settingsLabelsDark"}>Display name</h2>
             <p className={selectedTheme === 'light' ? "displaySubtext" : "displaySubtextDark"}>(You may need to refresh to see changes)</p>
+
+            <h2 className={selectedTheme === 'light' ? "settingsLabels" : "settingsLabelsDark"}>Display name</h2>
             <input
                 type="text"
                 placeholder={displayName}

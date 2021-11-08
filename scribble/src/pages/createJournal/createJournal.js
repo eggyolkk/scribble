@@ -12,6 +12,8 @@ const CreateJournal = () => {
     const [showComponent, setShowComponent] = useState('moodComponent')
     const [activities, setActivity] = useState([])
 
+    const selectedTheme = window.sessionStorage.getItem('theme')
+
     // set the document title on initial page render
     useEffect(() => {
         document.title = 'Create new post'
@@ -64,7 +66,7 @@ const CreateJournal = () => {
         <div className="pageBody">
 
             <div id="createJournalContainer">
-                <div className="dashboardFlexLeft">
+                <div className={selectedTheme === 'light' ? "dashboardFlexLeft" : "dashboardFlexLeftDark"}>
                     <NavBar />
                 </div>
 
@@ -73,7 +75,7 @@ const CreateJournal = () => {
                     <div className="dashboardContent">
                         <div className="topRow">
                             <div className="topRowFlexTop">
-                                <h1 className="headerH1">Create new post</h1>
+                                <h1 className={selectedTheme === 'light' ? "headerH1" : "headerH1Dark"}>Create new post</h1>
                             </div>
                         </div>
 

@@ -10,6 +10,8 @@ const ExpandJournalEdit = (props) => {
     const [editedActivitiesArray, setEditedActivitiesArray] = useState(journalDetailsData.data.activities.split(','))
     const [editedMood, setEditedMood] = useState(journalDetailsData.data.mood)
 
+    const selectedTheme = window.sessionStorage.getItem('theme')
+
     // set document title on initial page render and set initial mood and activities 
     useEffect(() => {
         document.title = "Edit post"
@@ -48,14 +50,14 @@ const ExpandJournalEdit = (props) => {
 
     return (
         <>
-            <h1 className="expandJournalTitle">Edit Post</h1>
+            <h1 className={selectedTheme === 'light' ? "expandJournalTitle" : "expandJournalTitleDark"}>Edit Post</h1>
             <EditMood journalDetailsData={journalDetailsData} setEditedMood={setEditedMood} editedMood={editedMood}/>
 
             <input
                 type='text'
                 placeholder={journalDetailsData.data.title}
                 value={editedJournal.title}
-                id="editTitle"
+                id={selectedTheme === 'light' ? "editTitle" : "editTitleDark"}
                 onChange={(e) => dispatch({
                     type: "EDIT_TITLE",
                     payload: e.target.value
@@ -66,7 +68,7 @@ const ExpandJournalEdit = (props) => {
                 name='bodyText'
                 placeholder={journalDetailsData.data.bodyText}
                 value={editedJournal.bodyText}
-                id="editBodyText"
+                id={selectedTheme === 'light' ? "editBodyText" : "editBodyTextDark"}
                 onChange={(e) => dispatch({
                     type: "EDIT_BODYTEXT",
                     payload: e.target.value
@@ -76,7 +78,7 @@ const ExpandJournalEdit = (props) => {
             <EditActivities editedActivitiesArray={editedActivitiesArray} setEditedActivitiesArray={setEditedActivitiesArray}/>
 
             <div>
-                <button id="saveEditButton" onClick={() => {editPost()}}>Save changes</button>
+                <button id={selectedTheme === 'light' ? "saveEditButton" : "saveEditButtonDark"} onClick={() => {editPost()}}>Save changes</button>
                 <button id="cancelEditButton" onClick={() => {setShowEditComponent(false)}}>Cancel</button>
             </div>
         </>

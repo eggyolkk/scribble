@@ -114,9 +114,28 @@ const logout_get = (req, res) => {
     res.json({ redirect: '/' })
 }
 
+// verify user's current password
+const verify_password = async (req, res) => {
+    // convert request body into json (it is currently sending as a json within a json)
+    let userData = Object.keys(req.body)
+    const userJSON = JSON.parse(userData)
+
+    const username = userJSON.username
+    const password = userJSON.password
+
+    try {
+        const user = await User.login(username, password)
+        res.status(200).json({ status: 'verified' })
+    } 
+    catch(err) {
+        res.json({ errors: 'invalid' })
+    }
+}
+
 module.exports = {
     signup_post,
     login_post,
     logout_get,
-    get_user_id
+    get_user_id,
+    verify_password
 }

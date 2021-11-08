@@ -1,5 +1,18 @@
 @import '../../../dashboard/dashboardPageStyle.scss';
 
+@mixin displayActivitiesIconBase($color, $hoverColor) {
+    font-size: 50px;
+    background-color: $color;
+    padding: 10px;
+    border-radius: 50px;
+    color: white;
+    margin: 0 20px;
+    &:hover {
+        background-color: $hoverColor;
+        transition: background-color 0.2s;
+    }
+}
+
 #displayActivitiesContainer {
     display: flex;
     width: 80%;
@@ -10,16 +23,11 @@
 }
 
 .displayActivitiesIcon {
-    font-size: 50px;
-    background-color: #ccbddb;
-    padding: 10px;
-    border-radius: 50px;
-    color: white;
-    margin: 0 20px;
-    &:hover {
-        background-color: #b69dce;
-        transition: background-color 0.2s;
-    }
+    @include displayActivitiesIconBase(#ccbddb, #b69dce);
+}
+
+.displayActivitiesIconDark {
+    @include displayActivitiesIconBase(#b998a0, #ae6969);
 }
 
 #displayActivityLabel {

@@ -6,26 +6,27 @@ import './expandJournalStyle.scss'
 
 const ExpandJournalDisplay = (props) => {
     const { setDocumentTitle, formatDate, confirmDeletePost, journalDetailsData, setShowEditComponent } = props
+    const selectedTheme = window.sessionStorage.getItem('theme')
     
     return (
         <>
             {setDocumentTitle(journalDetailsData.data.title)}
             
             <img src={require(`../../../../images/${journalDetailsData.data.mood}Mood.png`).default} id="expandJournalMood" alt="Journal mood icon"/>
-            <h2 className="expandJournalTitle">{journalDetailsData.data.title}</h2>
+            <h2 className={selectedTheme === 'light' ? "expandJournalTitle" : "expandJournalTitleDark"}>{journalDetailsData.data.title}</h2>
             {formatDate(journalDetailsData.data.createdAt)}
-            <p className="expandJournalBodyText">{journalDetailsData.data.bodyText}</p>
+            <p className={selectedTheme === 'light' ? "expandJournalBodyText" : "expandJournalBodyTextDark"}>{journalDetailsData.data.bodyText}</p>
             
-            <h2 id="whatHappenedTitle">What happened on this day:</h2>
+            <h2 id={selectedTheme === 'light' ? "whatHappenedTitle" : "whatHappenedTitleDark"}>What happened on this day:</h2>
             <DisplayActivities activities={journalDetailsData.data.activities}/>
 
             <div className="deleteDiv">
-                <button className="expandJournalButtons" onClick={(e) => {confirmDeletePost(e, journalDetailsData._id)}}>
-                    <BiTrash className="expandJournalIcons"/>
+                <button className={selectedTheme === 'light' ? "expandJournalButtons" : "expandJournalButtonsDark"} onClick={(e) => {confirmDeletePost(e, journalDetailsData._id)}}>
+                    <BiTrash className={selectedTheme === 'light' ? "expandJournalIcons" : "expandJournalIconsDark"}/>
                     Delete Post
                 </button>
-                <button className="expandJournalButtons" onClick={() => {setShowEditComponent(true)}}>
-                    <HiOutlinePencilAlt className="expandJournalIcons"/>
+                <button className={selectedTheme === 'light' ? "expandJournalButtons" : "expandJournalButtonsDark"} onClick={() => {setShowEditComponent(true)}}>
+                    <HiOutlinePencilAlt className={selectedTheme === 'light' ? "expandJournalIcons" : "expandJournalIconsDark"}/>
                     Edit Post
                 </button>
             </div>

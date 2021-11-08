@@ -1,15 +1,15 @@
 @import '../../../dashboard/dashboardPageStyle.scss';
 
-.expandJournalBodyText {
+@mixin expandJournalBodyTextBase($color) {
     font-family: $quicksand;
     font-size: 16px;
     margin-top: 0;
     width: 80%;
-    color:  #7e6b91;
+    color: $color;
 }
 
-.expandJournalButtons {
-    background-color: #ebe2f1;
+@mixin expandJournalButtonsBase($color, $bgColor) {
+    background-color: $bgColor;
     border: none;
     padding: 10px 50px;
     border-radius: 40px;
@@ -18,12 +18,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #8d789d;
+    color: $color;
     font-size: 16px;
     font-family: $poppins;
     flex-direction: row;
     flex-wrap: wrap;
     font-weight: 400;
+}
+
+.expandJournalBodyText {
+    @include expandJournalBodyTextBase(#7e6b91);
+}
+
+.expandJournalBodyTextDark {
+    @include expandJournalBodyTextBase(#feb6b6);
+}
+
+.expandJournalButtons {
+    @include expandJournalButtonsBase(#8d789d, #ebe2f1);
     &:hover {
         background-color: #ac8bc2;
         color: white;
@@ -35,11 +47,31 @@
     }
 }
 
+.expandJournalButtonsDark {
+    @include expandJournalButtonsBase(#ac863f, #fff3cacf);
+    &:hover {
+        background-color: #fff3ca;
+        color: #db9e2b;
+        transition: background-color 0.2s;
+        .expandJournalIconsDark {
+            color: #db9e2b;
+            transition: color 0.2s;
+        }
+    }
+}
+
 .expandJournalIcons {
     font-size: 30px;
     color: #bfa9cd;
     margin-right: 10px;
 }
+
+.expandJournalIconsDark {
+    font-size: 30px;
+    color: #ac863f;
+    margin-right: 10px;
+}
+
 
 #expandJournalMood {
     width: 400px;
@@ -51,9 +83,21 @@
     font-size: 40px;
 }
 
+.expandJournalTitleDark {
+    font-family: $poppins;
+    color: #ffb7b7;
+    font-size: 40px;
+}
+
 #whatHappenedTitle {
     font-family: $poppins;
     color: #796099;
+    font-size: 25px;
+}
+
+#whatHappenedTitleDark {
+    font-family: $poppins;
+    color: #ffb7b7;
     font-size: 25px;
 }
 

@@ -1,6 +1,7 @@
 const Journal = require('../models/Journal')
 const mongoose = require('mongoose')
 const User = require('../models/User')
+const bcrypt = require('bcrypt')
 const { get_user_id } = require('../controllers/authController')
 
 // get user's username
@@ -88,8 +89,52 @@ const set_user_display_name = async (req, res) => {
     })
 }
 
+// set user's avatar
+const set_user_avatar = async (req, res) => {
+    const userId = req.query.userId
+    const avatar = req.query.avatar 
+
+    conditions = { _id: userId }
+
+    User.updateOne(conditions, { avatar: avatar }, function(err, values) {
+        if (!err) {
+            res.json({ redirect: '/settings' })
+            console.log('Avatar updated successfully')
+        } else {
+            console.log(error)
+        }
+    })
+}
+
+// set user's password
+const set_user_password = async (req, res) => {
+    // convert request body into json (it is currently sending as a json within a json)
+    let userData = Object.keys(req.body)
+    const userJSON = JSON.parse(userData)
+    
+    const userId = userJSON.userId
+    const password = userJSON.password
+
+    // hash new password
+    const salt = await bcrypt.genSalt()
+    const newPassword = await bcrypt.hash(password, salt)
+
+    conditions = { _id: userId }
+
+    User.updateOne(conditions, { password: newPassword }, function(err, values) {
+        if (!err) {
+            res.json({ redirect: '/settings' })
+            console.log('Password updates successfully')
+        } else {
+            console.log(error)
+        }
+    })
+}
+
 module.exports = {
     get_user_details,
     set_user_theme,
-    set_user_display_name
+    set_user_display_name,
+    set_user_avatar,
+    set_user_password
 }

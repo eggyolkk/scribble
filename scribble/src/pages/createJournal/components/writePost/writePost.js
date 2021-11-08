@@ -5,9 +5,10 @@ import { MdOutlineArrowBack } from 'react-icons/md'
 
 const WritePost = (props) => {
     const { mood, setShowComponent, journal, dispatch, postJournal, activities, setActivity } = props
+    const selectedTheme = window.sessionStorage.getItem('theme')
 
     return (
-        <div id="writePostContainer">
+        <div id={selectedTheme === 'light' ? "writePostContainer" : "writePostContainerDark"}>
             <button id="backButton" onClick={() => {setShowComponent('moodComponent')}}><MdOutlineArrowBack id="backButtonReactIcon"/></button>
             <ChooseActivity activities={activities} setActivity={setActivity} />
 
@@ -15,7 +16,7 @@ const WritePost = (props) => {
                 <input
                     type='text'
                     placeholder='Title'
-                    id="titleInputField"
+                    id={selectedTheme === 'light' ? "titleInputField" : "titleInputFieldDark"}
                     value={journal.title}
                     onChange={(e) => dispatch({
                         type: "TITLE_ONCHANGE",
@@ -26,7 +27,7 @@ const WritePost = (props) => {
                 <textarea
                     name='bodyText'
                     placeholder='Write your entry here...'
-                    id="bodyTextInputField"
+                    id={selectedTheme === 'light' ? "bodyTextInputField" : "bodyTextInputFieldDark"}
                     value={journal.bodyText}
                     onChange={(e) => dispatch({
                         type: "BODYTEXT_ONCHANGE",
@@ -34,7 +35,7 @@ const WritePost = (props) => {
                     })}>
                 </textarea>
 
-                <button id="postButton" onClick={() => {postJournal(mood)}}>Create</button>
+                <button id={selectedTheme === 'light' ? "postButton" : "postButtonDark"} onClick={() => {postJournal(mood)}}>Create</button>
             </div>
         </div>
     )

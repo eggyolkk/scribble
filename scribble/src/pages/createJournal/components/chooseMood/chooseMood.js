@@ -5,10 +5,12 @@ const ChooseMood = (props) => {
     const { mood, setMood, setShowComponent } = props
     const [warning, setWarning] = useState('')
 
+    const selectedTheme = window.sessionStorage.getItem('theme')
+
     return (
-        <div id="chooseMoodContainer">
+        <div id={selectedTheme === 'light' ? "chooseMoodContainer" : "chooseMoodContainerDark"}>
             <div>
-                <h2 className="createJournalH2">How would you describe your mood today?</h2>
+                <h2 className={selectedTheme === 'light' ? "createJournalH2" : "createJournalH2Dark"}>How would you describe your mood today?</h2>
             </div>
             
             <div id="moodIconsContainer">
@@ -86,7 +88,7 @@ const ChooseMood = (props) => {
             <p id="warningText">{warning}</p>
             
             <button 
-                id="continueButton" 
+                id={selectedTheme === 'light' ? "continueButton" : "continueButtonDark" }
                 onClick={() => {mood !== '' ? setShowComponent('writePostComponent') : setWarning('*Please choose one before continuing')}}
             >Continue
             </button>

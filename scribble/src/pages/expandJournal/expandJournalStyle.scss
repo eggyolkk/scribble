@@ -1,5 +1,16 @@
 @import '../dashboard/dashboardPageStyle.scss';
 
+@mixin journalContainerBase($bgColor) {
+    @include fadeInUpAnimation();
+    background-color: $bgColor;
+    width: 80%;
+    margin-top: 100px;
+    border-radius: 30px;
+    padding: 80px 50px;
+    display: flex;
+    margin-bottom: 20px;
+}
+
 .arrowButton {
     font-size: 30px;
     color: #b0a4c9;
@@ -64,14 +75,11 @@
 }
 
 #journalContainer {
-    @include fadeInUpAnimation();
-    background-color: #ffffffa8;
-    width: 80%;
-    margin-top: 100px;
-    border-radius: 30px;
-    padding: 80px 50px;
-    display: flex;
-    margin-bottom: 20px;
+   @include journalContainerBase(#ffffffa8); 
+}
+
+#journalContainerDark {
+    @include journalContainerBase(#403e4b); 
 }
 
 #journalLeft {

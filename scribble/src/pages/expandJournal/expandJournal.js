@@ -19,6 +19,8 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
     const [darkenBg, setDarkenBg] = useState(false)
     const [showEditComponent, setShowEditComponent] = useState(false)
 
+    const selectedTheme = window.sessionStorage.getItem('theme')
+
     // set theme on initial render
     useEffect(() => {
         // set theme
@@ -89,7 +91,7 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
         const month = journalDate.slice(5, 7)
         const day = journalDate.slice(8, 10)
 
-        return <p className="expandJournalBodyText">{day}/{month}/{year}</p>
+        return <p className={selectedTheme === 'light' ? "expandJournalBodyText" : "expandJournalBodyTextDark"}>{day}/{month}/{year}</p>
     }
 
     // show popup modal when delete button is clicked, darken bg and set the id of the post to be deleted
@@ -108,14 +110,14 @@ const ExpandJournal = ({journalDetailsData, ownPropsMessage, journalId, fetchJou
             <div className={darkenBg ? 'modalBg' : 'modalBgNone'}></div>
 
             <div id="expandJournalContainer">
-                <div className="dashboardFlexLeft">
+                <div className={selectedTheme === 'light' ? "dashboardFlexLeft" : "dashboardFlexLeftDark"}>
                     <NavBar />
                 </div>
 
                 <div id="expandJournalFlexRight">
 
                     <div className="dashboardContent">
-                        <div id="journalContainer">
+                        <div id={selectedTheme === 'light' ? "journalContainer" : "journalContainerDark"}>
                             <div id="journalLeft">
                                 <button className="expandJounalArrowButtons" onClick={() => window.location.href = `/post/${getPrevPostId()}`}>
                                     <IoMdArrowRoundBack className="arrowButton"/>

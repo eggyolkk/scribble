@@ -31,8 +31,20 @@
     }
 }
 
+.activityIconsDark {
+    @include activityIconsBase(#95848e);
+    &:hover {
+        color: #ffe4e4;
+        transition: color 0.2s;
+    }
+}
+
 .activityIconsSelected {
     @include activityIconsBase(#a262d3);
+}
+
+.activityIconsSelectedDark {
+    @include activityIconsBase(#ffe4e4);
 }
 
 #activityIconsContainer {
@@ -45,8 +57,16 @@
     @include activityLabelsBase(#bbb1c5);
 }
 
+.activityLabelsDark {
+    @include activityLabelsBase(#95848e);
+}
+
 .activityLabelsSelected {
     @include activityLabelsBase(#a262d3);
+}
+
+.activityLabelsSelectedDark {
+    @include activityLabelsBase(#ffe4e4);
 }
 
 #activitiesTopRow {
@@ -77,11 +97,11 @@
 
 /* Viewports under 1360px wide */
 @media screen and (max-width: 1360px) {
-    .activityIcons { font-size: 35px; }
+    .activityIcons, .activityIconsDark { font-size: 35px; }
 }
 
 /* Viewports under 1190px wide */
 @media screen and (max-width: 1190px) {
-    .activityIcons { font-size: 50px; }
+    .activityIcons, .activityIconsDark { font-size: 50px; }
     #chooseActivityContainer { width: 100%; }
 }

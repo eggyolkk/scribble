@@ -5,6 +5,8 @@ const EditActivities = (props) => {
     const { editedActivitiesArray, setEditedActivitiesArray } = props
     const fullActivitiesList = ['Food', 'Drinks', 'Sleep', 'Exercise', 'Entertainment', 'Friends', 'Family', 'Date', 'Study', 'Work', 'Hobbies', 'Drawing', 'Gaming', 'Reading', 'Cleaning', 'Cooking', 'Music', 'Gardening', 'Beach', 'Party']
 
+    const selectedTheme = window.sessionStorage.getItem('theme')
+
     // toggle edited activities array
     // else if the activity is already in the list, remove from the activities list
     const toggleEditedActivities = (selectedActivity) => {
@@ -36,7 +38,7 @@ const EditActivities = (props) => {
 
     return (
         <div id="editActivitiesContainer">
-            <h2 className="editLabels">Edit activities</h2>
+            <h2 className={selectedTheme === 'light' ? "editLabels" : "editLabelsDark"}>Edit activities</h2>
             <div id="editActivitiesIconsContainer">
                 {activitiesMap}
             </div>

@@ -148,11 +148,11 @@
         justify-content: center;
     }
 
-    #postsIcon, #calendarIcon, #settingsIcon {
+    #postsIcon, #calendarIcon, #settingsIcon, #postsIconDark, #calendarIconDark, #settingsIconDark {
         margin-right: 30px;
     }
 
-    .navLabels {
+    .navLabels, .navLabelsDark {
         display: none;
     }
 
@@ -165,10 +165,21 @@
         display: flex;
     }
 
-    #topUserBar.scribbleTitle {
+    #topUserBar.scribbleTitle, #topUserBar.scribbleTitleDark {
         font-size: 25px;
         margin-right: 30px;
         margin-top: 40px;
     }
 
+}
+
+/* Viewports under 580px wide */
+@media screen and (max-width: 580px) {
+   #navBarContainer {
+        flex-wrap: wrap;
+   }
+
+   #navProfileDiv {
+       display: none;
+   }
 }

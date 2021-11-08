@@ -70,12 +70,6 @@ const NavBar = () => {
                 </div>
                 
                 <div className="navSelectionDiv">
-                    <RiCalendarEventLine id={selectedTheme === 'light' ? "calendarIcon" : "calendarIconDark"} />
-                    <p className={selectedTheme === 'light' ? "navLabels" : "navLabelsDark"}>Calendar</p>
-                </div>
-                
-
-                <div className="navSelectionDiv">
                     <RiSettings4Line id={selectedTheme === 'light' ? "settingsIcon" : "settingsIconDark"} onClick={() => {window.location.href='/settings'}}/>
                     <p className={selectedTheme === 'light' ? "navLabels" : "navLabelsDark"} onClick={() => {window.location.href='/settings'}}>Settings</p>
                 </div>
