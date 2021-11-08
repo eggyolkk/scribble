@@ -88,7 +88,7 @@ const update_journal = (req, res) => {
             res.json ({ redirect: `/post/${req.params.id}`})
             console.log('Updated successfully')
         } else {
-            console.log(error)
+            console.log(err)
         } 
     })
 }
