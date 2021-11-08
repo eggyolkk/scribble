@@ -6,16 +6,17 @@
 
 scribble! is a web application that acts as both an online journal and a mood tracker for users. Users can log in, create an entry and have a main dashboard where they are able to keep track and view their entries.
 
-This project was inspired by similar journaling mobile apps (such as Reflectly, Daylio etc.). I wanted to create a personal online web journal that I could tailor according to my preferences. This was also a good opportunity for me to get hands-on experience with a creating a full-stack application and deploying it on a cloud platform such as Heroku. 
+This project was inspired by similar journaling mobile apps (such as Reflectly, Daylio etc.). I wanted to create a personal online web journal that I could tailor according to my preferences. Through this project, I wanted to get hands-on experience with creating a full-stack application, implementing JWT authentication, learning Redux and deploying the application on a cloud platform. 
 
 
 <!--BUILT WITH-->
-## Built with 
+## Built using 
 
-+ React.js (+ Redux)
++ React JS
 + Sass
 + NodeJS
 + MongoDB Atlas
++ Heroku
 
 <!--GETTING STARTED-->
 ## Run a local copy
