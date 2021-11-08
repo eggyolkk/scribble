@@ -16,7 +16,7 @@ const API = process.env.NODE_ENV === 'production' ? 'https://scribble-tracker.he
 console.log(API)
 
 // connect to mongodb
-const dbURI = 'mongodb+srv://ella:GciP6rOhx9uxqyhd@scribble-db.d09rd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const dbURI = process.env.DB_URI;
 mongoose
     .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(PORT))
